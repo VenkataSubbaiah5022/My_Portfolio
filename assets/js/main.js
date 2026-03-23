@@ -125,9 +125,11 @@
     }
   });
 
-  // Porfolio isotope and filter
+  // Portfolio isotope (projects section only — avoids cert grid)
   $(window).on('load', function() {
-    var portfolioIsotope = $('.portfolio-container').isotope({
+    var $projectGrid = $('#portfolio .portfolio-container');
+    if (!$projectGrid.length) return;
+    var portfolioIsotope = $projectGrid.isotope({
       itemSelector: '.portfolio-item',
       layoutMode: 'fitRows'
     });
@@ -140,7 +142,6 @@
         filter: $(this).data('filter')
       });
     });
-
   });
 
   // Initiate venobox (lightbox feature used in portofilo)
