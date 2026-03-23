@@ -2,8 +2,11 @@ import { useEffect, useRef, useState } from "react";
 
 const shouldEnable3D = () => {
   if (typeof window === "undefined") return false;
+  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (prefersReducedMotion) return false;
+  if (connection?.saveData) return false;
+  if ((navigator.hardwareConcurrency || 4) <= 4) return false;
   if (window.innerWidth < 900) return false;
   return true;
 };
@@ -45,7 +48,7 @@ export default function ThreeBackground() {
       mountRef.current.appendChild(renderer.domElement);
 
       geometry = new THREE.BufferGeometry();
-      const count = 900;
+      const count = 600;
       const positions = new Float32Array(count * 3);
       for (let i = 0; i < count; i += 1) {
         positions[i * 3] = (Math.random() - 0.5) * 62;

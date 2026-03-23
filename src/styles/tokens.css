@@ -1,14 +1,14 @@
 :root {
-  --bg: #07090f;
-  --bg-alt: #0b1323;
-  --surface: rgba(13, 21, 38, 0.62);
-  --surface-strong: rgba(13, 21, 38, 0.86);
-  --border: rgba(153, 214, 255, 0.22);
-  --text: #f1f6ff;
-  --text-soft: #c1d1ea;
-  --brand: #64f7c6;
-  --brand-strong: #40a8ff;
-  --warning: #ffd37f;
+  --bg: #060913;
+  --bg-alt: #0d1426;
+  --surface: rgba(14, 24, 44, 0.66);
+  --surface-strong: rgba(12, 21, 38, 0.92);
+  --border: rgba(136, 186, 255, 0.22);
+  --text: #ecf3ff;
+  --text-soft: #b7c8e6;
+  --brand: #78d7ff;
+  --brand-strong: #53b9ff;
+  --warning: #ffcf8c;
   --radius-lg: 24px;
   --radius-md: 16px;
   --radius-sm: 12px;

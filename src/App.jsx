@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import SectionRail from "./components/SectionRail";
 import ThreeBackground from "./components/ThreeBackground";
 import HeroSection from "./sections/HeroSection";
 import AboutSection from "./sections/AboutSection";
+import EducationSection from "./sections/EducationSection";
 import StatsSection from "./sections/StatsSection";
 import ProjectsSection from "./sections/ProjectsSection";
 import ExperienceSection from "./sections/ExperienceSection";
@@ -55,10 +57,12 @@ export default function App() {
       <div className="bg-orb bg-orb--b" aria-hidden="true" />
       <div className="bg-orb bg-orb--c" aria-hidden="true" />
       {enableThree ? <ThreeBackground /> : null}
+      <SectionRail />
       <main>
         <motion.div variants={containerVariants} initial="hidden" animate="show">
           <HeroSection />
           <AboutSection />
+          <EducationSection />
           <StatsSection />
           <ProjectsSection />
           <ExperienceSection />

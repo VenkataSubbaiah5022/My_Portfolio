@@ -89,8 +89,8 @@ export default function HeroSection() {
         </motion.ul>
         <div className="hero__metrics">
           <div>
-            <strong>2+</strong>
-            <span>Years Experience</span>
+            <strong>2024-26</strong>
+            <span>Full-time Window</span>
           </div>
           <div>
             <strong>20+</strong>
