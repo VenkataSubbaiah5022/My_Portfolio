@@ -648,7 +648,7 @@ main {
 
 .contact-grid {
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 16px;
 }
 
@@ -712,6 +712,10 @@ main {
   gap: 8px;
 }
 
+.contact-form--disabled {
+  user-select: none;
+}
+
 .contact-form h3 {
   margin: 0 0 4px;
   color: #d4e8ff;
@@ -756,6 +760,11 @@ main {
 
 .contact-status--error {
   color: #ffb7b7;
+}
+
+.contact-open-mailto {
+  width: fit-content;
+  margin-top: 10px;
 }
 
 .credentials-grid {

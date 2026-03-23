@@ -1,4 +1,3 @@
-import { useState } from "react";
 import SectionShell from "../components/SectionShell";
 
 const contactLinks = [
@@ -9,31 +8,6 @@ const contactLinks = [
 ];
 
 export default function ContactSection() {
-  const [status, setStatus] = useState("idle");
-  const [message, setMessage] = useState("");
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const form = event.currentTarget;
-    const data = new FormData(form);
-    const name = String(data.get("name") || "").trim();
-    const email = String(data.get("email") || "").trim();
-    const details = String(data.get("message") || "").trim();
-    if (!name || !email || details.length < 20) return;
-    try {
-      const subject = encodeURIComponent(`Freelance Project Inquiry from ${name}`);
-      const body = encodeURIComponent(
-        `Name: ${name}\nEmail: ${email}\n\nProject details:\n${details}\n\n---\nSent from portfolio contact form`
-      );
-      window.location.href = `mailto:venkatasubbaiah5022@gmail.com?subject=${subject}&body=${body}`;
-      setStatus("success");
-      setMessage("Your email draft has opened. Send it to reach me directly.");
-    } catch {
-      setStatus("error");
-      setMessage("Email app could not open. Please write to: venkatasubbaiah5022@gmail.com");
-    }
-  };
-
   return (
     <SectionShell id="contact" eyebrow="Freelance" title="Available for contract work worldwide">
       <div className="contact-grid">
@@ -67,29 +41,7 @@ export default function ContactSection() {
           <p className="contact-note">Availability: Remote freelance and contract projects worldwide.</p>
         </div>
 
-        <form className="contact-form" onSubmit={handleSubmit}>
-          <h3>Start a project conversation</h3>
-          <label htmlFor="name">Your name</label>
-          <input id="name" name="name" type="text" placeholder="Enter your name" required minLength={2} />
-
-          <label htmlFor="email">Your email</label>
-          <input id="email" name="email" type="email" placeholder="Enter your email" required />
-
-          <label htmlFor="message">Message</label>
-          <textarea
-            id="message"
-            name="message"
-            rows="4"
-            placeholder="Tell me about your opportunity..."
-            required
-            minLength={20}
-          />
-
-          <button className="btn btn--primary contact-submit" type="submit">
-            Send via Email App
-          </button>
-          {message ? <p className={`contact-status contact-status--${status}`}>{message}</p> : null}
-        </form>
+       
       </div>
     </SectionShell>
   );
