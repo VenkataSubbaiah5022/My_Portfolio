@@ -13,6 +13,14 @@ export default function AboutSection() {
           products fast. I also published peer-reviewed AI/NLP research in 2025.
         </p>
       </div>
+      <div className="about-highlights">
+        <span>React + TypeScript</span>
+        <span>Node.js Microservices</span>
+        <span>IoT Monitoring</span>
+        <span>MongoDB Optimization</span>
+        <span>Docker + GCP</span>
+        <span>Agile Delivery</span>
+      </div>
     </SectionShell>
   );
 }

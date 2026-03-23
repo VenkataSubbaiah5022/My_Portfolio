@@ -1,5 +1,5 @@
 import SectionShell from "../components/SectionShell";
-import GlassCard from "../components/GlassCard";
+import SpotlightCard from "../components/SpotlightCard";
 
 const projects = [
   {
@@ -27,13 +27,13 @@ export default function ProjectsSection() {
     <SectionShell id="projects" eyebrow="Projects" title="Selected work">
       <div className="card-grid">
         {projects.map((project) => (
-          <GlassCard key={project.title}>
+          <SpotlightCard key={project.title}>
             <article className="content-card">
               <h3>{project.title}</h3>
               <p className="content-card__meta">{project.stack}</p>
               <p>{project.description}</p>
             </article>
-          </GlassCard>
+          </SpotlightCard>
         ))}
       </div>
     </SectionShell>

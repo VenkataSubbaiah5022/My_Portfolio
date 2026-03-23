@@ -25,7 +25,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="hero">
+    <section className="hero" id="top">
       <div className="hero__content">
         <motion.p
           initial={{ opacity: 0, y: 12 }}
@@ -87,6 +87,20 @@ export default function HeroSection() {
             </li>
           ))}
         </motion.ul>
+        <div className="hero__metrics">
+          <div>
+            <strong>2+</strong>
+            <span>Years Experience</span>
+          </div>
+          <div>
+            <strong>20+</strong>
+            <span>Production APIs</span>
+          </div>
+          <div>
+            <strong>19+</strong>
+            <span>Microservices</span>
+          </div>
+        </div>
       </div>
       <motion.div
         className="hero__imageWrap"

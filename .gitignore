@@ -21,3 +21,16 @@ pnpm-debug.log*
 Thumbs.db
 .vscode/
 .idea/
+
+# Local workspace/cache files
+.cursor/
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+
+# Local captures / exports
+screenshots/
+captures/
+recordings/
