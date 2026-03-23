@@ -1,68 +1,59 @@
 import SectionShell from "../components/SectionShell";
-import {
-  FaCodeBranch,
-  FaReact,
-  FaNodeJs,
-  FaPython,
-  FaDocker,
-  FaDatabase,
-  FaCloud,
-  FaMicrochip
-} from "react-icons/fa";
-
 
 const groups = [
   {
-    icon: FaReact,
     title: "Frontend",
-    skills: ["React.js", "JavaScript (ES6+)", "TypeScript", "HTML5", "CSS3"]
+    logos: [
+      { src: "https://www.vectorlogo.zone/logos/reactjs/reactjs-ar21.svg", alt: "React.js" },
+      { src: "https://www.vectorlogo.zone/logos/javascript/javascript-ar21.svg", alt: "JavaScript" },
+      { src: "https://www.vectorlogo.zone/logos/typescriptlang/typescriptlang-ar21.svg", alt: "TypeScript" },
+      { src: "https://www.vectorlogo.zone/logos/w3_html5/w3_html5-ar21.svg", alt: "HTML5" },
+      { src: "https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg", alt: "CSS3" }
+    ],
+    skills: ["Component-driven UI", "Modern ES6+ JavaScript", "Responsive web interfaces"]
   },
   {
-    icon: FaNodeJs,
     title: "Backend",
-    skills: ["Node.js", "Express.js", "Python", "REST APIs", "Jest", "Pytest"]
+    logos: [
+      { src: "https://www.vectorlogo.zone/logos/nodejs/nodejs-ar21.svg", alt: "Node.js" },
+      { src: "https://www.vectorlogo.zone/logos/expressjs/expressjs-ar21.svg", alt: "Express.js" },
+      { src: "https://www.vectorlogo.zone/logos/python/python-horizontal.svg", alt: "Python" }
+    ],
+    skills: ["REST APIs", "Testing: Jest", "Testing: Pytest"]
   },
   {
-    icon: FaDatabase,
     title: "Databases & DevOps",
-    skills: ["MongoDB", "MySQL", "Docker", "GCP", "GitHub Actions", "Bitbucket Pipelines"]
+    logos: [
+      { src: "https://www.vectorlogo.zone/logos/mongodb/mongodb-ar21.svg", alt: "MongoDB" },
+      { src: "https://www.vectorlogo.zone/logos/mysql/mysql-horizontal.svg", alt: "MySQL" },
+      { src: "https://www.vectorlogo.zone/logos/docker/docker-ar21.svg", alt: "Docker" },
+      { src: "https://www.vectorlogo.zone/logos/google_cloud/google_cloud-ar21.svg", alt: "GCP" }
+    ],
+    skills: ["GitHub Actions", "Bitbucket Pipelines"]
   },
   {
-    icon: FaMicrochip,
     title: "Concepts",
+    logos: [],
     skills: ["Microservices", "Real-Time Systems", "CI/CD", "IoT Platforms", "Agile/Scrum"]
   }
-];
-
-const stackIcons = [
-  { src: "https://www.vectorlogo.zone/logos/reactjs/reactjs-ar21.svg", alt: "React" },
-  { src: "https://www.vectorlogo.zone/logos/nodejs/nodejs-ar21.svg", alt: "Node.js" },
-  { src: "https://www.vectorlogo.zone/logos/expressjs/expressjs-ar21.svg", alt: "Express.js" },
-  { src: "https://www.vectorlogo.zone/logos/typescriptlang/typescriptlang-ar21.svg", alt: "TypeScript" },
-  { src: "https://www.vectorlogo.zone/logos/python/python-horizontal.svg", alt: "Python" },
-  { src: "https://www.vectorlogo.zone/logos/mongodb/mongodb-ar21.svg", alt: "MongoDB" },
-  { src: "https://www.vectorlogo.zone/logos/mysql/mysql-horizontal.svg", alt: "MySQL" },
-  { src: "https://www.vectorlogo.zone/logos/docker/docker-ar21.svg", alt: "Docker" },
-  { src: "https://www.vectorlogo.zone/logos/google_cloud/google_cloud-ar21.svg", alt: "GCP" }
 ];
 
 export default function SkillsSection() {
   return (
     <SectionShell id="skills" eyebrow="Capabilities" title="Technical stack">
-      <div className="stack-icon-grid">
-        {stackIcons.map(({ src, alt }) => (
-          <div className="stack-icon-item" key={alt} title={alt} aria-label={alt}>
-            <img src={src} alt={alt} loading="lazy" />
-          </div>
-        ))}
-      </div>
       <div className="skills-grid">
         {groups.map((group) => (
           <section className="skills-group" key={group.title}>
-            <h3>
-              <group.icon />
-              {group.title}
-            </h3>
+            <h3>{group.title}</h3>
+            {group.logos.length ? (
+              <div className="skills-logo-grid" aria-label={`${group.title} logos`}>
+                {group.logos.map((logo) => (
+                  <div className="skills-logo-item" key={logo.alt} title={logo.alt} aria-label={logo.alt}>
+                    <img src={logo.src} alt={logo.alt} loading="lazy" />
+                  </div>
+                ))}
+              </div>
+            ) : null}
             <div className="tag-row">
               {group.skills.map((skill) => (
                 <span className="tag" key={skill}>
