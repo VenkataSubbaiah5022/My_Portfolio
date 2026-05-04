@@ -13,12 +13,23 @@ const experiences = [
     ]
   },
   {
+    company: "Chegg India",
+    role: "Computer Science Subject Expert (Freelance)",
+    period: "Sep 2023 - Mar 2026",
+    details: [
+      "Solved complex problems in DSA, Java, Python, SQL, and DBMS with high-accuracy delivery under strict deadlines.",
+      "Provided clear, step-by-step explanations to global learners and strengthened analytical communication.",
+      "Built consistency in problem solving and technical mentoring while balancing concurrent engineering work."
+    ]
+  },
+  {
     company: "R K Microns",
-    role: "Mobile Application Development Intern",
+    role: "Backend Developer",
     period: "May 2024 - Oct 2024",
     details: [
-      "Built a Flutter-based defect detection app for 3D printing workflows using image processing.",
-      "Improved defect detection accuracy by 35% through analytics dashboards and iterative testing."
+      "Built defect-detection backend services and data contracts that replaced manual inspection workflows.",
+      "Improved defect detection accuracy by 35% and reduced manual QA effort by nearly 2 hours per operator per day.",
+      "Containerized services with Docker to improve deployment reliability and reproducibility."
     ]
   }
 ];

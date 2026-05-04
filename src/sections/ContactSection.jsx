@@ -4,17 +4,17 @@ const contactLinks = [
   { label: "Email", href: "mailto:venkatasubbaiah5022@gmail.com?subject=Freelance%20Project%20Inquiry" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/aitha-venkata-subbaiah-setty/" },
   { label: "GitHub", href: "https://github.com/VenkataSubbaiah5022" },
-  { label: "WhatsApp", href: "https://wa.me/+919963132119" }
+  { label: "Upwork", href: "https://www.upwork.com/freelancers/~017b9a8b315e94f07a?mp_source=share" }
 ];
 
 export default function ContactSection() {
   return (
-    <SectionShell id="contact" eyebrow="Freelance" title="Available for contract work worldwide">
+    <SectionShell id="contact" eyebrow="Contact" title="Drop a line - I reply within 24 hours">
       <div className="contact-grid">
         <div className="contact-card">
           <p>
-            I help startups and teams ship modern web products, APIs, and automation workflows. Open to remote freelance
-            projects across all time zones.
+            Open to Backend / MERN Full Stack opportunities and freelance contracts. Best for APIs, backend systems, and
+            production-facing full stack delivery.
           </p>
           <div className="service-pills">
             <span>Full Stack Product Builds</span>
@@ -31,14 +31,19 @@ export default function ContactSection() {
             ))}
           </div>
           <div className="contact-cta-row">
-            <a className="btn btn--primary" href="/assets/Venkata_Subbaiah_Resume.pdf" target="_blank" rel="noreferrer">
+            <a className="btn btn--primary" href="/resume.pdf" target="_blank" rel="noreferrer">
               Download Resume
             </a>
-            <a className="btn btn--ghost" href="mailto:venkatasubbaiah5022@gmail.com">
-              Direct Email
+            <a
+              className="btn btn--ghost"
+              href="https://www.upwork.com/freelancers/~017b9a8b315e94f07a?mp_source=share"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Hire me on Upwork
             </a>
           </div>
-          <p className="contact-note">Availability: Remote freelance and contract projects worldwide.</p>
+          <p className="contact-note">Availability: Backend / Full Stack roles, freelance, and contract-to-hire.</p>
         </div>
 
        

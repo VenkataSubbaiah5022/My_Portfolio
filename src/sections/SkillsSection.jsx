@@ -1,4 +1,5 @@
 import SectionShell from "../components/SectionShell";
+import { motion } from "framer-motion";
 
 const groups = [
   {
@@ -119,8 +120,15 @@ export default function SkillsSection() {
   return (
     <SectionShell id="skills" eyebrow="Capabilities" title="Technical stack">
       <div className="skills-grid">
-        {groups.map((group) => (
-          <section className="skills-group" key={group.title}>
+        {groups.map((group, index) => (
+          <motion.section
+            className="skills-group"
+            key={group.title}
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{ duration: 0.7, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
+          >
             <h3>{group.title}</h3>
             {group.logos.length ? (
               <div className="skills-logo-grid" aria-label={`${group.title} logos`}>
@@ -151,7 +159,7 @@ export default function SkillsSection() {
                 ))}
               </div>
             )}
-          </section>
+          </motion.section>
         ))}
       </div>
     </SectionShell>

@@ -3,35 +3,42 @@ import SpotlightCard from "../components/SpotlightCard";
 
 const projects = [
   {
-    title: "Real-Time Alerting Module (IoT)",
-    stack: "Node.js · MongoDB · Trigger Workflows",
+    title: "Timesheet Management System",
+    status: "Live",
+    stack: "React · TypeScript · Zustand · TanStack Query · TanStack Table · Recharts",
     description:
-      "Designed and implemented threshold-based alerting for temperature breaches with notification triggers that supported a 70% reduction in system downtime.",
+      "Role-based timesheet and payroll platform with admin and employee workflows, KPI charts, attendance handling, and CSV/PDF report exports.",
     links: [
-      { label: "Case Study", href: "#experience" },
-      { label: "GitHub", href: "https://github.com/VenkataSubbaiah5022" }
+      { label: "GitHub", href: "https://github.com/VenkataSubbaiah5022/Timesheet-Management-System" },
+      { label: "Live Demo", href: "https://timesheet-management-system-sage.vercel.app/" }
     ]
   },
   {
-    title: "AI-Based Voice Assistant",
-    stack: "Python · NLP · Speech Pipeline",
+    title: "Real-Time Chat Application",
+    status: "Code Available",
+    stack: "MongoDB · Express.js · React.js · Node.js · Socket.io",
     description:
-      "Built an NLP voice assistant with speech recognition and text-to-speech, integrated with Gmail, WhatsApp, YouTube, and weather APIs for voice-driven automation.",
+      "Socket.io based chat app with group and private rooms, typing indicators, and low-latency message handling tuned for real-time delivery.",
     links: [
-      { label: "Publication", href: "https://zenodo.org/records/15123556" },
-      { label: "GitHub", href: "https://github.com/VenkataSubbaiah5022" }
+      { label: "GitHub", href: "https://github.com/VenkataSubbaiah5022/Real-Time-Chat-Application" }
     ]
   },
   {
     title: "Task Management System",
-    stack: "Node.js · Express.js · React.js · MongoDB · JWT",
+    status: "Code Available",
+    stack: "MongoDB · Express.js · React.js · Node.js · JWT",
     description:
-      "Developed a full stack task workflow platform with authentication, deadlines, and REST APIs to manage user activity and execution visibility.",
-    links: [
-      { label: "Case Study", href: "#projects" },
-      { label: "GitHub", href: "https://github.com/VenkataSubbaiah5022" }
-    ]
-  }
+      "Kanban style task system with authentication, real-time updates through WebSockets, and structured REST APIs for team workflows.",
+    links: [{ label: "GitHub", href: "https://github.com/VenkataSubbaiah5022/Task-Management-System" }]
+  },
+  {
+    title: "AI-Based Voice Assistant",
+    status: "Demo on Request",
+    stack: "Python · NLP · Speech Recognition",
+    description:
+      "NLP-powered assistant integrated with Gmail, WhatsApp, and YouTube APIs, backed by published research work on practical voice automation.",
+    links: [{ label: "GitHub", href: "https://github.com/VenkataSubbaiah5022/ai-voice-assistant" }]
+  },
 ];
 
 export default function ProjectsSection() {
@@ -41,6 +48,7 @@ export default function ProjectsSection() {
         {projects.map((project) => (
           <SpotlightCard key={project.title}>
             <article className="content-card">
+              {project.status ? <span className="project-status">{project.status}</span> : null}
               <h3>{project.title}</h3>
               <p className="content-card__meta">{project.stack}</p>
               <p>{project.description}</p>
@@ -51,6 +59,8 @@ export default function ProjectsSection() {
                   </a>
                 ))}
               </div>
+              {project.status === "Code Available" ? <p className="project-note">Live demo coming soon</p> : null}
+              {project.status === "Demo on Request" ? <p className="project-note">Demo available on request</p> : null}
             </article>
           </SpotlightCard>
         ))}

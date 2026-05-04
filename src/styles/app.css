@@ -13,6 +13,12 @@ html {
   scroll-behavior: smooth;
 }
 
+@media (min-width: 1024px) {
+  html {
+    scroll-snap-type: y proximity;
+  }
+}
+
 body {
   font-family: var(--font-body);
   background: var(--bg);
@@ -187,7 +193,7 @@ a {
 main {
   width: min(1120px, calc(100% - 48px));
   margin: 0 auto;
-  padding: 20px 0 72px;
+  padding: 24px 0 80px;
 }
 
 .hero {
@@ -195,7 +201,7 @@ main {
   grid-template-columns: 1.35fr 1fr;
   align-items: center;
   gap: 42px;
-  min-height: 78vh;
+  min-height: 88vh;
 }
 
 .hero__eyebrow {
@@ -324,7 +330,14 @@ main {
 }
 
 .section-shell {
-  margin-top: 72px;
+  margin-top: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 88px 0 44px;
+  scroll-margin-top: 16px;
+  scroll-snap-align: start;
   position: relative;
 }
 
@@ -440,6 +453,10 @@ main {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.card-grid--two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .stat-card {
   padding: 22px 18px;
   text-align: center;
@@ -503,6 +520,26 @@ main {
 .project-links a:hover {
   color: var(--brand);
   border-color: rgba(100, 247, 198, 0.55);
+}
+
+.project-status {
+  display: inline-flex;
+  margin-bottom: 10px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(120, 223, 255, 0.45);
+  background: rgba(100, 247, 198, 0.08);
+  color: #9be9ff;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.project-note {
+  margin: 12px 0 0;
+  color: #c7d8f3;
+  font-size: 0.82rem;
 }
 
 .timeline {
@@ -862,6 +899,7 @@ main {
   }
 
   .card-grid,
+  .card-grid--two,
   .skills-grid,
   .credentials-grid,
   .contact-grid {
@@ -875,11 +913,18 @@ main {
   .concept-grid {
     grid-template-columns: 1fr;
   }
+
+  .section-shell {
+    min-height: auto;
+    padding: 72px 0 24px;
+    scroll-snap-align: none;
+  }
 }
 
 @media (max-width: 680px) {
   main {
-    width: min(1120px, calc(100% - 26px));
+    width: min(1120px, calc(100% - 20px));
+    padding-top: 12px;
   }
 
   .stats-grid {
@@ -892,6 +937,19 @@ main {
 
   .hero__metrics {
     grid-template-columns: 1fr;
+  }
+
+  .hero__actions .btn {
+    width: 100%;
+  }
+
+  .hero__socials {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .section-shell {
+    padding: 60px 0 20px;
   }
 
   .publication-card__actions .btn {

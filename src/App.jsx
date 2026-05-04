@@ -8,6 +8,7 @@ import EducationSection from "./sections/EducationSection";
 import StatsSection from "./sections/StatsSection";
 import ProjectsSection from "./sections/ProjectsSection";
 import ExperienceSection from "./sections/ExperienceSection";
+import SideTracksSection from "./sections/SideTracksSection";
 import SkillsSection from "./sections/SkillsSection";
 import PublicationSection from "./sections/PublicationSection";
 import CertificationsSection from "./sections/CertificationsSection";
@@ -18,8 +19,8 @@ const containerVariants = {
   show: {
     opacity: 1,
     transition: {
-      duration: 0.4,
-      staggerChildren: 0.05
+      duration: 0.6,
+      staggerChildren: 0.12
     }
   }
 };
@@ -63,8 +64,9 @@ export default function App() {
           <HeroSection />
           <AboutSection />
           <EducationSection />
-          <StatsSection />
           <ProjectsSection />
+          <SideTracksSection />
+          <StatsSection />
           <ExperienceSection />
           <PublicationSection />
           <SkillsSection />

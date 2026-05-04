@@ -5,7 +5,7 @@ const itemVariants = {
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] }
+    transition: { duration: 0.72, ease: [0.22, 1, 0.36, 1] }
   }
 };
 
@@ -17,7 +17,7 @@ export default function SectionShell({ id, eyebrow, title, children, className =
       variants={itemVariants}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: true, amount: 0.25 }}
     >
       <div className="section-shell__head">
         {eyebrow ? <p className="section-shell__eyebrow">{eyebrow}</p> : null}

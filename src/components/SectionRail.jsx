@@ -3,6 +3,8 @@ import { useEffect, useMemo, useState } from "react";
 const sectionLinks = [
   { label: "About", href: "#about", id: "about" },
   { label: "Projects", href: "#projects", id: "projects" },
+  { label: "Side Tracks", href: "#sidetracks", id: "sidetracks" },
+  { label: "Impact", href: "#impact", id: "impact" },
   { label: "Experience", href: "#experience", id: "experience" },
   { label: "Skills", href: "#skills", id: "skills" },
   { label: "Contact", href: "#contact", id: "contact" }

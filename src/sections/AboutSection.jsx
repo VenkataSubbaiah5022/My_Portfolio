@@ -2,24 +2,24 @@ import SectionShell from "../components/SectionShell";
 
 export default function AboutSection() {
   return (
-    <SectionShell id="about" eyebrow="Profile" title="Building high-impact, real-world software">
+    <SectionShell id="about" eyebrow="Profile" title="Engineer who treats latency like a feature">
       <div className="about-grid">
         <p>
-          Full Stack Developer with strong ownership across frontend, backend, and deployments. I have delivered a
-          production IoT monitoring platform using React.js, Node.js (TypeScript), Python, and MongoDB.
+          MERN Full Stack Developer (backend-focused) with production ownership across architecture, APIs, and
+          performance on IoT and real-time systems.
         </p>
         <p>
-          My core strengths are microservices, real-time data systems, performance optimization, and shipping practical
-          products fast. I also published peer-reviewed AI/NLP research in 2025.
+          I design APIs for reliability first: idempotency, retry logic, observability, and latency budgets that keep
+          systems stable under production load.
         </p>
       </div>
       <div className="about-highlights">
-        <span>React + TypeScript</span>
+        <span>MERN Architecture</span>
         <span>Node.js Microservices</span>
-        <span>IoT Monitoring</span>
-        <span>MongoDB Optimization</span>
-        <span>Docker + GCP</span>
-        <span>Agile Delivery</span>
+        <span>Sub-100ms API p95</span>
+        <span>Idempotent API Design</span>
+        <span>Rate Limits + Retries</span>
+        <span>Observability Mindset</span>
       </div>
     </SectionShell>
   );
