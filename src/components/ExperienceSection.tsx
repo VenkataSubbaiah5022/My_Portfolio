@@ -7,22 +7,34 @@ const timeline = [
     period: "Nov 2024 - Mar 2026",
     role: "Full Stack Developer",
     company: "Stratosfy (Remote - Ottawa, Canada)",
-    detail:
-      "Built a production IoT monitoring platform for 500+ devices, shipped 20+ APIs and 19+ microservices, and reduced downtime by 70%.",
+    points: [
+      "Developed 19+ microservices using Node.js and TypeScript for production IoT monitoring.",
+      "Built 20+ REST APIs for telemetry ingestion and operational dashboards.",
+      "Reduced system downtime by 70% through data modeling and aggregation optimizations.",
+      "Maintained 80%+ Jest coverage and improved release quality via GitHub Actions CI/CD.",
+      "Secured APIs with JWT, rate limiting, and validation aligned with OWASP practices.",
+    ],
   },
   {
     period: "May 2024 - Oct 2024",
     role: "Backend Developer",
     company: "R K Microns (Rajasthan, India)",
-    detail:
-      "Developed Python backend pipelines for defect detection, improving accuracy by 35% and reducing manual work by 2 hours/day.",
+    points: [
+      "Built Python backend pipelines for AI-based defect detection workflows.",
+      "Improved defect detection accuracy by 35%.",
+      "Reduced manual inspection effort by 2 hours/day across 10+ operators.",
+      "Collaborated with Flutter frontend teams for realtime visualization.",
+    ],
   },
   {
     period: "Sep 2023 - Mar 2026",
     role: "Computer Science Subject Expert",
     company: "Chegg (Remote)",
-    detail:
-      "Solved global CS queries in DSA, SQL, Java, Python, DBMS, and OS with clear step-by-step technical explanations.",
+    points: [
+      "Solved 500+ CS queries across DSA, DBMS, OS, SQL, Java, and Python.",
+      "Delivered clear, structured step-by-step technical explanations.",
+      "Maintained high response quality and consistency under strict timelines.",
+    ],
   },
 ];
 
@@ -45,7 +57,11 @@ export function ExperienceSection() {
             </p>
             <h3 className="mt-2 text-lg font-semibold md:text-xl">{item.role}</h3>
             <p className="text-sm text-muted-foreground">{item.company}</p>
-            <p className="mt-2 text-sm text-muted-foreground">{item.detail}</p>
+            <ul className="mt-3 space-y-1.5 text-sm text-muted-foreground">
+              {item.points.map((point) => (
+                <li key={point}>- {point}</li>
+              ))}
+            </ul>
           </motion.article>
         ))}
       </div>

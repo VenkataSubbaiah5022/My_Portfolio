@@ -1,13 +1,27 @@
 "use client";
 
 import { Moon, Sun } from "lucide-react";
-import { useTheme } from "next-themes";
+import { useSyncExternalStore } from "react";
+import { useTheme } from "@/components/theme-provider";
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
+  const mounted = useSyncExternalStore(
+    () => () => undefined,
+    () => true,
+    () => false,
+  );
+
+  if (!mounted) {
+    return (
+      <button
+        className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card/80 backdrop-blur"
+        aria-label="Toggle theme"
+      />
+    );
+  }
 
   const isDark = theme === "dark";
-
   return (
     <button
       onClick={() => setTheme(isDark ? "light" : "dark")}
