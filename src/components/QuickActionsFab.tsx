@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { BriefcaseBusiness, ChevronUp, Download, ExternalLink, Mail } from "lucide-react";
+import { trackFileDownload, trackOutboundClick } from "@/lib/analytics";
 
 export function QuickActionsFab() {
   const [expanded, setExpanded] = useState(false);
@@ -12,6 +13,7 @@ export function QuickActionsFab() {
         <a
           href="/resume.pdf"
           download
+          onClick={() => trackFileDownload("resume.pdf", "fab_desktop")}
           className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-2 text-xs shadow-lg backdrop-blur transition hover:border-primary/50"
         >
           <Download className="h-3.5 w-3.5" />
@@ -19,6 +21,9 @@ export function QuickActionsFab() {
         </a>
         <a
           href="mailto:venkatasubbaiah5022@gmail.com"
+          onClick={() =>
+            trackOutboundClick("Email", "mailto:venkatasubbaiah5022@gmail.com", "fab_desktop")
+          }
           className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-2 text-xs shadow-lg backdrop-blur transition hover:border-primary/50"
         >
           <Mail className="h-3.5 w-3.5" />
@@ -28,6 +33,13 @@ export function QuickActionsFab() {
           href="https://www.upwork.com/freelancers/~017b9a8b315e94f07a?mp_source=share"
           target="_blank"
           rel="noreferrer"
+          onClick={() =>
+            trackOutboundClick(
+              "Upwork",
+              "https://www.upwork.com/freelancers/~017b9a8b315e94f07a?mp_source=share",
+              "fab_desktop",
+            )
+          }
           className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-2 text-xs shadow-lg backdrop-blur transition hover:border-primary/50"
         >
           <BriefcaseBusiness className="h-3.5 w-3.5" />
@@ -37,6 +49,13 @@ export function QuickActionsFab() {
           href="https://github.com/VenkataSubbaiah5022"
           target="_blank"
           rel="noreferrer"
+          onClick={() =>
+            trackOutboundClick(
+              "GitHub",
+              "https://github.com/VenkataSubbaiah5022",
+              "fab_desktop",
+            )
+          }
           className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-2 text-xs shadow-lg backdrop-blur transition hover:border-primary/50"
         >
           <ExternalLink className="h-3.5 w-3.5" />
@@ -50,6 +69,7 @@ export function QuickActionsFab() {
             <a
               href="/resume.pdf"
               download
+              onClick={() => trackFileDownload("resume.pdf", "fab_mobile")}
               className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-2 text-xs shadow-lg backdrop-blur"
             >
               <Download className="h-3.5 w-3.5" />
@@ -57,6 +77,13 @@ export function QuickActionsFab() {
             </a>
             <a
               href="mailto:venkatasubbaiah5022@gmail.com"
+              onClick={() =>
+                trackOutboundClick(
+                  "Email",
+                  "mailto:venkatasubbaiah5022@gmail.com",
+                  "fab_mobile",
+                )
+              }
               className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-2 text-xs shadow-lg backdrop-blur"
             >
               <Mail className="h-3.5 w-3.5" />
@@ -66,6 +93,13 @@ export function QuickActionsFab() {
               href="https://www.upwork.com/freelancers/~017b9a8b315e94f07a?mp_source=share"
               target="_blank"
               rel="noreferrer"
+              onClick={() =>
+                trackOutboundClick(
+                  "Upwork",
+                  "https://www.upwork.com/freelancers/~017b9a8b315e94f07a?mp_source=share",
+                  "fab_mobile",
+                )
+              }
               className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-2 text-xs shadow-lg backdrop-blur"
             >
               <BriefcaseBusiness className="h-3.5 w-3.5" />

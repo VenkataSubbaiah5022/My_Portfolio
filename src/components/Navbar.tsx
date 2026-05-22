@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { trackNavClick, trackOutboundClick } from "@/lib/analytics";
 
 const links = [
   { href: "#about", label: "About" },
@@ -50,6 +51,7 @@ export function Navbar() {
             <a
               key={link.href}
               href={link.href}
+              onClick={() => trackNavClick(link.label, "navbar")}
               className="text-sm text-muted-foreground transition hover:text-foreground"
             >
               {link.label}
@@ -61,6 +63,13 @@ export function Navbar() {
             href="https://www.upwork.com/freelancers/~017b9a8b315e94f07a?mp_source=share"
             target="_blank"
             rel="noreferrer"
+            onClick={() =>
+              trackOutboundClick(
+                "Upwork",
+                "https://www.upwork.com/freelancers/~017b9a8b315e94f07a?mp_source=share",
+                "navbar",
+              )
+            }
             className="hidden rounded-full border border-border bg-card px-3 py-1.5 text-xs font-medium text-muted-foreground transition hover:border-primary/50 hover:text-foreground md:inline-flex"
           >
             Hire Me

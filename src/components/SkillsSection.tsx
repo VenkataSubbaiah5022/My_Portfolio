@@ -2,6 +2,7 @@
 
 import { BadgeCheck, ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
+import { trackOutboundClick } from "@/lib/analytics";
 
 const skillGroups = [
   {
@@ -111,6 +112,13 @@ export function SkillsSection() {
             href={featuredCertification.href}
             target="_blank"
             rel="noreferrer"
+            onClick={() =>
+              trackOutboundClick(
+                "HackerRank Certificate",
+                featuredCertification.href,
+                "skills",
+              )
+            }
             className="mt-4 inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-3 py-2 text-xs font-medium text-primary transition hover:border-primary/60"
           >
             View Certificate

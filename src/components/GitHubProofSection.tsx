@@ -1,4 +1,7 @@
+"use client";
+
 import { GitBranch } from "lucide-react";
+import { trackOutboundClick } from "@/lib/analytics";
 
 const stats = [
   "17+ repositories",
@@ -29,6 +32,13 @@ export function GitHubProofSection() {
           href="https://github.com/VenkataSubbaiah5022"
           target="_blank"
           rel="noreferrer"
+          onClick={() =>
+            trackOutboundClick(
+              "GitHub",
+              "https://github.com/VenkataSubbaiah5022",
+              "github_proof",
+            )
+          }
           className="mt-4 inline-flex items-center gap-2 rounded-full border border-border px-3 py-2 text-xs transition hover:border-primary/50"
         >
           <GitBranch className="h-3.5 w-3.5" />

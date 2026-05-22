@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Analytics } from "@/components/Analytics";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
@@ -20,6 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} h-full`}>
+      <head>
+        <Analytics />
+      </head>
       <body className="min-h-full bg-background font-sans text-foreground">
         <ThemeProvider>{children}</ThemeProvider>
       </body>

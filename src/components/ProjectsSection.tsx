@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ExternalLink, GitBranch } from "lucide-react";
+import { trackOutboundClick } from "@/lib/analytics";
 
 const projects = [
   {
@@ -135,6 +136,13 @@ export function ProjectsSection() {
                   href={project.live}
                   target="_blank"
                   rel="noreferrer"
+                  onClick={() =>
+                    trackOutboundClick(
+                      `${project.title} Live`,
+                      project.live!,
+                      "projects",
+                    )
+                  }
                   className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1.5 text-xs transition hover:border-primary/50"
                 >
                   <ExternalLink className="h-3.5 w-3.5" /> Live
@@ -148,6 +156,13 @@ export function ProjectsSection() {
                 href={project.code}
                 target="_blank"
                 rel="noreferrer"
+                onClick={() =>
+                  trackOutboundClick(
+                    `${project.title} Code`,
+                    project.code,
+                    "projects",
+                  )
+                }
                 className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1.5 text-xs transition hover:border-primary/50"
               >
                 <GitBranch className="h-3.5 w-3.5" /> Code

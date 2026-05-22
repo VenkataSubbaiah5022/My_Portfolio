@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { EnvelopeClosedIcon, GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 import { useState, type FormEvent } from "react";
+import { trackContactSubmit, trackOutboundClick } from "@/lib/analytics";
 
 export function ContactSection() {
   const [sentMessage, setSentMessage] = useState("");
@@ -38,6 +39,7 @@ export function ContactSection() {
         if (!response.ok || data.success !== "true") {
           throw new Error("Unable to send");
         }
+        trackContactSubmit();
         setSentMessage("Message sent successfully. I will get back to you soon.");
         event.currentTarget.reset();
       })
@@ -76,6 +78,13 @@ export function ContactSection() {
             href="https://www.upwork.com/freelancers/~017b9a8b315e94f07a?mp_source=share"
             target="_blank"
             rel="noreferrer"
+            onClick={() =>
+              trackOutboundClick(
+                "Upwork",
+                "https://www.upwork.com/freelancers/~017b9a8b315e94f07a?mp_source=share",
+                "contact",
+              )
+            }
             className="inline-flex rounded-full border border-border px-3 py-1.5 text-xs transition hover:border-primary/50"
           >
             Book a Call / Hire on Upwork
@@ -120,6 +129,13 @@ export function ContactSection() {
             target="_blank"
             rel="noreferrer"
             aria-label="GitHub"
+            onClick={() =>
+              trackOutboundClick(
+                "GitHub",
+                "https://github.com/VenkataSubbaiah5022",
+                "contact",
+              )
+            }
             className="transition hover:text-primary"
           >
             <GitHubLogoIcon className="h-5 w-5" />
@@ -129,6 +145,13 @@ export function ContactSection() {
             target="_blank"
             rel="noreferrer"
             aria-label="LinkedIn"
+            onClick={() =>
+              trackOutboundClick(
+                "LinkedIn",
+                "https://www.linkedin.com/in/aitha-venkata-subbaiah-setty/",
+                "contact",
+              )
+            }
             className="transition hover:text-primary"
           >
             <LinkedInLogoIcon className="h-5 w-5" />
@@ -136,6 +159,13 @@ export function ContactSection() {
           <a
             href="mailto:venkatasubbaiah5022@gmail.com"
             aria-label="Email"
+            onClick={() =>
+              trackOutboundClick(
+                "Email",
+                "mailto:venkatasubbaiah5022@gmail.com",
+                "contact",
+              )
+            }
             className="transition hover:text-primary"
           >
             <EnvelopeClosedIcon className="h-5 w-5" />

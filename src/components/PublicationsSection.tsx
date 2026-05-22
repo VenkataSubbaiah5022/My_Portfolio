@@ -1,4 +1,7 @@
+"use client";
+
 import { FileText } from "lucide-react";
+import { trackOutboundClick } from "@/lib/analytics";
 
 export function PublicationsSection() {
   return (
@@ -25,6 +28,13 @@ export function PublicationsSection() {
           href="https://zenodo.org/records/15123556"
           target="_blank"
           rel="noreferrer"
+          onClick={() =>
+            trackOutboundClick(
+              "Zenodo Publication",
+              "https://zenodo.org/records/15123556",
+              "publications",
+            )
+          }
           className="mt-4 inline-flex items-center gap-2 rounded-full border border-border px-3 py-2 text-xs transition hover:border-primary/50"
         >
           <FileText className="h-3.5 w-3.5" />

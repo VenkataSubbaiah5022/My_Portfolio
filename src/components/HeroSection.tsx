@@ -3,6 +3,11 @@
 import { ArrowRight, Download, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
+import {
+  trackFileDownload,
+  trackNavClick,
+  trackOutboundClick,
+} from "@/lib/analytics";
 
 const proofItems = [
   "200+ LeetCode Problems",
@@ -42,6 +47,7 @@ export function HeroSection() {
         <div className="flex flex-wrap gap-3">
           <a
             href="#projects"
+            onClick={() => trackNavClick("projects", "hero")}
             className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2.5 text-xs font-medium text-primary-foreground transition hover:translate-y-[-1px] sm:px-5 sm:py-3 sm:text-sm"
           >
             View Projects <ArrowRight className="h-4 w-4" />
@@ -50,6 +56,13 @@ export function HeroSection() {
             href="https://github.com/VenkataSubbaiah5022"
             target="_blank"
             rel="noreferrer"
+            onClick={() =>
+              trackOutboundClick(
+                "GitHub",
+                "https://github.com/VenkataSubbaiah5022",
+                "hero",
+              )
+            }
             className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2.5 text-xs font-medium transition hover:border-primary/50 sm:px-5 sm:py-3 sm:text-sm"
           >
             GitHub <GitHubLogoIcon className="h-4 w-4" />
@@ -57,12 +70,14 @@ export function HeroSection() {
           <a
             href="/resume.pdf"
             download
+            onClick={() => trackFileDownload("resume.pdf", "hero")}
             className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2.5 text-xs font-medium transition hover:border-primary/50 sm:px-5 sm:py-3 sm:text-sm"
           >
             Download Resume <Download className="h-4 w-4" />
           </a>
           <a
             href="#contact"
+            onClick={() => trackNavClick("contact", "hero")}
             className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2.5 text-xs font-medium transition hover:border-primary/50 sm:px-5 sm:py-3 sm:text-sm"
           >
             Contact <Mail className="h-4 w-4" />
@@ -71,6 +86,13 @@ export function HeroSection() {
             href="https://www.linkedin.com/in/aitha-venkata-subbaiah-setty/"
             target="_blank"
             rel="noreferrer"
+            onClick={() =>
+              trackOutboundClick(
+                "LinkedIn",
+                "https://www.linkedin.com/in/aitha-venkata-subbaiah-setty/",
+                "hero",
+              )
+            }
             className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2.5 text-xs font-medium transition hover:border-primary/50 sm:px-5 sm:py-3 sm:text-sm"
           >
             LinkedIn <LinkedInLogoIcon className="h-4 w-4" />
