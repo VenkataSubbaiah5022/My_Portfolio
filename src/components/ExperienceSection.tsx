@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 
 const timeline = [
   {
-    period: "Nov 2024 - Mar 2026",
+    period: "April 2025 - March 2026",
     role: "Full Stack Developer",
-    company: "Stratosfy (Remote - Ottawa, Canada)",
+    company: "Stratosfy (Remote - Ottawa, Canada) · Full time",
     points: [
       "Developed 19+ microservices using Node.js and TypeScript for production IoT monitoring.",
       "Built 20+ REST APIs for telemetry ingestion and operational dashboards.",
@@ -17,8 +17,8 @@ const timeline = [
   },
   {
     period: "May 2024 - Oct 2024",
-    role: "Backend Developer",
-    company: "R K Microns (Rajasthan, India)",
+    role: "Backend Developer Intern",
+    company: "R K Microns (Rajasthan, India) · Internship",
     points: [
       "Built Python backend pipelines for AI-based defect detection workflows.",
       "Improved defect detection accuracy by 35%.",
@@ -29,7 +29,7 @@ const timeline = [
   {
     period: "Sep 2023 - Mar 2026",
     role: "Computer Science Subject Expert",
-    company: "Chegg (Remote)",
+    company: "Chegg (Remote) · Freelance",
     points: [
       "Solved 500+ CS queries across DSA, DBMS, OS, SQL, Java, and Python.",
       "Delivered clear, structured step-by-step technical explanations.",

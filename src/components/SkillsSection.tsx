@@ -1,5 +1,6 @@
 "use client";
 
+import { BadgeCheck, ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
 
 const skillGroups = [
@@ -28,6 +29,16 @@ const skillGroups = [
     items: "Jest, Pytest, Postman, Git, Socket.io",
   },
 ];
+
+const featuredCertification = {
+  title: "Frontend Developer (React)",
+  issuer: "HackerRank",
+  year: "2026",
+  href: "https://www.hackerrank.com/certificates/019f73606e1a",
+  description:
+    "Passed HackerRank's verified skills certification covering React, CSS, and JavaScript. Listed on my HackerRank profile as a verified asset.",
+  topics: ["React", "CSS", "JavaScript"],
+};
 
 const certifications = [
   "NPTEL - Cloud Computing (2024)",
@@ -65,7 +76,49 @@ export function SkillsSection() {
 
       <div className="mt-6 rounded-2xl border border-border bg-card p-5">
         <h3 className="text-sm tracking-wide text-primary uppercase">Certifications</h3>
-        <ul className="mt-3 grid gap-2 text-sm text-muted-foreground md:grid-cols-2">
+
+        <motion.article
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.4 }}
+          className="mt-4 rounded-2xl border border-primary/30 bg-[radial-gradient(circle_at_top_left,rgba(79,70,229,0.12),transparent_55%)] p-5"
+        >
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/25 bg-primary/10 px-2.5 py-1 text-[10px] font-medium tracking-wide text-primary uppercase">
+            <BadgeCheck className="h-3.5 w-3.5" />
+            Verified · HackerRank
+          </span>
+          <h4 className="mt-3 text-base font-semibold md:text-lg">
+            {featuredCertification.title}
+          </h4>
+          <p className="mt-1 text-xs text-muted-foreground">
+            {featuredCertification.issuer} Skills Certification ({featuredCertification.year})
+          </p>
+          <p className="mt-2 text-sm leading-7 text-muted-foreground">
+            {featuredCertification.description}
+          </p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {featuredCertification.topics.map((topic) => (
+              <span
+                key={topic}
+                className="rounded-full border border-border px-2 py-1 text-[10px] text-muted-foreground"
+              >
+                {topic}
+              </span>
+            ))}
+          </div>
+          <a
+            href={featuredCertification.href}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-4 inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-3 py-2 text-xs font-medium text-primary transition hover:border-primary/60"
+          >
+            View Certificate
+            <ExternalLink className="h-3.5 w-3.5" />
+          </a>
+        </motion.article>
+
+        <ul className="mt-4 grid gap-2 text-sm text-muted-foreground md:grid-cols-2">
           {certifications.map((cert) => (
             <li key={cert}>- {cert}</li>
           ))}
