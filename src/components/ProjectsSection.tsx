@@ -21,19 +21,19 @@ const projects = [
     code: "https://github.com/VenkataSubbaiah5022/Timesheet-Management-System",
   },
   {
-    title: "InterviewOS",
-    thumbnail: "from-rose-500/35 to-indigo-500/20",
+    title: "Flowboard",
+    thumbnail: "from-emerald-500/35 to-cyan-500/20",
     problem:
-      "Job seekers struggle to track applications, interview outcomes, and resume quality in one place.",
+      "Teams needed a shared Kanban workspace with role-based access, live board updates, and a fluid drag-and-drop workflow.",
     highlights: [
-      "Application tracking across portals",
-      "Interview analytics and weak-area detection",
-      "ATS-focused resume optimization workflow",
+      "JWT sessions with Owner, Admin, Member, and Viewer permissions",
+      "dnd-kit Kanban with optimistic updates and activity feeds",
+      "Pusher channels for instant sync across teammates",
     ],
-    metrics: ["Product-style dashboard", "AI-powered planning", "Career analytics focus"],
-    stack: ["Full Stack", "Dashboard UX", "AI Workflows"],
-    live: null,
-    code: "https://github.com/VenkataSubbaiah5022/InterviewOS",
+    metrics: ["Turborepo monorepo", "Public demo board", "Deployed on Vercel"],
+    stack: ["Next.js", "TypeScript", "Prisma", "Pusher"],
+    live: "https://flowboard-system.vercel.app/",
+    code: "https://github.com/VenkataSubbaiah5022/Task-Management-System",
   },
   {
     title: "Jarvis AI Assistant",
@@ -47,7 +47,7 @@ const projects = [
     ],
     metrics: ["Published on Zenodo", "Voice-first automation", "Multi-service integrations"],
     stack: ["Python", "NLP", "Speech Recognition", "Text-to-Speech"],
-    live: null,
+    live: "https://ai-voice-genie.vercel.app/",
     code: "https://github.com/VenkataSubbaiah5022/AI-Powered-Voice-Genie",
   },
   {
@@ -66,19 +66,19 @@ const projects = [
     code: "https://github.com/VenkataSubbaiah5022/Real-Time-Chat-Application",
   },
   {
-    title: "Task Management System",
-    thumbnail: "from-emerald-500/35 to-cyan-500/20",
+    title: "InterviewOS",
+    thumbnail: "from-rose-500/35 to-indigo-500/20",
     problem:
-      "Project teams required a collaborative Kanban tool with secure authentication and realtime updates.",
+      "Job seekers struggle to track applications, interview outcomes, and resume quality in one place.",
     highlights: [
-      "JWT auth + role-aware task operations",
-      "Drag-and-drop Kanban with activity feeds",
-      "WebSocket synchronization across clients",
+      "Application tracking across portals",
+      "Interview analytics and weak-area detection",
+      "ATS-focused resume optimization workflow",
     ],
-    metrics: ["99.9% uptime on GCP", "10+ production APIs", "Dockerized deployment"],
-    stack: ["MERN", "WebSockets", "Docker", "GCP Cloud Run"],
+    metrics: ["Product-style dashboard", "AI-powered planning", "Career analytics focus"],
+    stack: ["Full Stack", "Dashboard UX", "AI Workflows"],
     live: null,
-    code: "https://github.com/VenkataSubbaiah5022/Task-Management-System",
+    code: "https://github.com/VenkataSubbaiah5022/InterviewOS",
   },
 ];
 

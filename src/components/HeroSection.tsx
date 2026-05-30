@@ -14,7 +14,6 @@ const proofItems = [
   "20+ APIs Built",
   "500+ IoT Devices Managed",
   "1.5+ Years Experience",
-  "10K+ Messages Optimized",
 ];
 
 export function HeroSection() {
@@ -31,18 +30,19 @@ export function HeroSection() {
         <p className="inline-flex rounded-full border border-primary/25 px-3 py-1 text-xs tracking-widest text-primary/90 uppercase">
           Open to Full Stack Engineering Roles
         </p>
-        <h1 className="text-3xl leading-tight font-bold sm:text-4xl md:text-5xl lg:text-6xl">
-          Full Stack Developer focused on scalable backend systems, microservices,
-          and real-time applications.
+        <h1 className="max-w-3xl text-2xl leading-snug font-bold tracking-tight sm:text-3xl md:text-4xl lg:text-[2.75rem] lg:leading-tight">
+          Building scalable web apps, AI-powered products, and modern user
+          experiences.
         </h1>
-        <p className="max-w-xl text-sm leading-7 text-muted-foreground sm:text-base md:text-lg">
-          Full Stack Developer specializing in scalable web applications,
-          microservices, and cloud-native systems. Built 19+ microservices and
-          20+ production APIs on GCP with sub-100ms response latency.
+        <p className="max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base md:text-lg">
+          Experienced in building production-ready applications with React,
+          Next.js, Node.js, TypeScript, MongoDB, SQL, cloud platforms and
+          AI-powered applications. I enjoy designing efficient systems, developing
+          clean APIs, and delivering exceptional user experiences.
         </p>
-        <p className="text-sm text-muted-foreground">
-          I enjoy building systems that are scalable, maintainable, and
-          genuinely useful to people.
+        <p className="max-w-2xl text-sm leading-7 text-muted-foreground">
+          I enjoy combining software engineering and AI to create products that
+          are efficient, scalable, and genuinely useful.
         </p>
         <div className="flex flex-wrap gap-3">
           <a
@@ -98,7 +98,7 @@ export function HeroSection() {
             LinkedIn <LinkedInLogoIcon className="h-4 w-4" />
           </a>
         </div>
-        <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
           {proofItems.map((item) => (
             <div
               key={item}
