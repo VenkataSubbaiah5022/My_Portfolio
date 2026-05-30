@@ -2,8 +2,9 @@
 
 import { motion } from "framer-motion";
 import { ExternalLink, GitBranch } from "lucide-react";
+import { ProjectImageGallery } from "@/components/ProjectImageGallery";
 import { trackOutboundClick } from "@/lib/analytics";
-import type { Project } from "@/lib/projects";
+import { getProjectImages, type Project } from "@/lib/projects";
 
 type ProjectCardProps = {
   project: Project;
@@ -26,11 +27,11 @@ export function ProjectCard({
       className="group relative overflow-hidden rounded-2xl border border-border bg-card p-4 shadow-lg md:p-5"
     >
       <div className="pointer-events-none absolute inset-0 opacity-0 transition group-hover:opacity-100 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.24),transparent_55%)]" />
-      <div
-        className={`mb-4 flex aspect-video items-end rounded-xl border border-white/10 bg-gradient-to-br ${project.thumbnail} p-3`}
-      >
-        <p className="text-xs font-medium text-white/90">{project.title}</p>
-      </div>
+      <ProjectImageGallery
+        images={getProjectImages(project)}
+        title={project.title}
+        thumbnail={project.thumbnail}
+      />
       <h3 className="text-lg font-semibold">{project.title}</h3>
       <p className="mt-2 text-sm leading-6 text-muted-foreground">{project.problem}</p>
       <ul className="mt-3 space-y-1.5 text-xs text-muted-foreground">

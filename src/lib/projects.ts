@@ -1,6 +1,8 @@
 export type Project = {
+  slug: string;
   title: string;
   thumbnail: string;
+  images?: string[];
   problem: string;
   highlights: string[];
   metrics: string[];
@@ -12,8 +14,13 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "timesheet-management",
     title: "Timesheet Management System",
     thumbnail: "from-amber-500/35 to-orange-500/20",
+    images: [
+      "/projects/timesheet-management/Timesheet Management System_Dashboard.webp",
+      "/projects/timesheet-management/Timesheet Management System_login.webp",
+    ],
     problem:
       "Teams needed a clear role-based workflow for daily time tracking, approvals, and utilization visibility.",
     highlights: [
@@ -28,8 +35,14 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    slug: "flowboard",
     title: "Flowboard",
     thumbnail: "from-emerald-500/35 to-cyan-500/20",
+    images: [
+      "/projects/flowboard/Flowboard_Landing_page.webp",
+      "/projects/flowboard/Flowboard_Login.webp",
+      "/projects/flowboard/Flowboard_Dashboard.webp",
+    ],
     problem:
       "Teams needed a shared Kanban workspace with role-based access, live board updates, and a fluid drag-and-drop workflow.",
     highlights: [
@@ -44,8 +57,10 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    slug: "voice-genie",
     title: "Jarvis AI Assistant",
     thumbnail: "from-indigo-500/35 to-fuchsia-500/20",
+    images: ["/projects/voice-genie/voice-genie.webp"],
     problem:
       "Users needed a hands-free assistant to automate routine digital tasks with voice commands.",
     highlights: [
@@ -60,6 +75,7 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    slug: "real-time-chat",
     title: "Real-Time Chat Application",
     thumbnail: "from-blue-500/35 to-violet-500/20",
     problem:
@@ -76,6 +92,7 @@ export const projects: Project[] = [
     featured: false,
   },
   {
+    slug: "interviewos",
     title: "InterviewOS",
     thumbnail: "from-rose-500/35 to-indigo-500/20",
     problem:
@@ -92,8 +109,10 @@ export const projects: Project[] = [
     featured: false,
   },
   {
+    slug: "ai-ml-student-marks",
     title: "AI/ML Student Marks Dashboard",
     thumbnail: "from-violet-500/35 to-sky-500/20",
+    images: ["/projects/ai-ml-student-marks/AIML Student Marks Dashboard.webp"],
     problem:
       "Educators needed a clear view of AI/ML student performance, mark distribution, and cohort trends in one interactive dashboard.",
     highlights: [
@@ -112,3 +131,10 @@ export const projects: Project[] = [
 export const featuredProjects = projects.filter((project) => project.featured);
 
 export const liveProjectCount = projects.filter((project) => project.live).length;
+
+export function getProjectImages(project: Project): string[] {
+  if (project.images?.length) {
+    return project.images.map((path) => encodeURI(path));
+  }
+  return [encodeURI(`/projects/${project.slug}/cover.webp`)];
+}
