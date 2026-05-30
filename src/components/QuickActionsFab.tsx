@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { BriefcaseBusiness, ChevronUp, Download, ExternalLink, Mail } from "lucide-react";
-import { trackFileDownload, trackOutboundClick } from "@/lib/analytics";
+import { trackFileDownload, trackNavClick, trackOutboundClick } from "@/lib/analytics";
 
 export function QuickActionsFab() {
   const [expanded, setExpanded] = useState(false);
@@ -46,20 +46,12 @@ export function QuickActionsFab() {
           Hire on Upwork
         </a>
         <a
-          href="https://github.com/VenkataSubbaiah5022"
-          target="_blank"
-          rel="noreferrer"
-          onClick={() =>
-            trackOutboundClick(
-              "GitHub",
-              "https://github.com/VenkataSubbaiah5022",
-              "fab_desktop",
-            )
-          }
+          href="/projects"
+          onClick={() => trackNavClick("all_projects", "fab_desktop")}
           className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-2 text-xs shadow-lg backdrop-blur transition hover:border-primary/50"
         >
           <ExternalLink className="h-3.5 w-3.5" />
-          More Projects
+          All Projects
         </a>
       </div>
 

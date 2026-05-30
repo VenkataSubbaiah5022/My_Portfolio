@@ -1,0 +1,97 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { ExternalLink, GitBranch } from "lucide-react";
+import { trackOutboundClick } from "@/lib/analytics";
+import type { Project } from "@/lib/projects";
+
+type ProjectCardProps = {
+  project: Project;
+  index?: number;
+  analyticsSource?: string;
+};
+
+export function ProjectCard({
+  project,
+  index = 0,
+  analyticsSource = "projects",
+}: ProjectCardProps) {
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.45, delay: index * 0.08 }}
+      whileHover={{ y: -8, rotateX: 4, rotateY: -4 }}
+      className="group relative overflow-hidden rounded-2xl border border-border bg-card p-4 shadow-lg md:p-5"
+    >
+      <div className="pointer-events-none absolute inset-0 opacity-0 transition group-hover:opacity-100 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.24),transparent_55%)]" />
+      <div
+        className={`mb-4 flex aspect-video items-end rounded-xl border border-white/10 bg-gradient-to-br ${project.thumbnail} p-3`}
+      >
+        <p className="text-xs font-medium text-white/90">{project.title}</p>
+      </div>
+      <h3 className="text-lg font-semibold">{project.title}</h3>
+      <p className="mt-2 text-sm leading-6 text-muted-foreground">{project.problem}</p>
+      <ul className="mt-3 space-y-1.5 text-xs text-muted-foreground">
+        {project.highlights.map((item) => (
+          <li key={item}>- {item}</li>
+        ))}
+      </ul>
+      <div className="mt-3 flex flex-wrap gap-1.5">
+        {project.stack.map((item) => (
+          <span
+            key={item}
+            className="rounded-full border border-border px-2 py-1 text-[10px] text-muted-foreground"
+          >
+            {item}
+          </span>
+        ))}
+      </div>
+      <div className="mt-3 flex flex-wrap gap-1.5">
+        {project.metrics.map((item) => (
+          <span
+            key={item}
+            className="rounded-full bg-primary/10 px-2 py-1 text-[10px] text-primary"
+          >
+            {item}
+          </span>
+        ))}
+      </div>
+      <div className="mt-5 flex items-center gap-2">
+        {project.live ? (
+          <a
+            href={project.live}
+            target="_blank"
+            rel="noreferrer"
+            onClick={() =>
+              trackOutboundClick(
+                `${project.title} Live`,
+                project.live!,
+                analyticsSource,
+              )
+            }
+            className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1.5 text-xs transition hover:border-primary/50"
+          >
+            <ExternalLink className="h-3.5 w-3.5" /> Live
+          </a>
+        ) : (
+          <span className="inline-flex items-center gap-2 rounded-full border border-dashed border-border px-3 py-1.5 text-xs text-muted-foreground">
+            <ExternalLink className="h-3.5 w-3.5" /> Live coming soon
+          </span>
+        )}
+        <a
+          href={project.code}
+          target="_blank"
+          rel="noreferrer"
+          onClick={() =>
+            trackOutboundClick(`${project.title} Code`, project.code, analyticsSource)
+          }
+          className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1.5 text-xs transition hover:border-primary/50"
+        >
+          <GitBranch className="h-3.5 w-3.5" /> Code
+        </a>
+      </div>
+    </motion.article>
+  );
+}
