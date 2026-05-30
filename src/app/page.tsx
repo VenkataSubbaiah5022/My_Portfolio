@@ -1,5 +1,6 @@
 import { AboutSection } from "@/components/AboutSection";
 import { ContactSection } from "@/components/ContactSection";
+import { EducationSection } from "@/components/EducationSection";
 import { EngineeringChallengesSection } from "@/components/EngineeringChallengesSection";
 import { ExperienceSection } from "@/components/ExperienceSection";
 import { GitHubProofSection } from "@/components/GitHubProofSection";
@@ -25,6 +26,7 @@ export default function Home() {
       <GitHubProofSection />
       <SkillsSection />
       <ExperienceSection />
+      <EducationSection />
       <ContactSection />
       <QuickActionsFab />
       <SectionViewTracker />
