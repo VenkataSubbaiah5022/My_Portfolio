@@ -80,17 +80,19 @@ export function ProjectCard({
             <ExternalLink className="h-3.5 w-3.5" /> Live coming soon
           </span>
         )}
-        <a
-          href={project.code}
-          target="_blank"
-          rel="noreferrer"
-          onClick={() =>
-            trackOutboundClick(`${project.title} Code`, project.code, analyticsSource)
-          }
-          className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1.5 text-xs transition hover:border-primary/50"
-        >
-          <GitBranch className="h-3.5 w-3.5" /> Code
-        </a>
+        {project.code ? (
+          <a
+            href={project.code}
+            target="_blank"
+            rel="noreferrer"
+            onClick={() =>
+              trackOutboundClick(`${project.title} Code`, project.code!, analyticsSource)
+            }
+            className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1.5 text-xs transition hover:border-primary/50"
+          >
+            <GitBranch className="h-3.5 w-3.5" /> Code
+          </a>
+        ) : null}
       </div>
     </motion.article>
   );

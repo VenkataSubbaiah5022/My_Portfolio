@@ -6,7 +6,7 @@ export type Project = {
   metrics: string[];
   stack: string[];
   live: string | null;
-  code: string;
+  code: string | null;
   featured: boolean;
 };
 
@@ -89,6 +89,22 @@ export const projects: Project[] = [
     stack: ["Full Stack", "Dashboard UX", "AI Workflows"],
     live: null,
     code: "https://github.com/VenkataSubbaiah5022/InterviewOS",
+    featured: false,
+  },
+  {
+    title: "AI/ML Student Marks Dashboard",
+    thumbnail: "from-violet-500/35 to-sky-500/20",
+    problem:
+      "Educators needed a clear view of AI/ML student performance, mark distribution, and cohort trends in one interactive dashboard.",
+    highlights: [
+      "Interactive Tableau dashboard with filters and drill-down views",
+      "Marks distribution analysis across student groups",
+      "Published on Tableau Public for easy sharing and exploration",
+    ],
+    metrics: ["Interactive dashboards", "Public Tableau embed", "Data storytelling"],
+    stack: ["Tableau", "Data Visualization", "Analytics"],
+    live: "https://public.tableau.com/views/AIMLSTUDENTSMarksdistribution/Dashboard1?:language=en-US&:embed=y&:display_count=y&:origin=viz_share_link",
+    code: null,
     featured: false,
   },
 ];
