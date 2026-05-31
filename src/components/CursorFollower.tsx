@@ -66,12 +66,13 @@ export function CursorFollower() {
         transition={{ duration: 0.25 }}
       />
       <motion.div
-        className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary/35 bg-primary/5"
+        className={`absolute -translate-x-1/2 -translate-y-1/2 rounded-full border bg-primary/5 transition-[border-color] duration-200 ${
+          hovering ? "border-primary" : "border-primary/40"
+        }`}
         style={{ left: ringX, top: ringY }}
         animate={{
           width: hovering ? 44 : 32,
           height: hovering ? 44 : 32,
-          borderColor: hovering ? "var(--primary)" : "color-mix(in srgb, var(--primary) 40%, transparent)",
         }}
         transition={{ type: "spring", stiffness: 260, damping: 22 }}
       />

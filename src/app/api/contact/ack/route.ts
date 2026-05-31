@@ -47,12 +47,14 @@ export async function POST(request: Request) {
       ackSent = false;
     }
 
+    if (ackError) {
+      console.error("[contact/ack]", ackError);
+    }
+
     return NextResponse.json({
       success: true,
       ackSent,
-      ...(process.env.NODE_ENV === "development" && ackError
-        ? { ackError }
-        : {}),
+      ...(ackError ? { ackError } : {}),
       message: ackSent
         ? "A confirmation email was sent to your inbox."
         : "Message received. I will get back to you soon.",
