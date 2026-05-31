@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { Analytics } from "@/components/Analytics";
 import { CursorFollower } from "@/components/CursorFollower";
 import { ThemeProvider } from "@/components/theme-provider";
+import { metadataBase } from "./site";
 import "./globals.css";
 
 const inter = Inter({
@@ -11,6 +12,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase,
   title: {
     default: "Aitha Venkata Subbaiah | Full Stack Developer",
     template: "%s | Aitha",
@@ -36,7 +38,7 @@ export const metadata: Metadata = {
     siteName: "Aitha Portfolio",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Aitha Venkata Subbaiah | Full Stack Developer",
     description:
       "Full Stack Developer portfolio with production projects, experience, and recommendations.",
