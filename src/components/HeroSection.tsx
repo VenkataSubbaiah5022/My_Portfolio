@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Download, Mail } from "lucide-react";
+import { ArrowRight, Download, Mail, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
 import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 import {
@@ -76,10 +76,18 @@ function ProfilePortrait({
   );
 }
 
+const availabilityTags = [
+  "Full-time",
+  "Remote",
+  "Hyderabad",
+  "Open to Bangalore",
+  "Contract considered",
+];
+
 const proofItems = [
-  "200+ LeetCode Problems",
-  "20+ APIs Built",
-  "500+ IoT Devices Managed",
+  "19+ Microservices",
+  "20+ Production APIs",
+  "70% Downtime Reduction",
   "1.5+ Years Experience",
 ];
 
@@ -102,9 +110,38 @@ export function HeroSection() {
           className="relative z-10 space-y-6"
         >
           <ProfilePortrait variant="mobile" />
-          <p className="inline-flex rounded-full border border-primary/25 px-3 py-1 text-xs tracking-widest text-primary/90 uppercase">
-            Open to Full Stack Engineering Roles
-          </p>
+          <div className="space-y-2.5">
+            <p className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/5 px-3 py-1 text-xs tracking-widest text-primary/90 uppercase">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+              </span>
+              Open to Full Stack Engineering Roles
+            </p>
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="inline-flex items-center gap-1.5 text-xs font-medium text-emerald-600 dark:text-emerald-400">
+                Available now
+              </span>
+              <span aria-hidden className="text-border">
+                ·
+              </span>
+              {availabilityTags.map((tag) => (
+                <span
+                  key={tag}
+                  className="inline-flex items-center gap-1 rounded-full border border-border bg-card px-2.5 py-1 text-[11px] text-muted-foreground"
+                >
+                  {tag === "Hyderabad" ? (
+                    <>
+                      <MapPin className="h-3 w-3 shrink-0 text-primary/70" />
+                      {tag}
+                    </>
+                  ) : (
+                    tag
+                  )}
+                </span>
+              ))}
+            </div>
+          </div>
           <h1 className="max-w-3xl text-2xl leading-snug font-bold tracking-tight sm:text-3xl md:text-4xl lg:text-[2.75rem] lg:leading-tight">
             Building scalable web apps, AI-powered products, and modern user
             experiences.
