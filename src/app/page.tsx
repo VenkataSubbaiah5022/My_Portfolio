@@ -6,6 +6,7 @@ import { ExperienceSection } from "@/components/ExperienceSection";
 import { GitHubProofSection } from "@/components/GitHubProofSection";
 import { HeroSection } from "@/components/HeroSection";
 import { HowIBuildSection } from "@/components/HowIBuildSection";
+import { LinkedInWritingSection } from "@/components/LinkedInWritingSection";
 import { Navbar } from "@/components/Navbar";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { PublicationsSection } from "@/components/PublicationsSection";
@@ -28,6 +29,7 @@ export default function Home() {
       <SkillsSection />
       <ExperienceSection />
       <RecommendationsSection />
+      <LinkedInWritingSection />
       <EducationSection />
       <ContactSection />
       <QuickActionsFab />
