@@ -4,53 +4,88 @@ import { motion } from "framer-motion";
 import { EnvelopeClosedIcon, GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 import { useState, type FormEvent } from "react";
 import { trackContactSubmit, trackOutboundClick } from "@/lib/analytics";
+import { CONTACT_EMAIL, getWeb3FormsAccessKey, sendViaWeb3Forms } from "@/lib/contact";
+
+type SubmitState = "idle" | "success" | "error";
 
 export function ContactSection() {
+  const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [sentMessage, setSentMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsSubmitting(true);
+    setSubmitState("idle");
     setSentMessage("");
 
-    const formData = new FormData(event.currentTarget);
+    const form = event.currentTarget;
+    const formData = new FormData(form);
     const name = String(formData.get("name") ?? "").trim();
     const email = String(formData.get("email") ?? "").trim();
     const message = String(formData.get("message") ?? "").trim();
+    const honey = String(formData.get("_honey") ?? "").trim();
 
-    const payload = new FormData();
-    payload.append("name", name);
-    payload.append("email", email);
-    payload.append("message", message);
-    payload.append("_subject", `Portfolio Contact from ${name || "Visitor"}`);
-    payload.append("_captcha", "false");
-    payload.append("_template", "table");
+    if (honey) {
+      setSubmitState("success");
+      setSentMessage("Message sent successfully. I will get back to you soon.");
+      form.reset();
+      setIsSubmitting(false);
+      return;
+    }
 
-    fetch("https://formsubmit.co/ajax/venkatasubbaiah5022@gmail.com", {
-      method: "POST",
-      body: payload,
-      headers: {
-        Accept: "application/json",
-      },
-    })
-      .then(async (response) => {
-        const data = await response.json();
-        if (!response.ok || data.success !== "true") {
-          throw new Error("Unable to send");
+    try {
+      const accessKey = getWeb3FormsAccessKey();
+      if (!accessKey) {
+        throw new Error("Contact form is not configured yet.");
+      }
+
+      let sent = false;
+
+      const direct = await sendViaWeb3Forms({ name, email, message }, accessKey);
+      if (direct.ok) {
+        sent = true;
+      } else {
+        const apiResponse = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, message, _honey: honey }),
+        });
+
+        if (apiResponse.ok) {
+          sent = true;
+        } else {
+          const apiData = await apiResponse.json().catch(() => ({}));
+          const detail =
+            typeof apiData.error === "string"
+              ? apiData.error
+              : direct.data &&
+                  typeof direct.data === "object" &&
+                  "message" in direct.data
+                ? String((direct.data as { message?: string }).message ?? "")
+                : "Unable to send your message right now.";
+          throw new Error(detail);
         }
-        trackContactSubmit();
-        setSentMessage("Message sent successfully. I will get back to you soon.");
-        event.currentTarget.reset();
-      })
-      .catch(() => {
-        setSentMessage(
-          "Unable to send right now. Please email directly at venkatasubbaiah5022@gmail.com.",
-        );
-      })
-      .finally(() => {
-        setIsSubmitting(false);
-      });
+      }
+
+      if (!sent) {
+        throw new Error("Unable to send your message right now.");
+      }
+
+      trackContactSubmit();
+      setSubmitState("success");
+      setSentMessage("Message sent successfully. I will get back to you soon.");
+      form.reset();
+    } catch (error) {
+      setSubmitState("error");
+      setSentMessage(
+        error instanceof Error
+          ? `${error.message} You can also email me directly at ${CONTACT_EMAIL}.`
+          : `Unable to send right now. Please email directly at ${CONTACT_EMAIL}.`,
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -68,7 +103,15 @@ export function ContactSection() {
           Let&apos;s discuss your idea.
         </p>
         <div className="mt-4 space-y-1 text-sm text-muted-foreground">
-          <p>Email: venkatasubbaiah5022@gmail.com</p>
+          <p>
+            Email:{" "}
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="text-foreground underline-offset-2 hover:underline"
+            >
+              {CONTACT_EMAIL}
+            </a>
+          </p>
           <p>Phone: +91 9963132119</p>
           <p>Location: Hyderabad, Telangana, India</p>
           <p>Typically responds within 24 hours.</p>
@@ -92,10 +135,19 @@ export function ContactSection() {
         </div>
         <form className="mt-6 grid gap-4" onSubmit={handleSubmit}>
           <input
+            type="text"
+            name="_honey"
+            tabIndex={-1}
+            autoComplete="off"
+            className="hidden"
+            aria-hidden
+          />
+          <input
             name="name"
             type="text"
             placeholder="Your name"
             required
+            autoComplete="name"
             className="rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none ring-primary/30 transition focus:ring-2"
           />
           <input
@@ -103,6 +155,7 @@ export function ContactSection() {
             type="email"
             placeholder="you@example.com"
             required
+            autoComplete="email"
             className="rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none ring-primary/30 transition focus:ring-2"
           />
           <textarea
@@ -115,12 +168,21 @@ export function ContactSection() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-fit rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition hover:translate-y-[-1px]"
+            className="w-fit rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition hover:translate-y-[-1px] disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isSubmitting ? "Sending..." : "Send Message"}
           </button>
           {sentMessage ? (
-            <p className="text-xs text-muted-foreground">{sentMessage}</p>
+            <p
+              role="status"
+              className={`text-sm leading-6 ${
+                submitState === "success"
+                  ? "text-emerald-600 dark:text-emerald-400"
+                  : "text-amber-700 dark:text-amber-400"
+              }`}
+            >
+              {sentMessage}
+            </p>
           ) : null}
         </form>
         <div className="mt-6 flex items-center gap-4 text-muted-foreground">
@@ -157,14 +219,10 @@ export function ContactSection() {
             <LinkedInLogoIcon className="h-5 w-5" />
           </a>
           <a
-            href="mailto:venkatasubbaiah5022@gmail.com"
+            href={`mailto:${CONTACT_EMAIL}`}
             aria-label="Email"
             onClick={() =>
-              trackOutboundClick(
-                "Email",
-                "mailto:venkatasubbaiah5022@gmail.com",
-                "contact",
-              )
+              trackOutboundClick("Email", `mailto:${CONTACT_EMAIL}`, "contact")
             }
             className="transition hover:text-primary"
           >
