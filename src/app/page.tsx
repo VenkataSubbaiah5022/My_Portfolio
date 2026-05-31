@@ -10,6 +10,7 @@ import { Navbar } from "@/components/Navbar";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { PublicationsSection } from "@/components/PublicationsSection";
 import { QuickActionsFab } from "@/components/QuickActionsFab";
+import { RecommendationsSection } from "@/components/RecommendationsSection";
 import { SectionViewTracker } from "@/components/SectionViewTracker";
 import { SkillsSection } from "@/components/SkillsSection";
 
@@ -26,6 +27,7 @@ export default function Home() {
       <GitHubProofSection />
       <SkillsSection />
       <ExperienceSection />
+      <RecommendationsSection />
       <EducationSection />
       <ContactSection />
       <QuickActionsFab />
