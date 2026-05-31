@@ -11,8 +11,36 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Aitha | Modern 3D Portfolio",
-  description: "Interactive portfolio built with Next.js, Framer Motion, and Spline",
+  title: {
+    default: "Aitha Venkata Subbaiah | Full Stack Developer",
+    template: "%s | Aitha",
+  },
+  description:
+    "Full Stack Developer portfolio — scalable web apps, AI-powered products, IoT platforms, and production APIs with React, Next.js, Node.js, and TypeScript.",
+  keywords: [
+    "Full Stack Developer",
+    "Aitha Venkata Subbaiah",
+    "React",
+    "Next.js",
+    "TypeScript",
+    "Node.js",
+    "Portfolio",
+  ],
+  authors: [{ name: "Aitha Venkata Subbaiah Setty" }],
+  openGraph: {
+    title: "Aitha Venkata Subbaiah | Full Stack Developer",
+    description:
+      "Building scalable web applications, AI-powered products, and modern user experiences.",
+    type: "website",
+    locale: "en_IN",
+    siteName: "Aitha Portfolio",
+  },
+  twitter: {
+    card: "summary",
+    title: "Aitha Venkata Subbaiah | Full Stack Developer",
+    description:
+      "Full Stack Developer portfolio with production projects, experience, and recommendations.",
+  },
 };
 
 export default function RootLayout({

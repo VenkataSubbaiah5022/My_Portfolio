@@ -1,0 +1,13 @@
+<svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Aitha portfolio">
+  <rect width="180" height="180" rx="40" fill="url(#portfolio-gradient)"/>
+  <defs>
+    <linearGradient id="portfolio-gradient" x1="24" y1="16" x2="156" y2="164" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4F46E5"/>
+      <stop offset="1" stop-color="#6366F1"/>
+    </linearGradient>
+  </defs>
+  <path
+    d="M90 42L124 132H105.5L99.5 112H80.5L74.5 132H56L90 42ZM81.5 98H98.5L90 74L81.5 98Z"
+    fill="white"
+  />
+</svg>

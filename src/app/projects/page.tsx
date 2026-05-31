@@ -3,9 +3,9 @@ import { AllProjectsView } from "@/components/AllProjectsView";
 import { Navbar } from "@/components/Navbar";
 
 export const metadata: Metadata = {
-  title: "All Projects | Aitha",
+  title: "All Projects",
   description:
-    "Explore full stack web applications, AI products, and realtime systems built by Aitha.",
+    "Explore full stack web applications, AI products, Tableau dashboards, and realtime systems by Aitha Venkata Subbaiah.",
 };
 
 export default function ProjectsPage() {
