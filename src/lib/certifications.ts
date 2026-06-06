@@ -109,6 +109,21 @@ export const certificationCategories: Record<
 
 export const certifications: Certification[] = [
   {
+    id: "scaler-javascript",
+    title: "JavaScript — Unlocking the Power of JavaScript",
+    issuer: "Scaler Topics",
+    year: "2026",
+    category: "frontend",
+    skills: ["JavaScript", "ES6+", "DOM"],
+    description:
+      "Scaler Topics certificate of excellence — 70 video tutorials, 9 modules, and 8 challenges covering core JavaScript.",
+    verifyUrl: "https://moonshot.scaler.com/s/sl/YX5O1t3Aoo",
+    imageFile: "JavaScript by Scaler Topics.jpg",
+    issuerLogo: "/issuers/scaler-topics-logo.svg",
+    issuerLogoFit: "wide",
+    accent: accents.indigo,
+  },
+  {
     id: "hackerrank-react",
     title: "Frontend Developer (React)",
     issuer: "HackerRank",
