@@ -61,7 +61,6 @@ const scrollSpySections: { sectionId: string; navId: NavId }[] = [
   { sectionId: "experience", navId: "career" },
   { sectionId: "recommendations", navId: "why-me" },
   { sectionId: "writing", navId: "why-me" },
-  { sectionId: "education", navId: "why-me" },
   { sectionId: "build-process", navId: "process" },
   { sectionId: "github-proof", navId: "process" },
   { sectionId: "services", navId: "services" },
