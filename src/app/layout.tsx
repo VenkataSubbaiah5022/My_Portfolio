@@ -5,6 +5,7 @@ import { CommandPaletteRoot } from "@/components/CommandPaletteRoot";
 import { CursorFollower } from "@/components/CursorFollower";
 import { ScrollProgressBar } from "@/components/ScrollProgressBar";
 import { ScrollToTopButton } from "@/components/ScrollToTopButton";
+import { Footer } from "@/components/Footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import { metadataBase } from "./site";
 import "./globals.css";
@@ -65,6 +66,7 @@ export default function RootLayout({
           <CursorFollower />
           <CommandPaletteRoot />
           {children}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
