@@ -4,9 +4,9 @@ import { EngineeringChallengesSection } from "@/components/EngineeringChallenges
 import { ExperienceSection } from "@/components/ExperienceSection";
 import { GitHubProofSection } from "@/components/GitHubProofSection";
 import { HeroSection } from "@/components/HeroSection";
-import { HowIBuildSection } from "@/components/HowIBuildSection";
 import { LinkedInWritingSection } from "@/components/LinkedInWritingSection";
 import { Navbar } from "@/components/Navbar";
+import { ProcessSection } from "@/components/ProcessSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { PublicationsSection } from "@/components/PublicationsSection";
 import { QuickActionsFab } from "@/components/QuickActionsFab";
@@ -14,6 +14,7 @@ import { RecommendationsSection } from "@/components/RecommendationsSection";
 import { SectionViewTracker } from "@/components/SectionViewTracker";
 import { ServicesSection } from "@/components/ServicesSection";
 import { SkillsSection } from "@/components/SkillsSection";
+import { WhyMeSection } from "@/components/WhyMeSection";
 
 export default function Home() {
   return (
@@ -27,9 +28,10 @@ export default function Home() {
       <PublicationsSection />
       <EngineeringChallengesSection />
       <ExperienceSection />
+      <WhyMeSection />
       <RecommendationsSection />
       <LinkedInWritingSection />
-      <HowIBuildSection />
+      <ProcessSection />
       <GitHubProofSection />
       <ServicesSection />
       <ContactSection />

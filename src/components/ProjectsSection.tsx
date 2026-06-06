@@ -11,7 +11,7 @@ export function ProjectsSection() {
   const remainingCount = projects.length - featuredProjects.length;
 
   return (
-    <section id="projects" className="w-full bg-background">
+    <section id="projects" className="w-full">
       <div className="mx-auto max-w-6xl px-4 py-14 md:py-16">
       <div className="mb-6 flex flex-col gap-6 md:mb-8 md:flex-row md:items-end md:justify-between">
         <SectionHeading

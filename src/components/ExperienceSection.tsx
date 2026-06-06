@@ -105,7 +105,7 @@ export function ExperienceSection() {
           >
             <div className="flex items-start gap-3">
               {item.logo ? (
-                <div className="mt-0.5 shrink-0 rounded-lg border border-border bg-white p-1.5">
+                <div className="mt-0.5 shrink-0 rounded-lg border border-border bg-card p-1.5">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={item.logo}

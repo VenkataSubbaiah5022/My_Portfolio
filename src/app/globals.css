@@ -9,17 +9,32 @@
   --border: #dbe1ea;
   --primary: #4f46e5;
   --primary-foreground: #eef2ff;
+  --muted: #eef2f7;
   --muted-foreground: #475569;
-  --services-surface: #eef2ff;
+  --section-tint: #f5f7ff;
+  --services-surface: var(--section-tint);
   --services-grid-line: rgb(15 23 42 / 4%);
   --services-watermark-stroke: rgb(15 23 42 / 4%);
   --services-glow-primary: rgba(79, 70, 229, 0.08);
   --services-glow-secondary: rgba(129, 140, 248, 0.06);
   --services-glow-tertiary: rgba(67, 56, 202, 0.05);
-  --skills-surface: #f5f7ff;
+  --skills-surface: var(--section-tint);
   --skills-grid-line: rgb(15 23 42 / 4%);
   --skills-glow-primary: rgba(79, 70, 229, 0.07);
   --skills-glow-secondary: rgba(129, 140, 248, 0.05);
+  --why-me-surface: var(--section-tint);
+  --why-me-grid-line: rgb(15 23 42 / 4%);
+  --why-me-glow-primary: rgba(79, 70, 229, 0.08);
+  --why-me-glow-secondary: rgba(129, 140, 248, 0.06);
+  --why-me-glow-tertiary: rgba(67, 56, 202, 0.04);
+  --process-surface: var(--section-tint);
+  --process-grid-line: rgb(15 23 42 / 4%);
+  --process-glow-primary: rgba(79, 70, 229, 0.08);
+  --process-glow-secondary: rgba(129, 140, 248, 0.06);
+  --illus-plat-top: #e0e7ff;
+  --illus-plat-left: #c7d2fe;
+  --illus-plat-right: #a5b4fc;
+  --illus-plat-glow: rgba(79, 70, 229, 0.2);
   --scrollbar-size: 10px;
   --scrollbar-track: rgb(15 23 42 / 6%);
   --scrollbar-thumb: rgb(79 70 229 / 42%);
@@ -67,17 +82,32 @@ html {
   --border: #1f2937;
   --primary: #60a5fa;
   --primary-foreground: #0b1220;
+  --muted: #111827;
   --muted-foreground: #94a3b8;
-  --services-surface: #0a1020;
+  --section-tint: var(--background);
+  --services-surface: var(--background);
   --services-grid-line: rgb(248 250 252 / 4%);
   --services-watermark-stroke: rgb(248 250 252 / 4%);
   --services-glow-primary: rgba(96, 165, 250, 0.07);
   --services-glow-secondary: rgba(59, 130, 246, 0.05);
   --services-glow-tertiary: rgba(67, 56, 202, 0.06);
-  --skills-surface: #090f1c;
+  --skills-surface: var(--background);
   --skills-grid-line: rgb(248 250 252 / 4%);
   --skills-glow-primary: rgba(96, 165, 250, 0.06);
   --skills-glow-secondary: rgba(99, 102, 241, 0.05);
+  --why-me-surface: var(--background);
+  --why-me-grid-line: rgb(248 250 252 / 4%);
+  --why-me-glow-primary: rgba(96, 165, 250, 0.07);
+  --why-me-glow-secondary: rgba(99, 102, 241, 0.05);
+  --why-me-glow-tertiary: rgba(67, 56, 202, 0.06);
+  --process-surface: var(--background);
+  --process-grid-line: rgb(248 250 252 / 4%);
+  --process-glow-primary: rgba(96, 165, 250, 0.07);
+  --process-glow-secondary: rgba(99, 102, 241, 0.05);
+  --illus-plat-top: #312e81;
+  --illus-plat-left: #3730a3;
+  --illus-plat-right: #1e1b4b;
+  --illus-plat-glow: rgba(96, 165, 250, 0.18);
   --scrollbar-track: rgb(248 250 252 / 5%);
   --scrollbar-thumb: rgb(96 165 250 / 34%);
   --scrollbar-thumb-hover: rgb(96 165 250 / 58%);
@@ -90,6 +120,7 @@ html {
   --color-border: var(--border);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --font-sans: var(--font-geist-sans);
 }
@@ -185,6 +216,15 @@ html {
   animation: service-card-shine 0.9s ease forwards;
 }
 
+.step-card-hover-border {
+  padding: 1px;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -202,4 +242,8 @@ body {
   background: radial-gradient(circle at center, rgb(99 102 241 / 20%), transparent 55%);
   animation: aurora 12s ease-in-out infinite;
   pointer-events: none;
+}
+
+.dark .aurora-bg::before {
+  background: radial-gradient(circle at center, rgb(96 165 250 / 14%), transparent 55%);
 }

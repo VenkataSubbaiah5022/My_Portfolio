@@ -43,7 +43,7 @@ function getInitials(name: string) {
 
 export function RecommendationsSection() {
   return (
-    <section id="recommendations" className="mx-auto w-full max-w-6xl px-4 py-14 md:py-16">
+    <section id="linkedin-recommendations" className="mx-auto w-full max-w-6xl px-4 py-14 md:py-16">
       <div className="mb-6 flex flex-col gap-6 md:mb-8 md:flex-row md:items-end md:justify-between">
         <SectionHeading
           badge="Social proof"

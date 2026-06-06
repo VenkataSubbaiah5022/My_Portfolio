@@ -1,10 +1,17 @@
 import type { IconType } from "react-icons";
+import { FaAws } from "react-icons/fa6";
 import {
+  SiAngular,
+  SiAnthropic,
+  SiClaude,
   SiDocker,
+  SiExpo,
   SiExpress,
+  SiFlutter,
   SiFramer,
   SiGit,
   SiGithubactions,
+  SiGithubcopilot,
   SiGooglecloud,
   SiJavascript,
   SiJest,
@@ -14,6 +21,7 @@ import {
   SiNginx,
   SiNodedotjs,
   SiOpenai,
+  SiPerplexity,
   SiPostgresql,
   SiPostman,
   SiPython,
@@ -22,7 +30,11 @@ import {
   SiSocketdotio,
   SiTailwindcss,
   SiTypescript,
+  SiV0,
+  SiVercel,
+  SiWindsurf,
 } from "react-icons/si";
+import { TbBrandReactNative } from "react-icons/tb";
 
 export type TechStackItem = {
   name: string;
@@ -57,10 +69,27 @@ export const techStackCategories: TechStackCategory[] = [
         icon: SiNextdotjs,
         iconClassName: "text-slate-900 dark:text-white",
       },
+      { name: "Angular", icon: SiAngular, iconColor: "#dd0031" },
       { name: "TypeScript", icon: SiTypescript, iconColor: "#3b82f6" },
       { name: "JavaScript", icon: SiJavascript, iconColor: "#facc15" },
       { name: "Tailwind CSS", icon: SiTailwindcss, iconColor: "#22d3ee" },
       { name: "Framer Motion", icon: SiFramer, iconColor: "#a855f7" },
+    ],
+  },
+  {
+    title: "Mobile",
+    labelColor: "text-indigo-500 dark:text-indigo-400",
+    lineFrom: "from-indigo-400/25",
+    hoverBg: "bg-indigo-400/15",
+    hoverBorder: "border-indigo-400/30",
+    items: [
+      { name: "React Native", icon: TbBrandReactNative, iconColor: "#61dafb" },
+      {
+        name: "Expo",
+        icon: SiExpo,
+        iconClassName: "text-slate-900 dark:text-white",
+      },
+      { name: "Flutter", icon: SiFlutter, iconColor: "#54c5f8" },
     ],
   },
   {
@@ -109,7 +138,7 @@ export const techStackCategories: TechStackCategory[] = [
     items: [
       { name: "Docker", icon: SiDocker, iconColor: "#38bdf8" },
       { name: "GCP", icon: SiGooglecloud, iconColor: "#4285f4" },
-      { name: "AWS", glyph: "AWS", iconColor: "#f97316" },
+      { name: "AWS", icon: FaAws, iconColor: "#ff9900" },
       {
         name: "GitHub Actions",
         icon: SiGithubactions,
@@ -145,16 +174,52 @@ export const techStackCategories: TechStackCategory[] = [
         subtitle: "AI-native code editor",
       },
       {
+        name: "Claude Code",
+        icon: SiClaude,
+        iconColor: "#d97757",
+        subtitle: "Agentic terminal coding",
+      },
+      {
+        name: "GitHub Copilot",
+        icon: SiGithubcopilot,
+        iconClassName: "text-slate-900 dark:text-white",
+        subtitle: "In-editor AI suggestions",
+      },
+      {
+        name: "Windsurf",
+        icon: SiWindsurf,
+        iconColor: "#0ea5e9",
+        subtitle: "AI IDE (Codeium)",
+      },
+      {
+        name: "v0",
+        icon: SiV0,
+        iconClassName: "text-slate-900 dark:text-white",
+        subtitle: "UI component generation",
+      },
+      {
+        name: "Claude API",
+        icon: SiAnthropic,
+        iconColor: "#d97757",
+        subtitle: "Anthropic — shipped projects",
+      },
+      {
         name: "OpenAI API",
         icon: SiOpenai,
         iconColor: "#10a37f",
-        subtitle: "GPT integrations",
+        subtitle: "GPT-4o integrations",
       },
       {
         name: "Vercel AI SDK",
-        glyph: "▲",
-        iconColor: "#6366f1",
+        icon: SiVercel,
+        iconClassName: "text-slate-900 dark:text-white",
         subtitle: "Streaming AI in Next.js",
+      },
+      {
+        name: "Perplexity",
+        icon: SiPerplexity,
+        iconColor: "#20b8cd",
+        subtitle: "AI-powered research",
       },
     ],
   },
