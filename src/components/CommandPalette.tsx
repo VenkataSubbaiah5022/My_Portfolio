@@ -19,6 +19,7 @@ import {
   Wrench,
 } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
+import { useLenis } from "lenis/react";
 import {
   useCallback,
   useEffect,
@@ -38,6 +39,7 @@ import {
   trackNavClick,
   trackOutboundClick,
 } from "@/lib/analytics";
+import { scrollToHash, scrollToTop } from "@/lib/smooth-scroll";
 import { cn } from "@/lib/utils";
 
 const GROUP_ORDER: CommandGroup[] = ["navigate", "actions", "links", "projects"];
@@ -80,6 +82,7 @@ type CommandPaletteProps = {
 export function CommandPalette({ open: controlledOpen, onOpenChange }: CommandPaletteProps) {
   const router = useRouter();
   const pathname = usePathname();
+  const lenis = useLenis();
   const [internalOpen, setInternalOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
@@ -135,7 +138,7 @@ export function CommandPalette({ open: controlledOpen, onOpenChange }: CommandPa
           router.push("/");
           return;
         }
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        scrollToTop({ lenis });
         return;
       }
 
@@ -145,15 +148,14 @@ export function CommandPalette({ open: controlledOpen, onOpenChange }: CommandPa
           router.push(`/${item.href}`);
           return;
         }
-        const target = document.querySelector<HTMLElement>(item.href);
-        target?.scrollIntoView({ behavior: "smooth", block: "start" });
+        scrollToHash(item.href, { lenis });
         return;
       }
 
       trackNavClick(item.label, "command_palette");
       router.push(item.href);
     },
-    [pathname, router, setOpen],
+    [lenis, pathname, router, setOpen],
   );
 
   useEffect(() => {

@@ -5,6 +5,7 @@ import { CommandPaletteRoot } from "@/components/CommandPaletteRoot";
 import { CursorFollower } from "@/components/CursorFollower";
 import { ScrollProgressBar } from "@/components/ScrollProgressBar";
 import { ScrollToTopButton } from "@/components/ScrollToTopButton";
+import { SmoothScroll } from "@/components/SmoothScroll";
 import { Footer } from "@/components/Footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import { metadataBase } from "./site";
@@ -66,12 +67,14 @@ export default function RootLayout({
       </head>
       <body className="min-h-full bg-background font-sans text-foreground">
         <ThemeProvider>
-          <ScrollProgressBar />
-          <ScrollToTopButton />
-          <CursorFollower />
-          <CommandPaletteRoot />
-          {children}
-          <Footer />
+          <SmoothScroll>
+            <ScrollProgressBar />
+            <ScrollToTopButton />
+            <CursorFollower />
+            <CommandPaletteRoot />
+            {children}
+            <Footer />
+          </SmoothScroll>
         </ThemeProvider>
       </body>
     </html>

@@ -1,9 +1,11 @@
 "use client";
 
 import { ChevronUp } from "lucide-react";
+import { useLenis } from "lenis/react";
 import { useEffect, useState } from "react";
 import { trackNavClick } from "@/lib/analytics";
 import { getScrollProgress } from "@/lib/scroll-progress";
+import { scrollToTop } from "@/lib/smooth-scroll";
 import { cn } from "@/lib/utils";
 
 const SHOW_AFTER_PX = 320;
@@ -13,6 +15,7 @@ const RADIUS = (RING_SIZE - STROKE_WIDTH) / 2;
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 
 export function ScrollToTopButton() {
+  const lenis = useLenis();
   const [progress, setProgress] = useState(0);
   const [visible, setVisible] = useState(false);
 
@@ -41,9 +44,9 @@ export function ScrollToTopButton() {
     };
   }, []);
 
-  const scrollToTop = () => {
+  const scrollToTopHandler = () => {
     trackNavClick("scroll_to_top", "scroll_button");
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    scrollToTop({ lenis });
   };
 
   const strokeDashoffset = CIRCUMFERENCE * (1 - progress);
@@ -51,7 +54,7 @@ export function ScrollToTopButton() {
   return (
     <button
       type="button"
-      onClick={scrollToTop}
+      onClick={scrollToTopHandler}
       aria-label="Back to top"
       className={cn(
         "group fixed bottom-4 left-4 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-card/90 backdrop-blur-md transition-all duration-300 hover:bg-card md:bottom-6 md:left-6",

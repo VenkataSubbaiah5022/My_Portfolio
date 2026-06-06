@@ -4,6 +4,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Download, Menu, Search, X, Zap } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { useLenis } from "lenis/react";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -359,6 +360,7 @@ function NavDropdown({
 
 export function Navbar() {
   const pathname = usePathname();
+  const lenis = useLenis();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeId, setActiveId] = useState<NavId>("home");
   const navScrollRef = useRef<HTMLDivElement>(null);
@@ -413,10 +415,15 @@ export function Navbar() {
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
+    if (lenis) {
+      if (mobileOpen) lenis.stop();
+      else lenis.start();
+    }
     return () => {
       document.body.style.overflow = "";
+      lenis?.start();
     };
-  }, [mobileOpen]);
+  }, [lenis, mobileOpen]);
 
   const handleNavClick = (label: string) => {
     trackNavClick(label, "navbar");
@@ -453,6 +460,7 @@ export function Navbar() {
           <div
             ref={navScrollRef}
             className="hidden max-w-[min(100%,42rem)] flex-1 items-center justify-center gap-0.5 overflow-x-auto overscroll-x-contain px-1 lg:flex [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            data-lenis-prevent
           >
             {navEntries.map((entry) =>
               entry.type === "link" ? (
