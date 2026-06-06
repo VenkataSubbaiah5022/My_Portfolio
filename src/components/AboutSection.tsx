@@ -308,13 +308,13 @@ export function AboutSection() {
                   href={COLLEGE_URL}
                   target="_blank"
                   rel="noreferrer"
-                  onClick={() => trackOutboundClick("RGMCE", COLLEGE_URL, "education")}
+                  onClick={() => trackOutboundClick("RGMCET", COLLEGE_URL, "education")}
                   className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-primary/15 bg-primary/[0.08] p-1.5 transition hover:border-primary/30"
                   aria-label="Rajeev Gandhi Memorial College of Engineering and Technology"
                 >
                   <Image
                     src={collegeLogo}
-                    alt="RGMCE college logo"
+                    alt="RGMCET college logo"
                     width={28}
                     height={28}
                     className="h-full w-full object-contain"
@@ -332,10 +332,10 @@ export function AboutSection() {
                       href={COLLEGE_URL}
                       target="_blank"
                       rel="noreferrer"
-                      onClick={() => trackOutboundClick("RGMCE", COLLEGE_URL, "education")}
+                      onClick={() => trackOutboundClick("RGMCET", COLLEGE_URL, "education")}
                       className="transition hover:text-primary"
                     >
-                      RGMCE
+                      RGMCET
                     </a>
                     {" · "}
                     Class of 2025 · CGPA 8.01 · Class Representative (60+ students)

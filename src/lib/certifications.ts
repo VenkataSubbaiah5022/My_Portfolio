@@ -1,10 +1,10 @@
 import type { IconType } from "react-icons";
 import { FaAws } from "react-icons/fa6";
 import {
+  SiCodechef,
   SiHackerrank,
   SiMongodb,
   SiPostman,
-  SiPython,
 } from "react-icons/si";
 
 export type CertCategory = "frontend" | "cloud" | "backend" | "platform" | "academic";
@@ -29,6 +29,10 @@ export type Certification = {
   icon?: IconType;
   iconColor?: string;
   glyph?: string;
+  /** Path under `public/` for issuer brand mark */
+  issuerLogo?: string;
+  /** Use `wide` for horizontal wordmarks inside the issuer badge */
+  issuerLogoFit?: "square" | "wide";
   badgeItems?: string[];
   /** Filename inside `public/certifications/` */
   imageFile?: string;
@@ -111,7 +115,7 @@ export const certifications: Certification[] = [
     year: "2026",
     category: "frontend",
     featured: true,
-    verifyUrl: "https://www.hackerrank.com/certificates/019f73606e1a",
+    verifyUrl: "https://www.hackerrank.com/certificates/iframe/019f73606e1a",
     description:
       "Verified skills assessment covering React, CSS, and JavaScript — listed on my HackerRank profile.",
     skills: ["React", "CSS", "JavaScript"],
@@ -122,12 +126,13 @@ export const certifications: Certification[] = [
   },
   {
     id: "hackerrank-sql",
-    title: "SQL",
+    title: "SQL (Basic)",
     issuer: "HackerRank",
     year: "2025",
     category: "backend",
     skills: ["SQL", "Queries", "Databases"],
-    description: "Verified SQL skills assessment on HackerRank.",
+    description: "Verified SQL (Basic) skills assessment on HackerRank.",
+    verifyUrl: "https://www.hackerrank.com/certificates/iframe/9aafb4d1e8ba",
     imageFile: "SQL by HackRank.webp",
     icon: SiHackerrank,
     iconColor: "#1ba94c",
@@ -152,7 +157,10 @@ export const certifications: Certification[] = [
     category: "frontend",
     skills: ["HTML", "CSS", "JavaScript"],
     description: "Structured web development training with project-based learning.",
+    verifyUrl: "https://trainings.internshala.com/s/v/3448079/87fae318",
     imageFile: "Internshala web development.webp",
+    issuerLogo: "/issuers/internshala-logo.svg",
+    issuerLogoFit: "wide",
     accent: accents.violet,
   },
   {
@@ -164,7 +172,7 @@ export const certifications: Certification[] = [
     skills: ["Cloud", "Virtualization", "Distributed systems"],
     description: "IIT-backed coursework on cloud architecture and service models.",
     imageFile: "Cloud Computing.webp",
-    glyph: "NP",
+    issuerLogo: "/issuers/nptel-logo.svg",
     accent: accents.sky,
   },
   {
@@ -176,7 +184,7 @@ export const certifications: Certification[] = [
     skills: ["IoT", "Embedded systems", "Sensor networks"],
     description: "Foundational IoT concepts aligned with my production telemetry work.",
     imageFile: "Introduction To Internet Of Things.jpg",
-    glyph: "NP",
+    issuerLogo: "/issuers/nptel-logo.svg",
     accent: accents.sky,
   },
   {
@@ -199,6 +207,8 @@ export const certifications: Certification[] = [
     skills: ["Java", "Problem solving", "DSA"],
     description: "Java skill certification through competitive programming practice.",
     imageFile: "java_codechef.webp",
+    icon: SiCodechef,
+    iconColor: "#5b4638",
     accent: accents.amber,
   },
   {
@@ -210,6 +220,7 @@ export const certifications: Certification[] = [
     skills: ["Machine Learning", "Python", "Data"],
     description: "Introductory machine learning concepts and applied workflows.",
     imageFile: "SkillDizre Machine learning.webp",
+    issuerLogo: "/issuers/skilldizre-logo.png",
     accent: accents.violet,
   },
   {
@@ -221,29 +232,31 @@ export const certifications: Certification[] = [
     skills: ["Industry readiness", "Technical training"],
     description: "Wipro industry-aligned technical and professional skills program.",
     imageFile: "wipro.webp",
+    issuerLogo: "/issuers/wipro-logo.svg",
     accent: accents.blue,
   },
   {
     id: "soft-skills",
     title: "Soft Skills & Communication",
-    issuer: "Professional Development",
+    issuer: "NPTEL",
     year: "2024",
     category: "academic",
     skills: ["Communication", "Teamwork", "Presentation"],
-    description: "Workplace communication, collaboration, and professional skills.",
+    description: "NPTEL coursework on workplace communication, collaboration, and professional skills.",
     imageFile: "Soft skills.jpg",
-    accent: accents.indigo,
+    issuerLogo: "/issuers/nptel-logo.svg",
+    accent: accents.sky,
   },
   {
     id: "innovation-day-quiz",
     title: "Innovation Day Quiz",
-    issuer: "RGMCE",
+    issuer: "RGMCET",
     year: "2024",
     category: "academic",
     skills: ["Innovation", "Tech awareness", "Quiz"],
     description: "Campus innovation day technical quiz participation certificate.",
     imageFile: "innovation day quiz.webp",
-    glyph: "RG",
+    issuerLogo: "/education/rgmcet-logo.png",
     accent: accents.emerald,
   },
   {
@@ -254,6 +267,8 @@ export const certifications: Certification[] = [
     category: "backend",
     skills: ["REST APIs", "Collections", "Testing"],
     description: "API design, documentation, and automated testing workflows.",
+    verifyUrl:
+      "https://badges.parchment.com/public/assertions/XfiBS4qWSvmFUcQTyODrqA?identity__email=venkatasubbaiah5022@gmail.com",
     imageFile: "Postman API Fundamentals Student Expert.webp",
     icon: SiPostman,
     iconColor: "#f97316",
@@ -267,9 +282,10 @@ export const certifications: Certification[] = [
     category: "backend",
     skills: ["Python", "Data Science", "Analytics"],
     description: "IBM Cognitive Class Python foundations for data science workflows.",
+    verifyUrl: "https://courses.cognitiveclass.ai/certificates/aec80003c31a499d9235511efd0e3857",
     imageFile: "python 101 for Data Science by IBM.webp",
-    icon: SiPython,
-    iconColor: "#3776ab",
+    issuerLogo: "/issuers/ibm-logo.svg",
+    issuerLogoFit: "wide",
     accent: accents.blue,
   },
   {
@@ -280,9 +296,10 @@ export const certifications: Certification[] = [
     category: "backend",
     skills: ["Python", "Pandas", "Data analysis"],
     description: "Applied Python skills for data science and analysis.",
+    verifyUrl: "https://www.credly.com/badges/10bb27bf-4852-4aba-853c-264558e30c19/public_url",
     imageFile: "python-for-data-science.webp",
-    icon: SiPython,
-    iconColor: "#3776ab",
+    issuerLogo: "/issuers/ibm-logo.svg",
+    issuerLogoFit: "wide",
     accent: accents.blue,
   },
   {
@@ -293,6 +310,7 @@ export const certifications: Certification[] = [
     category: "cloud",
     skills: ["AWS", "Cloud fundamentals"],
     description: "AWS Educate training badge for cloud computing basics.",
+    verifyUrl: "https://www.credly.com/badges/e9a32439-1330-4600-a2eb-5ef09f35171d/public_url",
     imageFile: "aws-educate-introduction-to-cloud-101-training-badg.webp",
     icon: FaAws,
     iconColor: "#ff9900",
@@ -306,6 +324,7 @@ export const certifications: Certification[] = [
     category: "cloud",
     skills: ["AWS", "Serverless", "Lambda"],
     description: "AWS Educate badge for serverless architecture fundamentals.",
+    verifyUrl: "https://www.credly.com/badges/e4ec709c-da2c-43c0-b2c8-07f7c796d11a/public_url",
     imageFile: "aws-educate-getting-started-with-serverless-trainin.webp",
     icon: FaAws,
     iconColor: "#ff9900",
@@ -319,6 +338,7 @@ export const certifications: Certification[] = [
     category: "cloud",
     skills: ["AWS", "S3", "Storage"],
     description: "AWS Educate badge for cloud storage services.",
+    verifyUrl: "https://www.credly.com/badges/f781447a-51a1-477e-870e-ab37b49e6051/public_url",
     imageFile: "aws-educate-getting-started-with-storage-training-b.webp",
     icon: FaAws,
     iconColor: "#ff9900",
@@ -326,12 +346,13 @@ export const certifications: Certification[] = [
   },
   {
     id: "mongodb-core-concepts",
-    title: "Core Concepts and Architecture",
+    title: "MongoDB Overview: Core Concepts and Architecture",
     issuer: "MongoDB University",
     year: "2026",
     category: "platform",
     skills: ["MongoDB", "Document model", "Architecture"],
     description: "MongoDB University skill badge covering database fundamentals and architecture.",
+    verifyUrl: "https://www.credly.com/badges/79fe32e9-a931-4767-a509-c84d77ff8e50/public_url",
     imageFile: "mongodb-core-concepts-and-architecture.png",
     icon: SiMongodb,
     iconColor: "#22c55e",

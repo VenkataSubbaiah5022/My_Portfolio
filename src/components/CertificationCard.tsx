@@ -65,17 +65,30 @@ function IssuerMark({ cert }: { cert: Certification }) {
   return (
     <div
       className={cn(
-        "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border",
+        "flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl border p-1.5",
         cert.accent.iconBox,
       )}
     >
       {Icon ? (
         <Icon className="h-5 w-5" style={{ color: cert.iconColor }} aria-hidden />
-      ) : (
+      ) : cert.issuerLogo ? (
+        /* eslint-disable-next-line @next/next/no-img-element */
+        <img
+          src={cert.issuerLogo}
+          alt=""
+          className={cn(
+            "object-contain",
+            cert.issuerLogoFit === "wide"
+              ? "max-h-5 w-auto max-w-[4.25rem]"
+              : "h-full w-full",
+          )}
+          aria-hidden
+        />
+      ) : cert.glyph ? (
         <span className="text-[11px] font-black text-sky-700 dark:text-sky-300">
           {cert.glyph}
         </span>
-      )}
+      ) : null}
     </div>
   );
 }
