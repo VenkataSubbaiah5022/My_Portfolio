@@ -153,6 +153,14 @@ const navigationCommands: CommandItem[] = [
     href: "#education",
     keywords: ["degree", "university", "school"],
   },
+  {
+    id: "certifications",
+    group: "navigate",
+    label: "All Certifications",
+    description: "Full credential gallery",
+    href: "/certifications",
+    keywords: ["certificates", "credentials", "badges", "hackerrank", "nptel"],
+  },
 ];
 
 const actionCommands: CommandItem[] = [

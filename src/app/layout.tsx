@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import { Analytics } from "@/components/Analytics";
 import { CommandPaletteRoot } from "@/components/CommandPaletteRoot";
 import { CursorFollower } from "@/components/CursorFollower";
@@ -15,6 +16,8 @@ const inter = Inter({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
+
+const themeInitScript = `(function(){try{var t=localStorage.getItem("theme");var d=t==="dark"||(t!=="light"&&window.matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.classList.toggle("dark",d);}catch(e){}})();`;
 
 export const metadata: Metadata = {
   metadataBase,
@@ -57,15 +60,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} h-full`}>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem("theme");var d=t==="dark"||(t!=="light"&&window.matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.classList.toggle("dark",d);}catch(e){}})();`,
-          }}
-        />
-        <Analytics />
-      </head>
       <body className="min-h-full bg-background font-sans text-foreground">
+        <Script id="theme-init" strategy="beforeInteractive">
+          {themeInitScript}
+        </Script>
+        <Analytics />
         <ThemeProvider>
           <SmoothScroll>
             <ScrollProgressBar />

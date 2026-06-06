@@ -125,6 +125,40 @@ html {
   --font-sans: var(--font-geist-sans);
 }
 
+@keyframes cert-flow {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.cert-flow-track {
+  animation: cert-flow var(--cert-flow-duration, 42s) linear infinite;
+}
+
+.cert-flow-track-reverse {
+  animation-direction: reverse;
+}
+
+.cert-flow-row:hover .cert-flow-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cert-flow-track {
+    animation: none;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .cert-flow-shell .cert-flow-row {
+    overflow: visible;
+  }
+}
+
 @keyframes aurora {
   0% {
     transform: translateX(-20%) translateY(0);

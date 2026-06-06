@@ -126,6 +126,7 @@ function animateNavScrollToActive(
 }
 
 const moreLinks = [
+  { href: "/certifications", label: "Certifications" },
   { href: "#challenges", label: "Challenges" },
   { href: "#github-proof", label: "GitHub" },
   { href: "#writing", label: "Writing" },
@@ -154,6 +155,7 @@ function getActiveNavId(): NavId {
 }
 
 function resolveHref(pathname: string, href: string) {
+  if (href.startsWith("/")) return href;
   return pathname === "/" ? href : `/${href}`;
 }
 
