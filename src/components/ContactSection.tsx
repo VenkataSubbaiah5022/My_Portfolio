@@ -99,7 +99,10 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="mx-auto w-full max-w-4xl px-4 py-14 md:py-16">
+    <section
+      id="contact"
+      className="mx-auto w-full max-w-4xl scroll-mt-28 px-4 py-14 md:py-16"
+    >
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -107,10 +110,10 @@ export function ContactSection() {
         transition={{ duration: 0.5 }}
         className="rounded-3xl border border-border bg-card p-6 shadow-xl md:p-8"
       >
-        <h2 className="text-2xl font-semibold md:text-3xl">Let&apos;s Connect</h2>
+        <h2 className="text-2xl font-semibold md:text-3xl">Contact</h2>
         <p className="mt-3 text-sm leading-7 text-muted-foreground md:text-base">
-          Looking for a full stack developer or technical collaborator?
-          Let&apos;s discuss your idea.
+          Have a project in mind? Send a message and I&apos;ll get back to you
+          within 24 hours.
         </p>
         <div className="mt-4 space-y-1 text-sm text-muted-foreground">
           <p>
@@ -124,24 +127,6 @@ export function ContactSection() {
           </p>
           <p>Phone: +91 9963132119</p>
           <p>Location: Hyderabad, Telangana, India</p>
-          <p>Typically responds within 24 hours.</p>
-        </div>
-        <div className="mt-3">
-          <a
-            href="https://www.upwork.com/freelancers/~017b9a8b315e94f07a?mp_source=share"
-            target="_blank"
-            rel="noreferrer"
-            onClick={() =>
-              trackOutboundClick(
-                "Upwork",
-                "https://www.upwork.com/freelancers/~017b9a8b315e94f07a?mp_source=share",
-                "contact",
-              )
-            }
-            className="inline-flex rounded-full border border-border px-3 py-1.5 text-xs transition hover:border-primary/50"
-          >
-            Book a Call / Hire on Upwork
-          </a>
         </div>
         <form className="mt-6 grid gap-4" onSubmit={handleSubmit}>
           <input

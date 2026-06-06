@@ -99,7 +99,7 @@ const heroPrimaryActionClass =
 
 export function HeroSection() {
   return (
-    <section className="relative mx-auto min-h-[82vh] w-full max-w-6xl px-4 pb-8 pt-10 md:pb-10 md:pt-14">
+    <section id="home" className="relative mx-auto min-h-[82vh] w-full max-w-6xl px-4 pb-8 pt-10 md:pb-10 md:pt-14">
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.18),transparent_48%)]" />
 
       <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-10 xl:gap-14">
