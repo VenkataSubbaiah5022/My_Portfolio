@@ -1,3 +1,5 @@
+import { SectionHeading } from "@/components/SectionHeading";
+
 const challenges = [
   {
     title: "Latency Optimization",
@@ -19,9 +21,12 @@ const challenges = [
 export function EngineeringChallengesSection() {
   return (
     <section id="challenges" className="mx-auto w-full max-w-6xl px-4 py-14 md:py-16">
-      <h2 className="mb-6 text-2xl font-semibold md:mb-8 md:text-3xl">
-        Featured Engineering Challenges
-      </h2>
+      <SectionHeading
+        badge="Problem solving"
+        titleBefore="Engineering"
+        titleHighlight="challenges"
+        description="Real production problems solved with performance tuning, reliability patterns, and quality engineering."
+      />
       <div className="grid gap-4 md:grid-cols-3">
         {challenges.map((item) => (
           <article key={item.title} className="rounded-2xl border border-border bg-card p-5">

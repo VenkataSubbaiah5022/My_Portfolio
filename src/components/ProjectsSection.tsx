@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { ProjectCard } from "@/components/ProjectCard";
+import { SectionHeading } from "@/components/SectionHeading";
 import { trackNavClick } from "@/lib/analytics";
 import { featuredProjects, projects } from "@/lib/projects";
 
@@ -12,14 +13,15 @@ export function ProjectsSection() {
   return (
     <section id="projects" className="w-full bg-background">
       <div className="mx-auto max-w-6xl px-4 py-14 md:py-16">
-      <div className="mb-6 flex flex-col gap-4 md:mb-8 md:flex-row md:items-end md:justify-between">
-        <div>
-          <h2 className="text-2xl font-semibold md:text-3xl">Featured Projects</h2>
-          <p className="mt-2 max-w-xl text-sm text-muted-foreground md:text-base">
-            A quick look at recent live builds. Explore the full catalog for more work,
-            including projects in progress.
-          </p>
-        </div>
+      <div className="mb-6 flex flex-col gap-6 md:mb-8 md:flex-row md:items-end md:justify-between">
+        <SectionHeading
+          badge="Selected work"
+          titleBefore="Featured"
+          titleHighlight="projects"
+          description="A quick look at recent live builds. Explore the full catalog for more work, including projects in progress."
+          align="left"
+          className="mb-0 md:mb-0"
+        />
         <p className="text-xs text-muted-foreground md:text-sm">
           Showing {featuredProjects.length} of {projects.length} projects
         </p>

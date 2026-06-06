@@ -8,6 +8,7 @@ import {
   type TechStackCategory,
   type TechStackItem,
 } from "@/lib/tech-stack";
+import { SectionHeading } from "@/components/SectionHeading";
 import { cn } from "@/lib/utils";
 
 const featuredCertification = {
@@ -165,28 +166,12 @@ export function SkillsSection() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.45 }}
-          className="mb-10 text-center md:mb-12"
-        >
-          <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-4 py-1.5 text-xs font-semibold tracking-widest text-primary uppercase">
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary" />
-            Tools of the trade
-          </span>
-          <h2 className="text-4xl leading-tight font-black tracking-tight text-foreground sm:text-5xl">
-            My{" "}
-            <span className="bg-gradient-to-br from-indigo-600 via-violet-500 to-indigo-800 bg-clip-text text-transparent dark:from-indigo-400 dark:via-blue-400 dark:to-indigo-600">
-              tech stack
-            </span>
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
-            From polished frontends to cloud-native backends — the tools I use to
-            ship fast, scalable products.
-          </p>
-        </motion.div>
+        <SectionHeading
+          badge="Tools of the trade"
+          titleBefore="My"
+          titleHighlight="tech stack"
+          description="From polished frontends to cloud-native backends — the tools I use to ship fast, scalable products."
+        />
 
         <div className="space-y-6">
           {techStackCategories.map((category, index) => (

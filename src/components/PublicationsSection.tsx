@@ -2,6 +2,7 @@
 
 import { BadgeCheck, Check, FileText } from "lucide-react";
 import { motion } from "framer-motion";
+import { SectionHeading } from "@/components/SectionHeading";
 import { trackOutboundClick } from "@/lib/analytics";
 
 const zenodoUrl = "https://zenodo.org/records/15123556";
@@ -18,16 +19,11 @@ const techTags = ["Python", "NLP", "Speech Recognition", "Automation APIs"];
 export function PublicationsSection() {
   return (
     <section id="publications" className="mx-auto w-full max-w-6xl px-4 py-14 md:py-16">
-      <div className="mb-6 md:mb-8">
-        <p className="text-xs font-medium tracking-widest text-primary uppercase">
-          Published Research
-        </p>
-        <h2 className="mt-2 text-2xl font-semibold md:text-3xl">Publications</h2>
-        <p className="mt-2 max-w-2xl text-sm text-muted-foreground md:text-base">
-          Academic research documenting voice-driven AI systems, NLP pipelines, and
-          hands-free automation workflows.
-        </p>
-      </div>
+      <SectionHeading
+        badge="Published research"
+        titleHighlight="Publications"
+        description="Academic research documenting voice-driven AI systems, NLP pipelines, and hands-free automation workflows."
+      />
 
       <motion.article
         initial={{ opacity: 0, y: 16 }}

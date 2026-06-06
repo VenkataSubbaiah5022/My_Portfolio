@@ -1,6 +1,7 @@
 "use client";
 
 import { GitBranch } from "lucide-react";
+import { SectionHeading } from "@/components/SectionHeading";
 import { trackOutboundClick } from "@/lib/analytics";
 
 const stats = [
@@ -12,13 +13,14 @@ const stats = [
 export function GitHubProofSection() {
   return (
     <section id="github-proof" className="mx-auto w-full max-w-6xl px-4 py-14 md:py-16">
-      <h2 className="mb-6 text-2xl font-semibold md:mb-8 md:text-3xl">GitHub Proof</h2>
+      <SectionHeading
+        badge="Open source"
+        titleBefore="GitHub"
+        titleHighlight="proof"
+        description="Explore my active codebase, project evolution, and implementation style. I consistently build and iterate on backend-first product systems."
+      />
       <div className="rounded-2xl border border-border bg-card p-5">
-        <p className="text-sm leading-7 text-muted-foreground">
-          Explore my active codebase, project evolution, and implementation style.
-          I consistently build and iterate on backend-first product systems.
-        </p>
-        <div className="mt-4 flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2">
           {stats.map((item) => (
             <span
               key={item}

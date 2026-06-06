@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { EnvelopeClosedIcon, GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 import { useState, type FormEvent } from "react";
 import { trackContactSubmit, trackOutboundClick } from "@/lib/analytics";
+import { SectionHeading } from "@/components/SectionHeading";
 import {
   CONTACT_EMAIL,
   getWeb3FormsAccessKey,
@@ -101,20 +102,21 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="mx-auto w-full max-w-4xl scroll-mt-28 px-4 py-14 md:py-16"
+      className="mx-auto w-full max-w-6xl scroll-mt-28 px-4 py-14 md:py-16 sm:px-8 lg:px-12"
     >
+      <SectionHeading
+        badge="Let's connect"
+        titleBefore="Get in"
+        titleHighlight="touch"
+        description="Have a project in mind or just want to explore possibilities? Drop me a message — I usually respond within 24 hours."
+      />
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.5 }}
-        className="rounded-3xl border border-border bg-card p-6 shadow-xl md:p-8"
+        className="mx-auto max-w-4xl rounded-3xl border border-border bg-card p-6 shadow-xl md:p-8"
       >
-        <h2 className="text-2xl font-semibold md:text-3xl">Contact</h2>
-        <p className="mt-3 text-sm leading-7 text-muted-foreground md:text-base">
-          Have a project in mind? Send a message and I&apos;ll get back to you
-          within 24 hours.
-        </p>
         <div className="mt-4 space-y-1 text-sm text-muted-foreground">
           <p>
             Email:{" "}

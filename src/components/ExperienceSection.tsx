@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
+import { SectionHeading } from "@/components/SectionHeading";
 import { trackOutboundClick } from "@/lib/analytics";
 
 type ExperienceLink = {
@@ -86,7 +87,12 @@ const timeline: ExperienceItem[] = [
 export function ExperienceSection() {
   return (
     <section id="experience" className="mx-auto w-full max-w-6xl px-4 py-14 md:py-16">
-      <h2 className="mb-6 text-2xl font-semibold md:mb-8 md:text-3xl">Experience</h2>
+      <SectionHeading
+        badge="Experience"
+        titleBefore="Work"
+        titleHighlight="experience"
+        description="From intern to full-stack engineer — each role shaped how I think about building software that scales."
+      />
       <div className="space-y-4">
         {timeline.map((item, idx) => (
           <motion.article

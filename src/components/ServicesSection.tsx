@@ -14,6 +14,7 @@ import {
 import { type PointerEvent, useState } from "react";
 import { ServicesStackIllustration } from "@/components/ServicesStackIllustration";
 import { ProjectDiscussModal } from "@/components/ProjectDiscussModal";
+import { SectionHeading } from "@/components/SectionHeading";
 import { trackNavClick } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
@@ -273,24 +274,14 @@ export function ServicesSection() {
             transition={{ duration: 0.5 }}
             className="flex flex-col gap-8 lg:sticky lg:top-28"
           >
-            <span className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-4 py-1.5 text-xs font-semibold tracking-widest text-primary uppercase">
-              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary" />
-              What I offer
-            </span>
-
-            <div>
-              <h2 className="text-[clamp(38px,4.5vw,62px)] leading-[1.02] font-black tracking-tight text-foreground">
-                My{" "}
-                <span className="bg-gradient-to-br from-indigo-600 via-violet-500 to-indigo-800 bg-clip-text text-transparent dark:from-indigo-400 dark:via-blue-400 dark:to-indigo-600">
-                  services
-                </span>
-              </h2>
-            </div>
-
-            <p className="max-w-sm text-base leading-relaxed text-muted-foreground">
-              From architecture to deployment — I build scalable systems designed for
-              production.
-            </p>
+            <SectionHeading
+              badge="What I offer"
+              titleBefore="My"
+              titleHighlight="services"
+              description="From architecture to deployment — I build scalable systems designed for production."
+              align="left"
+              className="mb-0 md:mb-0"
+            />
 
             <ServicesStackIllustration />
 

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { BadgeCheck, Quote, Star } from "lucide-react";
 import { LinkedInLogoIcon } from "@radix-ui/react-icons";
+import { SectionHeading } from "@/components/SectionHeading";
 import { trackOutboundClick } from "@/lib/analytics";
 
 const linkedInRecommendationsUrl =
@@ -43,17 +44,15 @@ function getInitials(name: string) {
 export function RecommendationsSection() {
   return (
     <section id="recommendations" className="mx-auto w-full max-w-6xl px-4 py-14 md:py-16">
-      <div className="mb-6 flex flex-col gap-3 md:mb-8 md:flex-row md:items-end md:justify-between">
-        <div>
-          <p className="text-xs font-medium tracking-widest text-primary uppercase">
-            Social proof
-          </p>
-          <h2 className="mt-2 text-2xl font-semibold md:text-3xl">Recommendations</h2>
-          <p className="mt-2 max-w-2xl text-sm text-muted-foreground md:text-base">
-            Verified LinkedIn endorsements from Stratosfy teammates on production work,
-            reliability, and collaboration.
-          </p>
-        </div>
+      <div className="mb-6 flex flex-col gap-6 md:mb-8 md:flex-row md:items-end md:justify-between">
+        <SectionHeading
+          badge="Social proof"
+          titleBefore="LinkedIn"
+          titleHighlight="recommendations"
+          description="Verified LinkedIn endorsements from Stratosfy teammates on production work, reliability, and collaboration."
+          align="left"
+          className="mb-0 md:mb-0"
+        />
         <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1.5 text-xs text-primary">
           <BadgeCheck className="h-3.5 w-3.5" />
           {recommendations.length} received on LinkedIn

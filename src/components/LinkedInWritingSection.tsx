@@ -12,6 +12,7 @@ import {
   type LinkedInPost,
   type PostImage,
 } from "@/lib/linkedin-posts";
+import { SectionHeading } from "@/components/SectionHeading";
 import { trackOutboundClick } from "@/lib/analytics";
 
 const CAROUSEL_INTERVAL_MS = 4500;
@@ -312,18 +313,14 @@ export function LinkedInWritingSection() {
     <section id="writing" className="mx-auto w-full max-w-6xl px-4 py-14 md:py-16">
       <div className="rounded-3xl border border-border/80 bg-card/40 p-6 sm:p-8 md:p-10">
         <div className="flex flex-col gap-6 border-b border-border pb-8 lg:flex-row lg:items-end lg:justify-between">
-          <div className="max-w-2xl">
-            <p className="text-xs font-medium tracking-[0.2em] text-primary uppercase">
-              Professional writing
-            </p>
-            <h2 className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">
-              LinkedIn insights & industry sharing
-            </h2>
-            <p className="mt-3 text-sm leading-7 text-muted-foreground md:text-base">
-              Selected posts that show teaching, technical depth, and real production
-              experience — the kind of signal recruiters look for beyond a résumé.
-            </p>
-          </div>
+          <SectionHeading
+            badge="Professional writing"
+            titleBefore="LinkedIn"
+            titleHighlight="insights"
+            description="Selected posts that show teaching, technical depth, and real production experience — the kind of signal recruiters look for beyond a résumé."
+            align="left"
+            className="mb-0 max-w-2xl md:mb-0"
+          />
 
           <a
             href={linkedInProfileUrl}

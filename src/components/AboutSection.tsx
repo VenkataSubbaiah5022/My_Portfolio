@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { SectionHeading } from "@/components/SectionHeading";
 import { trackOutboundClick } from "@/lib/analytics";
 
 const collegeLogo = "/education/rgmcet-logo.png";
@@ -39,7 +40,12 @@ const education = [
 export function AboutSection() {
   return (
     <section id="about" className="mx-auto w-full max-w-6xl px-4 py-14 md:py-16">
-      <h2 className="mb-6 text-2xl font-semibold md:mb-8 md:text-3xl">About Me</h2>
+      <SectionHeading
+        badge="Who I am"
+        titleBefore="About"
+        titleHighlight="me"
+        description="Full stack developer passionate about scalable systems, polished user experiences, and AI-powered products that solve real business problems."
+      />
       <div className="mb-6 space-y-4 rounded-2xl border border-border bg-card p-5 text-sm leading-7 text-muted-foreground md:text-base">
         <p>
           I&apos;m a full stack developer passionate about building scalable
