@@ -11,8 +11,9 @@ import {
   Radio,
   type LucideIcon,
 } from "lucide-react";
-import { type PointerEvent } from "react";
+import { type PointerEvent, useState } from "react";
 import { ServicesStackIllustration } from "@/components/ServicesStackIllustration";
+import { ProjectDiscussModal } from "@/components/ProjectDiscussModal";
 import { trackNavClick } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
@@ -210,7 +211,16 @@ function ServiceCardItem({
 }
 
 export function ServicesSection() {
+  const [projectModalOpen, setProjectModalOpen] = useState(false);
+  const [projectCategory, setProjectCategory] = useState("");
+
+  const openProjectModal = (category = "") => {
+    setProjectCategory(category);
+    setProjectModalOpen(true);
+  };
+
   return (
+    <>
     <section
       id="services"
       className="relative scroll-mt-28 overflow-hidden py-16 md:py-20"
@@ -284,15 +294,18 @@ export function ServicesSection() {
 
             <ServicesStackIllustration />
 
-            <a
-              href="#contact"
-              onClick={() => trackNavClick("Contact", "services-cta")}
+            <button
+              type="button"
+              onClick={() => {
+                trackNavClick("Discuss Project", "services-cta");
+                openProjectModal();
+              }}
               className="inline-flex w-fit items-center gap-3 rounded-2xl bg-primary px-7 py-4 text-sm font-bold text-primary-foreground transition-transform duration-200 hover:-translate-y-0.5"
             >
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary-foreground/80" />
               Let&apos;s work together
               <ArrowRight className="h-4 w-4" aria-hidden />
-            </a>
+            </button>
           </motion.div>
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -303,5 +316,12 @@ export function ServicesSection() {
         </div>
       </div>
     </section>
+
+    <ProjectDiscussModal
+      open={projectModalOpen}
+      onOpenChange={setProjectModalOpen}
+      defaultCategory={projectCategory}
+    />
+    </>
   );
 }
