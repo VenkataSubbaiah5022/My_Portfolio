@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #f8fafc;
   --foreground: #0f172a;
@@ -8,6 +10,12 @@
   --primary: #4f46e5;
   --primary-foreground: #eef2ff;
   --muted-foreground: #475569;
+  --services-surface: #eef2ff;
+  --services-grid-line: rgb(15 23 42 / 4%);
+  --services-watermark-stroke: rgb(15 23 42 / 4%);
+  --services-glow-primary: rgba(79, 70, 229, 0.08);
+  --services-glow-secondary: rgba(129, 140, 248, 0.06);
+  --services-glow-tertiary: rgba(67, 56, 202, 0.05);
   --scrollbar-size: 10px;
   --scrollbar-track: rgb(15 23 42 / 6%);
   --scrollbar-thumb: rgb(79 70 229 / 42%);
@@ -56,6 +64,12 @@ html {
   --primary: #60a5fa;
   --primary-foreground: #0b1220;
   --muted-foreground: #94a3b8;
+  --services-surface: #0a1020;
+  --services-grid-line: rgb(248 250 252 / 4%);
+  --services-watermark-stroke: rgb(248 250 252 / 4%);
+  --services-glow-primary: rgba(96, 165, 250, 0.07);
+  --services-glow-secondary: rgba(59, 130, 246, 0.05);
+  --services-glow-tertiary: rgba(67, 56, 202, 0.06);
   --scrollbar-track: rgb(248 250 252 / 5%);
   --scrollbar-thumb: rgb(96 165 250 / 34%);
   --scrollbar-thumb-hover: rgb(96 165 250 / 58%);
@@ -82,6 +96,85 @@ html {
   100% {
     transform: translateX(-20%) translateY(0);
   }
+}
+
+@keyframes services-float-1 {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes services-float-2 {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes services-float-3 {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+.services-float-1 {
+  animation: services-float-1 4s ease-in-out infinite;
+}
+
+.services-float-2 {
+  animation: services-float-2 4s ease-in-out -1s infinite;
+}
+
+.services-float-3 {
+  animation: services-float-3 4s ease-in-out -2s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .services-float-1,
+  .services-float-2,
+  .services-float-3 {
+    animation: none;
+  }
+
+  .service-card-shine {
+    display: none;
+  }
+}
+
+@keyframes service-card-shine {
+  0% {
+    transform: translateX(-130%) skewX(-16deg);
+  }
+  100% {
+    transform: translateX(230%) skewX(-16deg);
+  }
+}
+
+.service-card-spotlight {
+  background: radial-gradient(
+    320px circle at var(--spotlight-x, 50%) var(--spotlight-y, 0%),
+    var(--spotlight-color, rgba(79, 70, 229, 0.14)),
+    transparent 42%
+  );
+}
+
+.service-card-shine {
+  animation: none;
+}
+
+.group:hover .service-card-shine {
+  animation: service-card-shine 0.9s ease forwards;
 }
 
 body {
