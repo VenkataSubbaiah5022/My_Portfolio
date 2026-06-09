@@ -14,24 +14,43 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "timesheet-management",
-    title: "Timesheet Management System",
-    thumbnail: "from-amber-500/35 to-orange-500/20",
+    slug: "talentvault-ai",
+    title: "TalentVault AI",
+    thumbnail: "from-violet-500/35 to-purple-500/20",
     images: [
-      "/projects/timesheet-management/Timesheet Management System_Dashboard.webp",
-      "/projects/timesheet-management/Timesheet Management System_login.webp",
+      "/projects/talentvault-ai/talentvault-dashboard.webp",
+      "/projects/talentvault-ai/talentvault-search.webp",
+      "/projects/talentvault-ai/talentvault-candidates.webp",
     ],
     problem:
-      "Teams needed a clear role-based workflow for daily time tracking, approvals, and utilization visibility.",
+      "Recruiters needed a fast way to upload resumes, extract structured candidate data, and search their talent pool without manual data entry.",
     highlights: [
-      "Employee -> Manager submission and approval flow",
-      "Interactive productivity dashboards and reporting",
-      "Reusable React components with typed contracts",
+      "PII-safe AI extraction with Gemini — contact details scrubbed before parsing",
+      "Multi-file PDF/DOCX upload with batch processing and live progress",
+      "Dashboard analytics, filters, card/table views, and candidate profile drawer",
     ],
-    metrics: ["Role-based workflows", "Real-time API synchronization", "CSV/PDF reporting"],
-    stack: ["React", "TypeScript", "Tailwind", "REST APIs"],
-    live: "https://timesheet-management-system-sage.vercel.app/",
-    code: "https://github.com/VenkataSubbaiah5022/Timesheet-Management-System",
+    metrics: ["Deployed on Vercel", "Supabase-backed vault", "Natural language search"],
+    stack: ["Next.js", "TypeScript", "Supabase", "Gemini"],
+    live: "https://talentvaultz-ai.vercel.app/",
+    code: "https://github.com/VenkataSubbaiah5022/talentvault-ai",
+    featured: true,
+  },
+  {
+    slug: "duel-dots",
+    title: "DuelDots",
+    thumbnail: "from-red-500/35 to-blue-500/20",
+    images: ["/projects/duel-dots/duel-dots-cover.webp"],
+    problem:
+      "Players wanted a quick, competitive 2-player strategy game they could enjoy with friends online or practice against a bot.",
+    highlights: [
+      "Real-time multiplayer rooms with shareable room codes",
+      "5×5 grid strategy — claim dots, capture enemies, win matches",
+      "Bot mode, leaderboard, and player stats with Firebase backend",
+    ],
+    metrics: ["Live on Google Play", "Firebase realtime sync", "Flutter cross-platform"],
+    stack: ["Flutter", "Firebase", "Riverpod", "Firestore"],
+    live: "https://play.google.com/store/apps/details?id=com.dueldots.duel_dots",
+    code: "https://github.com/VenkataSubbaiah5022/duel-dots",
     featured: true,
   },
   {
@@ -57,6 +76,27 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    slug: "timesheet-management",
+    title: "Timesheet Management System",
+    thumbnail: "from-amber-500/35 to-orange-500/20",
+    images: [
+      "/projects/timesheet-management/Timesheet Management System_Dashboard.webp",
+      "/projects/timesheet-management/Timesheet Management System_login.webp",
+    ],
+    problem:
+      "Teams needed a clear role-based workflow for daily time tracking, approvals, and utilization visibility.",
+    highlights: [
+      "Employee -> Manager submission and approval flow",
+      "Interactive productivity dashboards and reporting",
+      "Reusable React components with typed contracts",
+    ],
+    metrics: ["Role-based workflows", "Real-time API synchronization", "CSV/PDF reporting"],
+    stack: ["React", "TypeScript", "Tailwind", "REST APIs"],
+    live: "https://timesheet-management-system-sage.vercel.app/",
+    code: "https://github.com/VenkataSubbaiah5022/Timesheet-Management-System",
+    featured: false,
+  },
+  {
     slug: "voice-genie",
     title: "Jarvis AI Assistant",
     thumbnail: "from-indigo-500/35 to-fuchsia-500/20",
@@ -72,7 +112,7 @@ export const projects: Project[] = [
     stack: ["Python", "NLP", "Speech Recognition", "Text-to-Speech"],
     live: "https://ai-voice-genie.vercel.app/",
     code: "https://github.com/VenkataSubbaiah5022/AI-Powered-Voice-Genie",
-    featured: true,
+    featured: false,
   },
   {
     slug: "real-time-chat",
