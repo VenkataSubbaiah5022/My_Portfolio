@@ -1,10 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ExternalLink, GitBranch } from "lucide-react";
+import { ExternalLink, GitBranch, Terminal } from "lucide-react";
 import { ProjectImageGallery } from "@/components/ProjectImageGallery";
 import { trackOutboundClick } from "@/lib/analytics";
-import { getProjectImages, type Project } from "@/lib/projects";
+import {
+  getProjectImages,
+  getProjectKind,
+  getProjectPrimaryAction,
+  type Project,
+} from "@/lib/projects";
 
 type ProjectCardProps = {
   project: Project;
@@ -17,6 +22,9 @@ export function ProjectCard({
   index = 0,
   analyticsSource = "projects",
 }: ProjectCardProps) {
+  const primaryAction = getProjectPrimaryAction(project);
+  const PrimaryIcon = getProjectKind(project) === "cli" ? Terminal : ExternalLink;
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 18 }}
@@ -60,25 +68,25 @@ export function ProjectCard({
         ))}
       </div>
       <div className="mt-5 flex items-center gap-2">
-        {project.live ? (
+        {primaryAction.enabled ? (
           <a
-            href={project.live}
+            href={primaryAction.href}
             target="_blank"
             rel="noreferrer"
             onClick={() =>
               trackOutboundClick(
-                `${project.title} Live`,
-                project.live!,
+                `${project.title} ${primaryAction.label}`,
+                primaryAction.href,
                 analyticsSource,
               )
             }
             className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1.5 text-xs transition hover:border-primary/50"
           >
-            <ExternalLink className="h-3.5 w-3.5" /> Live
+            <PrimaryIcon className="h-3.5 w-3.5" /> {primaryAction.label}
           </a>
         ) : (
           <span className="inline-flex items-center gap-2 rounded-full border border-dashed border-border px-3 py-1.5 text-xs text-muted-foreground">
-            <ExternalLink className="h-3.5 w-3.5" /> Live coming soon
+            <ExternalLink className="h-3.5 w-3.5" /> {primaryAction.label}
           </span>
         )}
         {project.code ? (

@@ -1,4 +1,4 @@
-import { projects, type Project } from "@/lib/projects";
+import { isProjectInProgress, projects, type Project } from "@/lib/projects";
 
 export type ProjectFilterId = "all" | "live" | "in-progress";
 
@@ -32,7 +32,7 @@ function matchesFilter(project: Project, filter: ProjectFilterId): boolean {
     return Boolean(project.live);
   }
   if (filter === "in-progress") {
-    return !project.live;
+    return isProjectInProgress(project);
   }
   return true;
 }

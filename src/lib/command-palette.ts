@@ -1,4 +1,4 @@
-import { projects } from "@/lib/projects";
+import { getProjectPrimaryAction, projects } from "@/lib/projects";
 import { CONTACT_EMAIL } from "@/lib/contact";
 
 export type CommandGroup = "navigate" | "actions" | "links" | "projects";
@@ -222,15 +222,20 @@ const linkCommands: CommandItem[] = [
   },
 ];
 
-const projectCommands: CommandItem[] = projects.map((project) => ({
-  id: `project-${project.slug}`,
-  group: "projects" as const,
-  label: project.title,
-  description: project.problem,
-  href: project.live ?? project.code ?? "#projects",
-  external: Boolean(project.live || project.code),
-  keywords: [project.slug, ...project.stack],
-}));
+const projectCommands: CommandItem[] = projects.map((project) => {
+  const primaryAction = getProjectPrimaryAction(project);
+  const href = primaryAction.enabled ? primaryAction.href : project.code ?? "#projects";
+
+  return {
+    id: `project-${project.slug}`,
+    group: "projects" as const,
+    label: project.title,
+    description: project.problem,
+    href,
+    external: href.startsWith("http"),
+    keywords: [project.slug, ...project.stack],
+  };
+});
 
 export const commandItems: CommandItem[] = [
   ...navigationCommands,

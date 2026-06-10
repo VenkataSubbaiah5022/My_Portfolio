@@ -1,3 +1,9 @@
+export type ProjectKind = "web" | "cli" | "mobile" | "analytics";
+
+export type ProjectPrimaryAction =
+  | { label: string; href: string; enabled: true }
+  | { label: string; href: null; enabled: false };
+
 export type Project = {
   slug: string;
   title: string;
@@ -7,6 +13,10 @@ export type Project = {
   highlights: string[];
   metrics: string[];
   stack: string[];
+  /** How the project is delivered — drives the primary CTA when there is no web demo. */
+  kind?: ProjectKind;
+  /** Optional docs/README link for CLI and library projects. */
+  docs?: string | null;
   live: string | null;
   code: string | null;
   featured: boolean;
@@ -49,6 +59,7 @@ export const projects: Project[] = [
     ],
     metrics: ["Live on Google Play", "Firebase realtime sync", "Flutter cross-platform"],
     stack: ["Flutter", "Firebase", "Riverpod", "Firestore"],
+    kind: "mobile",
     live: "https://play.google.com/store/apps/details?id=com.dueldots.duel_dots",
     code: "https://github.com/VenkataSubbaiah5022/duel-dots",
     featured: true,
@@ -74,6 +85,25 @@ export const projects: Project[] = [
     live: "https://flowboard-system.vercel.app/",
     code: "https://github.com/VenkataSubbaiah5022/Task-Management-System",
     featured: true,
+  },
+  {
+    slug: "jobsprint",
+    title: "JobSprint",
+    thumbnail: "from-orange-500/35 to-cyan-500/20",
+    images: ["/projects/jobsprint/jobsprint-cover.png"],
+    problem:
+      "Job seekers needed a way to discover fresh Naukri listings that match their profile and apply automatically without repetitive manual form filling.",
+    highlights: [
+      "Autonomous Naukri agent — searches 60+ roles across Hyderabad, Bangalore, and Remote",
+      "Weighted profile match scoring (role, skills, location, experience, salary) with smart exclusions",
+      "Playwright browser automation with rule-based + AI chatbot Q&A and duplicate prevention",
+    ],
+    metrics: ["Open-source CLI", "CSV application logging", "15-min search refresh cycles"],
+    stack: ["Python", "Playwright", "Groq", "Gemini"],
+    kind: "cli",
+    live: null,
+    code: "https://github.com/VenkataSubbaiah5022/JobSprint",
+    featured: false,
   },
   {
     slug: "timesheet-management",
@@ -162,6 +192,7 @@ export const projects: Project[] = [
     ],
     metrics: ["Interactive dashboards", "Public Tableau embed", "Data storytelling"],
     stack: ["Tableau", "Data Visualization", "Analytics"],
+    kind: "analytics",
     live: "https://public.tableau.com/views/AIMLSTUDENTSMarksdistribution/Dashboard1?:language=en-US&:embed=y&:display_count=y&:origin=viz_share_link",
     code: null,
     featured: false,
@@ -171,6 +202,36 @@ export const projects: Project[] = [
 export const featuredProjects = projects.filter((project) => project.featured);
 
 export const liveProjectCount = projects.filter((project) => project.live).length;
+
+export function getProjectKind(project: Project): ProjectKind {
+  return project.kind ?? "web";
+}
+
+export function getProjectPrimaryAction(project: Project): ProjectPrimaryAction {
+  if (project.live) {
+    const kind = getProjectKind(project);
+    const label =
+      kind === "mobile" ? "Google Play" : kind === "analytics" ? "View dashboard" : "Live";
+    return { label, href: project.live, enabled: true };
+  }
+
+  if (getProjectKind(project) === "cli" && project.code) {
+    return {
+      label: "Quick start",
+      href: project.docs ?? `${project.code}#readme`,
+      enabled: true,
+    };
+  }
+
+  return { label: "Live coming soon", href: null, enabled: false };
+}
+
+/** Web apps without a demo URL — not CLI tools that ship via GitHub. */
+export function isProjectInProgress(project: Project): boolean {
+  if (project.live) return false;
+  if (getProjectKind(project) === "cli") return false;
+  return true;
+}
 
 export function getProjectImages(project: Project): string[] {
   if (project.images?.length) {
