@@ -4,6 +4,7 @@ import { EngineeringChallengesSection } from "@/components/EngineeringChallenges
 import { ExperienceSection } from "@/components/ExperienceSection";
 import { GitHubProofSection } from "@/components/GitHubProofSection";
 import { HeroSection } from "@/components/HeroSection";
+import { JsonLd } from "@/components/JsonLd";
 import { LinkedInWritingSection } from "@/components/LinkedInWritingSection";
 import { Navbar } from "@/components/Navbar";
 import { ProcessSection } from "@/components/ProcessSection";
@@ -15,28 +16,32 @@ import { SectionViewTracker } from "@/components/SectionViewTracker";
 import { ServicesSection } from "@/components/ServicesSection";
 import { SkillsSection } from "@/components/SkillsSection";
 import { WhyMeSection } from "@/components/WhyMeSection";
+import { getHomeJsonLd } from "@/lib/seo";
 
 export default function Home() {
   return (
-    <main className="relative bg-background text-foreground antialiased">
-      <Navbar />
-      {/* Order matches navbar: Home → About → Tech → Projects → Career → Why me → Process → Services → Contact */}
-      <HeroSection />
-      <AboutSection />
-      <SkillsSection />
-      <ProjectsSection />
-      <PublicationsSection />
-      <EngineeringChallengesSection />
-      <ExperienceSection />
-      <WhyMeSection />
-      <RecommendationsSection />
-      <LinkedInWritingSection />
-      <ProcessSection />
-      <GitHubProofSection />
-      <ServicesSection />
-      <ContactSection />
-      <QuickActionsFab />
-      <SectionViewTracker />
-    </main>
+    <>
+      <JsonLd data={getHomeJsonLd()} />
+      <main className="relative bg-background text-foreground antialiased">
+        <Navbar />
+        {/* Order matches navbar: Home → About → Tech → Projects → Career → Why me → Process → Services → Contact */}
+        <HeroSection />
+        <AboutSection />
+        <SkillsSection />
+        <ProjectsSection />
+        <PublicationsSection />
+        <EngineeringChallengesSection />
+        <ExperienceSection />
+        <WhyMeSection />
+        <RecommendationsSection />
+        <LinkedInWritingSection />
+        <ProcessSection />
+        <GitHubProofSection />
+        <ServicesSection />
+        <ContactSection />
+        <QuickActionsFab />
+        <SectionViewTracker />
+      </main>
+    </>
   );
 }

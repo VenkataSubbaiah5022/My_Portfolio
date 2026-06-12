@@ -1,5 +1,6 @@
 import { getProjectPrimaryAction, projects } from "@/lib/projects";
 import { CONTACT_EMAIL } from "@/lib/contact";
+import { getSiteUrl } from "@/lib/site";
 
 export type CommandGroup = "navigate" | "actions" | "links" | "projects";
 
@@ -21,9 +22,7 @@ export const COMMAND_GROUP_LABELS: Record<CommandGroup, string> = {
   projects: "Projects",
 };
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
-  "https://venkata-fullstack.vercel.app";
+const SITE_URL = getSiteUrl();
 
 const UPWORK_URL =
   "https://www.upwork.com/freelancers/~017b9a8b315e94f07a?mp_source=share";

@@ -226,8 +226,9 @@ export function AboutSection() {
                 <p className="max-w-[440px] text-base leading-[1.8] text-muted-foreground">
                   Based in{" "}
                   <span className="font-semibold text-primary">Hyderabad, India</span>.
-                  Full-stack engineer specialising in scalable backends, polished interfaces,
-                  and AI-powered products. Shipping production software for{" "}
+                  Full stack developer and software engineer specialising in MERN stack
+                  backends, React interfaces, Node.js APIs, and AI-powered products.
+                  Shipping production software for{" "}
                   <span className="font-semibold text-foreground">1.5+ years</span> — IoT
                   monitoring, real-time systems, and workflow platforms — and just getting
                   started.

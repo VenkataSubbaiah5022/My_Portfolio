@@ -9,6 +9,13 @@ import { ScrollToTopButton } from "@/components/ScrollToTopButton";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { Footer } from "@/components/Footer";
 import { ThemeProvider } from "@/components/theme-provider";
+import { SEO_KEYWORDS } from "@/lib/seo";
+import {
+  getSiteUrl,
+  SITE_DESCRIPTION,
+  SITE_FULL_NAME,
+  SITE_TAGLINE,
+} from "@/lib/site";
 import { metadataBase } from "./site";
 import "./globals.css";
 
@@ -19,38 +26,65 @@ const inter = Inter({
 
 const themeInitScript = `(function(){try{var t=localStorage.getItem("theme");document.documentElement.classList.toggle("dark",t==="dark");}catch(e){}})();`;
 
+const siteUrl = getSiteUrl();
+const defaultTitle = `${SITE_FULL_NAME} | ${SITE_TAGLINE} | India`;
+
 export const metadata: Metadata = {
   metadataBase,
   title: {
-    default: "Aitha Venkata Subbaiah | Full Stack Developer",
-    template: "%s | Aitha",
+    default: defaultTitle,
+    template: `%s | ${SITE_FULL_NAME}`,
   },
-  description:
-    "Full Stack Developer portfolio — scalable web apps, AI-powered products, IoT platforms, and production APIs with React, Next.js, Node.js, and TypeScript.",
-  keywords: [
-    "Full Stack Developer",
-    "Aitha Venkata Subbaiah",
-    "React",
-    "Next.js",
-    "TypeScript",
-    "Node.js",
-    "Portfolio",
-  ],
-  authors: [{ name: "Aitha Venkata Subbaiah Setty" }],
+  description: SITE_DESCRIPTION,
+  keywords: SEO_KEYWORDS,
+  applicationName: `${SITE_FULL_NAME} Portfolio`,
+  authors: [{ name: SITE_FULL_NAME, url: siteUrl }],
+  creator: SITE_FULL_NAME,
+  publisher: SITE_FULL_NAME,
+  category: "technology",
+  alternates: {
+    canonical: siteUrl,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
-    title: "Aitha Venkata Subbaiah | Full Stack Developer",
-    description:
-      "Building scalable web applications, AI-powered products, and modern user experiences.",
+    title: defaultTitle,
+    description: SITE_DESCRIPTION,
     type: "website",
     locale: "en_IN",
-    siteName: "Aitha Portfolio",
+    url: siteUrl,
+    siteName: `${SITE_FULL_NAME} — Developer Portfolio`,
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: `${SITE_FULL_NAME} — ${SITE_TAGLINE} portfolio`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Aitha Venkata Subbaiah | Full Stack Developer",
-    description:
-      "Full Stack Developer portfolio with production projects, experience, and recommendations.",
+    title: defaultTitle,
+    description: SITE_DESCRIPTION,
+    images: ["/twitter-image"],
   },
+  ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? {
+        verification: {
+          google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+        },
+      }
+    : {}),
 };
 
 export default function RootLayout({

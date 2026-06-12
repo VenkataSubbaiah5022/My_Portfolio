@@ -440,7 +440,10 @@ export function Navbar() {
   return (
     <>
       <header className="sticky top-4 z-50 mx-auto w-full max-w-7xl overflow-visible px-4">
-        <nav className="relative flex h-14 items-center justify-between overflow-visible rounded-2xl border border-border/80 bg-card/75 px-4 backdrop-blur-md transition-colors duration-300 sm:px-6 dark:bg-card/65">
+        <nav
+          aria-label="Primary navigation"
+          className="relative flex h-14 items-center justify-between overflow-visible rounded-2xl border border-border/80 bg-card/75 px-4 backdrop-blur-md transition-colors duration-300 sm:px-6 dark:bg-card/65"
+        >
           <div
             aria-hidden
             className="absolute top-0 left-8 right-8 h-px rounded-full bg-gradient-to-r from-transparent via-primary/70 to-transparent opacity-60"

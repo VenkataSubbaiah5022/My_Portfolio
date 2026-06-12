@@ -31,9 +31,12 @@ function ProfilePhotoGlow({
       </div>
       <img
         src={profilePhoto}
-        alt={`${profileName} - ${profileRole}`}
+        alt={`${profileName} Setty — ${profileRole} and software engineer portfolio photo`}
         width={531}
         height={769}
+        fetchPriority="high"
+        loading="eager"
+        decoding="async"
         className={`relative z-10 block h-auto object-contain object-bottom ${imageClassName}`}
       />
     </div>
@@ -143,14 +146,19 @@ export function HeroSection() {
             </div>
           </div>
           <h1 className="max-w-3xl text-2xl leading-snug font-bold tracking-tight sm:text-3xl md:text-4xl lg:text-[2.75rem] lg:leading-tight">
+            <span className="sr-only">
+              {profileName} Setty — {profileRole}, MERN stack developer, React
+              developer, Node.js developer, Java developer, AI full stack
+              developer, and software engineer in Hyderabad, India.{" "}
+            </span>
             Building scalable web apps, AI-powered products, and modern user
             experiences.
           </h1>
           <p className="max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base md:text-lg">
-            Experienced in building production-ready applications with React,
-            Next.js, Node.js, TypeScript, MongoDB, SQL, cloud platforms and
-            AI-powered applications. I enjoy designing efficient systems,
-            developing clean APIs, and delivering exceptional user experiences.
+            Full stack engineer and software engineer experienced in MERN stack,
+            React, Next.js, Node.js, TypeScript, Java, MongoDB, SQL, cloud
+            platforms, and AI-powered applications. I design efficient systems,
+            develop clean APIs, and deliver production-ready user experiences.
           </p>
           <p className="max-w-2xl text-sm leading-7 text-muted-foreground">
             I enjoy combining software engineering and AI to create products that

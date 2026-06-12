@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Aitha Venkata Subbaiah — Full Stack Developer";
+export const alt = "Aitha Venkata Subbaiah Setty — Full Stack Developer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -48,7 +48,7 @@ export default function OpenGraphImage() {
             letterSpacing: -1,
           }}
         >
-          Aitha Venkata Subbaiah
+          Aitha Venkata Subbaiah Setty
         </div>
         <div
           style={{

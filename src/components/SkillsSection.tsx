@@ -150,7 +150,7 @@ export function SkillsSection() {
           badge="Tools of the trade"
           titleBefore="My"
           titleHighlight="tech stack"
-          description="From polished frontends to cloud-native backends — the tools I use to ship fast, scalable products."
+          description="React, Node.js, MongoDB, Java, TypeScript, and cloud tools — the MERN stack and full stack technologies I use to ship fast, scalable products."
         />
 
         <div className="space-y-6">

@@ -63,6 +63,7 @@ export function ProjectImageGallery({
             src={currentImage}
             alt={`${title} screenshot ${safeIndex + 1}`}
             fill
+            loading={safeIndex === 0 ? "eager" : "lazy"}
             className="object-cover object-top"
             sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
             onError={() =>
