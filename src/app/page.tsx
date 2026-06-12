@@ -15,6 +15,7 @@ import { RecommendationsSection } from "@/components/RecommendationsSection";
 import { SectionViewTracker } from "@/components/SectionViewTracker";
 import { ServicesSection } from "@/components/ServicesSection";
 import { SkillsSection } from "@/components/SkillsSection";
+import { SystemDesignSection } from "@/components/SystemDesignSection";
 import { WhyMeSection } from "@/components/WhyMeSection";
 import { getHomeJsonLd } from "@/lib/seo";
 
@@ -29,6 +30,7 @@ export default function Home() {
         <AboutSection />
         <SkillsSection />
         <ProjectsSection />
+        <SystemDesignSection />
         <PublicationsSection />
         <EngineeringChallengesSection />
         <ExperienceSection />

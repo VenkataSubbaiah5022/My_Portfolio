@@ -239,3 +239,7 @@ export function getProjectImages(project: Project): string[] {
   }
   return [encodeURI(`/projects/${project.slug}/cover.webp`)];
 }
+
+export function getProjectBySlug(slug: string): Project | undefined {
+  return projects.find((project) => project.slug === slug);
+}

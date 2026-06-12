@@ -15,6 +15,7 @@ const footerLinks = [
   { href: "#about", label: "About" },
   { href: "#skills", label: "Tech" },
   { href: "#projects", label: "Projects" },
+  { href: "#system-design", label: "System Design" },
   { href: "#experience", label: "Career" },
   { href: "#recommendations", label: "Why me" },
   { href: "#build-process", label: "Process" },

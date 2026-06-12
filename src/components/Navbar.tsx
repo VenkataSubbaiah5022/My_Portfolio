@@ -30,6 +30,8 @@ type NavEntry =
 
 const projectsGroupItems: NavLinkItem[] = [
   { href: "#projects", id: "projects", label: "Projects" },
+  { href: "#system-design", id: "system-design", label: "System Design" },
+  { href: "/system-design", id: "system-design-page", label: "All architectures" },
   { href: "#publications", id: "publications", label: "Publications" },
 ];
 
@@ -57,6 +59,7 @@ const scrollSpySections: { sectionId: string; navId: NavId }[] = [
   { sectionId: "about", navId: "about" },
   { sectionId: "skills", navId: "tech" },
   { sectionId: "projects", navId: "projects" },
+  { sectionId: "system-design", navId: "system-design" },
   { sectionId: "publications", navId: "publications" },
   { sectionId: "challenges", navId: "projects" },
   { sectionId: "experience", navId: "career" },
@@ -370,7 +373,13 @@ export function Navbar() {
 
   useEffect(() => {
     if (pathname !== "/") {
-      setActiveId(pathname.startsWith("/projects") ? "projects" : "home");
+      if (pathname.startsWith("/projects")) {
+        setActiveId("projects");
+      } else if (pathname.startsWith("/system-design")) {
+        setActiveId("system-design");
+      } else {
+        setActiveId("home");
+      }
       return;
     }
 

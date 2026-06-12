@@ -1,9 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { ExternalLink, GitBranch, Terminal } from "lucide-react";
+import { ExternalLink, FileText, GitBranch, Terminal } from "lucide-react";
 import { ProjectImageGallery } from "@/components/ProjectImageGallery";
-import { trackOutboundClick } from "@/lib/analytics";
+import { trackNavClick, trackOutboundClick } from "@/lib/analytics";
+import { hasCaseStudy } from "@/lib/case-studies";
 import {
   getProjectImages,
   getProjectKind,
@@ -67,7 +69,16 @@ export function ProjectCard({
           </span>
         ))}
       </div>
-      <div className="mt-5 flex items-center gap-2">
+      <div className="mt-5 flex flex-wrap items-center gap-2">
+        {hasCaseStudy(project.slug) ? (
+          <Link
+            href={`/projects/${project.slug}`}
+            onClick={() => trackNavClick("case_study", analyticsSource)}
+            className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary transition hover:border-primary/50"
+          >
+            <FileText className="h-3.5 w-3.5" /> Case study
+          </Link>
+        ) : null}
         {primaryAction.enabled ? (
           <a
             href={primaryAction.href}

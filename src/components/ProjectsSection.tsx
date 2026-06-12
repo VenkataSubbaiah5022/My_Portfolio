@@ -18,7 +18,7 @@ export function ProjectsSection() {
           badge="Selected work"
           titleBefore="Featured"
           titleHighlight="projects"
-          description="A quick look at recent live builds. Explore the full catalog for more work, including projects in progress."
+          description="More live builds with full case studies, architecture diagrams, and engineering deep dives."
           align="left"
           className="mb-0 md:mb-0"
         />
