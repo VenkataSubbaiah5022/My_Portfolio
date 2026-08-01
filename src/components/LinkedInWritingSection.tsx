@@ -42,6 +42,7 @@ function PostImageCarousel({
   const activeImage = images[activeIndex];
   const isFeatured = variant === "featured";
   const imageFit = activeImage.fit ?? (isFeatured ? "contain" : "cover");
+  const imagePosition = activeImage.position ?? "center";
 
   if (images.length === 0) {
     return null;
@@ -71,12 +72,13 @@ function PostImageCarousel({
           <img
             src={activeImage.src}
             alt={activeImage.caption ?? ""}
+            style={{ objectPosition: imagePosition }}
             className={
               isFeatured
                 ? "max-h-[300px] w-full max-w-md object-contain drop-shadow-2xl lg:max-h-[360px]"
                 : imageFit === "contain"
-                  ? "h-full w-full object-contain object-center"
-                  : "h-full w-full object-cover object-center"
+                  ? "h-full w-full object-contain"
+                  : "h-full w-full object-cover"
             }
           />
         </motion.div>
@@ -145,7 +147,9 @@ function formatImpressions(value: number) {
 function EngagementBar({ stats }: { stats: LinkedInPost["stats"] }) {
   const items = [
     stats.reactions != null ? { label: "Reactions", value: String(stats.reactions) } : null,
-    { label: "Impressions", value: formatImpressions(stats.impressions) },
+    stats.impressions != null
+      ? { label: "Impressions", value: formatImpressions(stats.impressions) }
+      : null,
     stats.comments != null ? { label: "Comments", value: String(stats.comments) } : null,
   ].filter(Boolean) as { label: string; value: string }[];
 
@@ -278,12 +282,14 @@ function CompactPost({ post, index }: { post: LinkedInPost; index: number }) {
               reactions
             </span>
           )}
-          <span>
-            <strong className="font-semibold text-foreground">
-              {formatImpressions(post.stats.impressions)}
-            </strong>{" "}
-            impressions
-          </span>
+          {post.stats.impressions != null && (
+            <span>
+              <strong className="font-semibold text-foreground">
+                {formatImpressions(post.stats.impressions)}
+              </strong>{" "}
+              impressions
+            </span>
+          )}
           {post.stats.comments != null && (
             <span>
               <strong className="font-semibold text-foreground">{post.stats.comments}</strong>{" "}

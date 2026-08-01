@@ -2,6 +2,8 @@ export type PostImage = {
   src: string;
   caption?: string;
   fit?: "contain" | "cover";
+  /** CSS object-position, e.g. "center top" or "center 22%" */
+  position?: string;
 };
 
 export type LinkedInPost = {
@@ -19,7 +21,7 @@ export type LinkedInPost = {
   postedAgo: string;
   stats: {
     reactions?: number;
-    impressions: number;
+    impressions?: number;
     comments?: number;
   };
   featured?: boolean;
@@ -39,6 +41,51 @@ export const linkedInProfileUrl =
   "https://www.linkedin.com/in/aitha-venkata-subbaiah-setty/";
 
 export const linkedInPosts: LinkedInPost[] = [
+  {
+    slug: "hala-mobility-software-developer",
+    title: "Joined Hala Mobility as a Software Developer",
+    subtitle: "New chapter · EV mobility · Hyderabad",
+    hook: "Excited to start a new chapter — building scalable products and solving real-world engineering challenges at Hala Mobility.",
+    category: "Career Update",
+    excerpt:
+      "I'm happy to share that I've joined Hala Mobility as a Software Developer. Looking forward to learning from an amazing team, building scalable products, solving real-world engineering challenges, and growing both technically and professionally. Grateful for the warm welcome and the thoughtful onboarding goodies.",
+    highlights: [
+      "Software Developer at Hala Mobility",
+      "Building scalable products for EV mobility",
+      "Full stack focus — React, Node.js, and more",
+      "Based in Hyderabad · continuous learning",
+    ],
+    tags: [
+      "NewJob",
+      "HalaMobility",
+      "SoftwareDeveloper",
+      "FullStackDeveloper",
+      "ReactJS",
+      "NodeJS",
+      "Hyderabad",
+    ],
+    url: "https://www.linkedin.com/posts/aitha-venkata-subbaiah-setty_newjob-softwaredeveloper-halamobility-activity-7486412435604729856-oEPN",
+    images: [
+      {
+        src: "/writing/hala-joining-1.jpg",
+        caption: "First days at Hala — laptop up, coffee in",
+        fit: "cover",
+      },
+      {
+        src: "/writing/hala-joining-2.jpg",
+        caption: "At the Hala Hyderabad office",
+        fit: "cover",
+        position: "center 18%",
+      },
+      {
+        src: "/writing/hala-joining-3.jpg",
+        caption: "Ready for day one — bag, notebook, MacBook",
+        fit: "cover",
+      },
+    ],
+    postedAgo: "1 week ago",
+    stats: { reactions: 57, comments: 9 },
+  },
   {
     slug: "postman-workshop",
     title: "Hands-On API Testing for Future Engineers",
