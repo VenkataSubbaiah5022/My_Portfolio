@@ -12,23 +12,33 @@ const linkedInRecommendationsUrl =
 const recommendations = [
   {
     quote:
-      "He demonstrated strong ownership on our IoT platform — delivering reliable, scalable full stack work across frontend, backend, and real-time systems while supporting production stability.",
+      "I had the privilege of working with Venkata at Stratosfy for sometime. He consistently demonstrated exceptional skills in backend development, problem-solving, and delivering high-quality code under tight deadlines. What impressed me most was his collaborative spirit—always ready to support teammates and share knowledge. Venkata's professionalism and technical expertise make him a valuable asset to any organization, and I strongly recommend him for any future opportunities.",
+    name: "Divyamala Chitaboina",
+    role: "Senior QA Manual Tester",
+    company: "Stratosfy",
+    relation: "Same team",
+    date: "Jul 2026",
+    highlights: ["Backend expertise", "Collaborative", "Quality under pressure"],
+  },
+  {
+    quote:
+      "I had the pleasure of working with Venkata as a Full Stack Developer on our IoT platform. From a QA perspective, he was always supportive, quick to resolve issues, and ensured his work met quality standards. He has strong skills in both frontend and backend development and consistently delivered reliable and scalable solutions. His proactive approach and collaborative nature made teamwork smooth and effective. I highly recommend Venkata for any full stack development role.",
+    name: "Geetha Niharika",
+    role: "QA Analyst",
+    company: "Stratosfy",
+    relation: "Same team",
+    date: "Mar 2026",
+    highlights: ["Quality-focused", "Fast issue resolution", "Collaborative"],
+  },
+  {
+    quote:
+      "I worked with Venkata at Stratosfy where he contributed as a Full Stack Developer on our IoT platform, handling end-to-end development across frontend, backend, and real-time systems. He demonstrated strong ownership, consistently delivering reliable and scalable solutions while supporting production stability and performance. Venkata is technically capable, proactive, and easy to work with. I would strongly recommend him for any full stack development role.",
     name: "Allaa Eddine Ikhlef",
     role: "IoT Device Production & Hardware Operations",
     company: "Stratosfy",
     relation: "Direct manager",
     date: "Mar 2026",
     highlights: ["Strong ownership", "Production stability", "Full stack delivery"],
-  },
-  {
-    quote:
-      "Supportive, quick to resolve issues, and consistent on quality. His full stack delivery across frontend and backend made QA collaboration smooth and effective.",
-    name: "Geetha Niharika",
-    role: "Senior QA Analyst",
-    company: "Stratosfy",
-    relation: "Same team",
-    date: "Mar 2026",
-    highlights: ["Quality-focused", "Fast issue resolution", "Collaborative"],
   },
 ];
 
@@ -59,7 +69,7 @@ export function RecommendationsSection() {
         </div>
       </div>
 
-      <div className="grid gap-5 md:grid-cols-2">
+      <div className="grid gap-5 md:grid-cols-3">
         {recommendations.map((item, idx) => (
           <motion.article
             key={item.name}

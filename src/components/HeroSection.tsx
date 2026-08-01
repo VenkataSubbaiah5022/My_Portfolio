@@ -83,7 +83,6 @@ const availabilityTags = [
   "Full-time",
   "Remote",
   "Hyderabad",
-  "Open to Bangalore",
   "Contract considered",
 ];
 
