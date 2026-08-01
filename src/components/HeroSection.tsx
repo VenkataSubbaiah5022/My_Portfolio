@@ -91,7 +91,7 @@ const proofItems = [
   "19+ Microservices",
   "20+ Production APIs",
   "70% Downtime Reduction",
-  "1.5+ Years Experience",
+  "2+ Years Experience",
 ];
 
 const heroActionClass =

@@ -24,6 +24,32 @@ type ExperienceItem = {
 
 const timeline: ExperienceItem[] = [
   {
+    id: "hala-mobility",
+    period: "July 2026 - Present",
+    role: "Software Developer",
+    company: "Hala Mobility (Hyderabad, India) · Full time",
+    logo: "/experience/hala-logo.webp",
+    logoClassName: "h-8 w-24 object-contain",
+    logoAlt: "Hala Mobility logo",
+    links: [
+      {
+        label: "Website",
+        url: "https://halamobility.in/",
+      },
+      {
+        label: "LinkedIn",
+        url: "https://www.linkedin.com/company/hala-mobility/",
+      },
+    ],
+    points: [
+      "Building software for India's first multi-modal EV platform — rent, lease, and buy electric vehicles.",
+      "Contributing to Technology initiatives that power shared, affordable, and carbon-free mobility.",
+      "Collaborating with product and engineering teams on rider-facing and operational systems in Hyderabad.",
+      "Shipping full-stack features that improve rider onboarding, fleet operations, and day-to-day EV rental workflows.",
+      "Applying production experience from IoT and microservices to build reliable, scalable systems for high-frequency mobility use cases.",
+    ],
+  },
+  {
     id: "stratosfy",
     period: "April 2025 - March 2026",
     role: "Full Stack Developer",
@@ -132,7 +158,7 @@ export function ExperienceSection() {
                         rel="noreferrer"
                         onClick={() =>
                           trackOutboundClick(
-                            `Stratosfy ${link.label}`,
+                            `${item.company.split(" (")[0]} ${link.label}`,
                             link.url,
                             "experience",
                           )

@@ -345,7 +345,7 @@ export function LinkedInWritingSection() {
           {[
             { label: "Industry teaching", detail: "IEEE workshop · alumni speaker" },
             { label: "Engineering craft", detail: "Fundamentals over hype" },
-            { label: "Production context", detail: "IoT · AI · cloud at Stratosfy" },
+            { label: "Production context", detail: "EV mobility · IoT · AI · cloud" },
           ].map((item) => (
             <div
               key={item.label}
