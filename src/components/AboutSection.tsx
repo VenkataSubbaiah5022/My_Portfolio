@@ -15,19 +15,16 @@ import { trackOutboundClick } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 const collegeLogo = "/education/rgmcet-logo.png";
-const stratosfyLogo = "/experience/stratosfy-logo full.png";
+const halaLogo = "/experience/hala-logo.webp";
 
-const STRATOSFY_URL = "https://login.genius.stratosfy.io/";
+const HALA_URL = "https://halamobility.in/";
 const COLLEGE_URL = "https://www.rgmcet.edu.in/";
 
 const currentRoleTags = [
-  "Node.js",
-  "TypeScript",
-  "MongoDB",
-  "GCP",
-  "Docker",
-  "Jest",
-  "GitHub Actions",
+  "Software Development",
+  "EV Mobility",
+  "Full Stack",
+  "Product Engineering",
 ];
 
 type Pillar = {
@@ -75,10 +72,10 @@ const pillars: Pillar[] = [
 ];
 
 const openToRows = [
-  { label: "Availability", value: "Full-time · available now" },
-  { label: "Location", value: "Hyderabad · remote-friendly" },
-  { label: "Also open to", value: "Bangalore · contract considered" },
-  { label: "Best fit", value: "Product teams & backend-heavy roles" },
+  { label: "Current", value: "Software Developer · Hala Mobility" },
+  { label: "Location", value: "Hyderabad · on-site" },
+  { label: "Focus", value: "EV platform · product engineering" },
+  { label: "Background", value: "Full stack · IoT · production systems" },
 ];
 
 function EditorialCard({
@@ -229,9 +226,8 @@ export function AboutSection() {
                   Full stack developer and software engineer specialising in MERN stack
                   backends, React interfaces, Node.js APIs, and AI-powered products.
                   Shipping production software for{" "}
-                  <span className="font-semibold text-foreground">1.5+ years</span> — IoT
-                  monitoring, real-time systems, and workflow platforms — and just getting
-                  started.
+                  <span className="font-semibold text-foreground">2+ years</span> — IoT
+                  monitoring, real-time systems, and now electric mobility platforms.
                 </p>
               </div>
             </EditorialCard>
@@ -254,36 +250,36 @@ export function AboutSection() {
                 <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-primary/20 bg-primary/10 p-1">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={stratosfyLogo}
-                    alt="Stratosfy logo"
+                    src={halaLogo}
+                    alt="Hala Mobility logo"
                     className="h-full w-full object-contain"
                   />
                 </div>
                 <div className="min-w-0">
                   <h4 className="text-base leading-tight font-bold text-foreground">
-                    Full Stack Developer —{" "}
+                    Software Developer —{" "}
                     <a
-                      href={STRATOSFY_URL}
+                      href={HALA_URL}
                       target="_blank"
                       rel="noreferrer"
                       onClick={() =>
-                        trackOutboundClick("Stratosfy", STRATOSFY_URL, "about_current_role")
+                        trackOutboundClick("Hala Mobility", HALA_URL, "about_current_role")
                       }
                       className="text-primary transition-colors hover:opacity-80"
                     >
-                      Stratosfy
+                      Hala Mobility
                     </a>
                   </h4>
                   <p className="mt-1 mb-4 text-[11px] text-muted-foreground">
-                    April 2025 – March 2026 · Remote (Ottawa)
+                    July 2026 – Present · Hyderabad
                   </p>
                   <p className="max-w-[380px] text-sm leading-relaxed text-muted-foreground">
-                    Building the intelligence layer for a{" "}
+                    Building software for{" "}
                     <span className="font-semibold text-indigo-800 dark:text-indigo-300">
-                      smart refrigeration & IoT monitoring platform
+                      India&apos;s first multi-modal EV platform
                     </span>{" "}
-                    — 19+ Node.js microservices, telemetry ingestion, Genius dashboards, and
-                    CI/CD with 80%+ test coverage.
+                    — shared, affordable, and carbon-free mobility across rent, lease, and buy
+                    experiences.
                   </p>
                   <div className="mt-5 flex flex-wrap gap-1.5">
                     {currentRoleTags.map((tag) => (
@@ -385,7 +381,7 @@ export function AboutSection() {
 
             <EditorialCard className="rounded-xl px-6 py-6" delay={0.12}>
               <span className="mb-5 block text-[10px] font-bold tracking-[0.2em] text-indigo-800 uppercase dark:text-indigo-300">
-                Open to opportunities
+                Currently
               </span>
               <div className="flex flex-col gap-3">
                 {openToRows.map((row) => (

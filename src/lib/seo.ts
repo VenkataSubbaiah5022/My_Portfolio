@@ -26,6 +26,8 @@ export const SEO_KEYWORDS = [
   "software engineer",
   "software engineer India",
   "full stack developer Hyderabad",
+  "software developer Hyderabad",
+  "Hala Mobility",
   "full stack developer India",
   "Next.js developer",
   "TypeScript developer",
@@ -91,7 +93,7 @@ export function getPersonJsonLd() {
     sameAs: [...PERSON_SAME_AS],
     knowsAbout: [...PERSON_KNOWS_ABOUT],
     worksFor: {
-      "@id": `${siteUrl}/#organization-stratosfy`,
+      "@id": `${siteUrl}/#organization-hala-mobility`,
     },
     alumniOf: {
       "@type": "CollegeOrUniversity",
@@ -107,9 +109,10 @@ export function getOrganizationJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": `${siteUrl}/#organization-stratosfy`,
-    name: "Stratosfy",
-    url: "https://www.stratosfy.io/",
+    "@id": `${siteUrl}/#organization-hala-mobility`,
+    name: "Hala Mobility",
+    url: "https://halamobility.in/",
+    sameAs: ["https://www.linkedin.com/company/hala-mobility/"],
     employee: {
       "@id": `${siteUrl}/#person`,
     },

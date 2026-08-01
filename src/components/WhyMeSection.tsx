@@ -111,7 +111,7 @@ const proofMetrics = [
   { value: "19+", label: "Microservices shipped" },
   { value: "80%+", label: "Test coverage maintained" },
   { value: "70%", label: "Downtime reduced" },
-  { value: "1.5+", label: "Years production experience" },
+  { value: "2+", label: "Years production experience" },
 ];
 
 const features: FeatureCard[] = [
@@ -158,7 +158,7 @@ const features: FeatureCard[] = [
   {
     title: "Async & Timezone-Ready",
     description:
-      "Work fully async with global teams — already doing it daily at Stratosfy (Remote · Ottawa). No handholding, no timezone friction.",
+      "Comfortable async with global teams — previously shipped daily with Stratosfy (Remote · Ottawa). No handholding, no timezone friction.",
     tags: ["Async", "Remote", "Global"],
     icon: Globe,
     accent: accents.blue,
