@@ -42,6 +42,44 @@ export const linkedInProfileUrl =
 
 export const linkedInPosts: LinkedInPost[] = [
   {
+    slug: "hala-product-technology-excellence-award",
+    title: "Product & Technology Excellence Award",
+    subtitle: "Hala Mobility · Q2 FY 2026–27 Town Hall",
+    hook: "Honoured with the Product & Technology Excellence Award at Hala Mobility's Q2 town hall.",
+    category: "Recognition",
+    excerpt:
+      "Received the Product & Technology Excellence Award at Hala Mobility's Q2 FY 2026–27 Town Hall. Since joining on 1 July 2026, contributed to 40+ tasks, enhancements, fixes, and deployments — including real-time booking and rentals, queue and fleet operations live in Delhi and Mumbai, service workflows, and the executive app.",
+    highlights: [
+      "Product & Technology Excellence Award",
+      "40+ tasks, fixes, and production deployments",
+      "Queue module live in Delhi and Mumbai",
+      "Booking, fleet, service, and executive app work",
+    ],
+    tags: ["HalaMobility", "EngineeringExcellence", "FullStackDeveloper", "SoftwareEngineering"],
+    url: "https://www.linkedin.com/posts/aitha-venkata-subbaiah-setty_halamobility-engineeringexcellence-fullstackdeveloper-activity-7514891150177054720-AGgf",
+    images: [
+      {
+        src: "/writing/hala-award-3.jpg",
+        caption: "Product & Technology Excellence Award",
+        fit: "cover",
+      },
+      {
+        src: "/writing/hala-award-1.jpg",
+        caption: "Town hall recognition at Hala Mobility",
+        fit: "cover",
+        position: "center 18%",
+      },
+      {
+        src: "/writing/hala-award-2.jpg",
+        caption: "With the team after the award",
+        fit: "cover",
+        position: "center 18%",
+      },
+    ],
+    postedAgo: "2 days ago",
+    stats: { reactions: 93, comments: 12 },
+  },
+  {
     slug: "hala-mobility-software-developer",
     title: "Joined Hala Mobility as a Software Developer",
     subtitle: "New chapter · EV mobility · Hyderabad",
