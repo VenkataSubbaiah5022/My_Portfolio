@@ -4,6 +4,44 @@ type SystemDesignIllustrationProps = {
 };
 
 export function SystemDesignIllustration({ slug, className = "" }: SystemDesignIllustrationProps) {
+  if (slug === "ev-fleet-operations") {
+    return (
+      <svg viewBox="0 0 400 280" fill="none" className={className} aria-hidden>
+        <rect x="28" y="36" width="100" height="52" rx="10" fill="url(#evBook)" stroke="rgba(16,185,129,0.5)" strokeWidth="2" />
+        <text x="46" y="66" fill="white" fontSize="11" fontWeight="bold">Booking</text>
+        <rect x="150" y="28" width="100" height="68" rx="10" fill="url(#evRules)" stroke="rgba(20,184,166,0.45)" strokeWidth="2" />
+        <text x="176" y="56" fill="white" fontSize="10" fontWeight="bold">Controls</text>
+        <text x="168" y="74" fill="rgba(255,255,255,0.7)" fontSize="8">age · geofence</text>
+        <rect x="272" y="36" width="100" height="52" rx="10" fill="url(#evQueue)" stroke="rgba(5,150,105,0.5)" strokeWidth="2" />
+        <text x="296" y="66" fill="white" fontSize="11" fontWeight="bold">Queues</text>
+        <rect x="90" y="150" width="92" height="48" rx="10" fill="url(#evHub)" stroke="rgba(16,185,129,0.4)" strokeWidth="2" />
+        <text x="114" y="178" fill="white" fontSize="10" fontWeight="bold">Deploy</text>
+        <rect x="196" y="150" width="92" height="48" rx="10" fill="url(#evHub)" stroke="rgba(16,185,129,0.4)" strokeWidth="2" />
+        <text x="220" y="178" fill="white" fontSize="10" fontWeight="bold">Return</text>
+        <rect x="150" y="214" width="100" height="40" rx="10" fill="url(#evSvc)" stroke="rgba(52,211,153,0.45)" strokeWidth="2" />
+        <text x="174" y="238" fill="white" fontSize="10" fontWeight="bold">Service</text>
+        <path d="M128 62 H150 M250 62 H272 M200 96 V150 M136 198 V214 M242 198 V214" stroke="rgba(16,185,129,0.7)" strokeWidth="2" />
+        <defs>
+          <linearGradient id="evBook" x1="28" y1="36" x2="128" y2="88" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#059669" /><stop offset="1" stopColor="#047857" />
+          </linearGradient>
+          <linearGradient id="evRules" x1="150" y1="28" x2="250" y2="96" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#0d9488" /><stop offset="1" stopColor="#0f766e" />
+          </linearGradient>
+          <linearGradient id="evQueue" x1="272" y1="36" x2="372" y2="88" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#10b981" /><stop offset="1" stopColor="#065f46" />
+          </linearGradient>
+          <linearGradient id="evHub" x1="90" y1="150" x2="288" y2="198" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#34d399" /><stop offset="1" stopColor="#059669" />
+          </linearGradient>
+          <linearGradient id="evSvc" x1="150" y1="214" x2="250" y2="254" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#6ee7b7" /><stop offset="1" stopColor="#10b981" />
+          </linearGradient>
+        </defs>
+      </svg>
+    );
+  }
+
   if (slug === "iot-telemetry-pipeline") {
     return (
       <svg viewBox="0 0 400 280" fill="none" className={className} aria-hidden>

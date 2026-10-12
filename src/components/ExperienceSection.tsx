@@ -49,11 +49,11 @@ const timeline: ExperienceItem[] = [
       },
     ],
     points: [
-      "Building software for India's first multi-modal EV platform — rent, lease, and buy electric vehicles.",
-      "Contributing to Technology initiatives that power shared, affordable, and carbon-free mobility.",
-      "Collaborating with product and engineering teams on rider-facing and operational systems in Hyderabad.",
-      "Shipping full-stack features that improve rider onboarding, fleet operations, and day-to-day EV rental workflows.",
-      "Applying production experience from IoT and microservices to build reliable, scalable systems for high-frequency mobility use cases.",
+      "Received the Product & Technology Excellence Award at Hala Mobility's Q2 FY 2026–27 town hall.",
+      "Shipped 40+ tasks, enhancements, fixes, and production deployments across the EV rental platform.",
+      "Built real-time booking and rental processing, including automated booking expiry.",
+      "Shipped deployment, return, and fast-track queues with turnaround-time tracking — live in Delhi and Mumbai.",
+      "Contributed to service workflows, vehicle-age and geofence booking controls, and the executive app.",
     ],
   },
   {

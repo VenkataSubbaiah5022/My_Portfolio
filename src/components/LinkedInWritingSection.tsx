@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { LinkedInLogoIcon } from "@radix-ui/react-icons";
 import {
+  formatLinkedInRelativeTime,
   getPostImages,
   linkedInPosts,
   linkedInProfileUrl,
@@ -48,11 +49,15 @@ function PostImageCarousel({
     return null;
   }
 
+  const showFullPhoto = isFeatured && imageFit === "contain";
+
   return (
     <div
       className={`relative overflow-hidden ${
         isFeatured
-          ? "flex h-full min-h-[260px] w-full items-center justify-center lg:min-h-[420px]"
+          ? showFullPhoto
+            ? "flex min-h-[280px] w-full items-center justify-center bg-muted/20 px-4 py-6 lg:absolute lg:inset-0 lg:min-h-0"
+            : "aspect-[3/4] w-full bg-muted/30 sm:aspect-[4/5] lg:absolute lg:inset-0 lg:aspect-auto"
           : "aspect-[16/10] w-full border-b border-border bg-muted/20"
       }`}
       onMouseEnter={() => setPaused(true)}
@@ -65,17 +70,19 @@ function PostImageCarousel({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.55, ease: "easeInOut" }}
-          className={`absolute inset-0 flex items-center justify-center ${
-            isFeatured ? "p-8" : imageFit === "contain" ? "bg-muted/30 p-3" : "p-0"
-          }`}
+          className={
+            showFullPhoto
+              ? "flex items-center justify-center"
+              : `absolute inset-0 ${imageFit === "contain" ? "flex items-center justify-center bg-muted/30 p-3" : ""}`
+          }
         >
           <img
             src={activeImage.src}
             alt={activeImage.caption ?? ""}
             style={{ objectPosition: imagePosition }}
             className={
-              isFeatured
-                ? "max-h-[300px] w-full max-w-md object-contain drop-shadow-2xl lg:max-h-[360px]"
+              showFullPhoto
+                ? "max-h-[300px] w-auto max-w-full object-contain lg:max-h-[420px]"
                 : imageFit === "contain"
                   ? "h-full w-full object-contain"
                   : "h-full w-full object-cover"
@@ -84,7 +91,7 @@ function PostImageCarousel({
         </motion.div>
       </AnimatePresence>
 
-      {activeImage.caption && (
+      {activeImage.caption && !showFullPhoto && (
         <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 via-black/30 to-transparent px-4 pb-3 pt-10">
           <p className="text-xs font-medium text-white/95">{activeImage.caption}</p>
         </div>
@@ -204,7 +211,7 @@ function FeaturedPost({ post }: { post: LinkedInPost }) {
       className="overflow-hidden rounded-3xl border border-border bg-card shadow-lg"
     >
       <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
-        <div className="relative border-b border-border bg-[linear-gradient(180deg,rgba(99,102,241,0.06)_0%,transparent_100%)] lg:border-b-0 lg:border-r">
+        <div className="relative border-b border-border bg-muted/30 lg:h-full lg:min-h-[460px] lg:border-b-0 lg:border-r">
           <PostVisual post={post} variant="featured" />
         </div>
 
@@ -215,7 +222,9 @@ function FeaturedPost({ post }: { post: LinkedInPost }) {
             </span>
             <span className="text-[11px] text-muted-foreground">{post.category}</span>
             <span className="text-border">·</span>
-            <span className="text-[11px] text-muted-foreground">{post.postedAgo}</span>
+            <span className="text-[11px] text-muted-foreground" suppressHydrationWarning>
+              {formatLinkedInRelativeTime(post.postedAt)}
+            </span>
           </div>
 
           <div>
@@ -262,7 +271,9 @@ function CompactPost({ post, index }: { post: LinkedInPost; index: number }) {
           <span className="text-[11px] font-medium tracking-wide text-primary uppercase">
             {post.category}
           </span>
-          <span className="text-[11px] text-muted-foreground">{post.postedAgo}</span>
+          <span className="text-[11px] text-muted-foreground" suppressHydrationWarning>
+            {formatLinkedInRelativeTime(post.postedAt)}
+          </span>
         </div>
 
         {hasImages && (

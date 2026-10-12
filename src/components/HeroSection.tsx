@@ -79,12 +79,7 @@ function ProfilePortrait({
   );
 }
 
-const availabilityTags = [
-  "Full-time",
-  "Remote",
-  "Hyderabad",
-  "Contract considered",
-];
+const availabilityTags = ["Hala Mobility", "Hyderabad", "Full-time"];
 
 const proofItems = [
   "19+ Microservices",
@@ -114,19 +109,9 @@ export function HeroSection() {
           <ProfilePortrait variant="mobile" />
           <div className="space-y-2.5">
             <p className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/5 px-3 py-1 text-xs tracking-widest text-primary/90 uppercase">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-              </span>
-              Open to Full Stack Engineering Roles
+              Software Developer at Hala Mobility
             </p>
             <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 text-xs font-medium text-emerald-600 dark:text-emerald-400">
-                Available now
-              </span>
-              <span aria-hidden className="text-border">
-                ·
-              </span>
               {availabilityTags.map((tag) => (
                 <span
                   key={tag}

@@ -103,8 +103,8 @@ export function CaseStudyFooter({
             Building something similar?
           </h2>
           <p className="mx-auto mt-2 max-w-lg text-sm text-muted-foreground">
-            Open to full-time, contract, and product engineering roles. Let&apos;s talk about
-            your stack, timeline, and what you&apos;re shipping.
+            This is the kind of product work I ship at Hala Mobility. Happy to talk through
+            the approach.
           </p>
           <Link
             href="/#contact"

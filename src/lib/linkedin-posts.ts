@@ -18,7 +18,8 @@ export type LinkedInPost = {
   url: string;
   image?: string;
   images?: PostImage[];
-  postedAgo: string;
+  /** ISO timestamp. Relative labels are derived from this. */
+  postedAt: string;
   stats: {
     reactions?: number;
     impressions?: number;
@@ -26,6 +27,30 @@ export type LinkedInPost = {
   };
   featured?: boolean;
 };
+
+export function formatLinkedInRelativeTime(iso: string, now = Date.now()) {
+  const posted = new Date(iso).getTime();
+  if (Number.isNaN(posted)) return "";
+
+  const minutes = Math.floor(Math.max(0, now - posted) / 60000);
+  if (minutes < 1) return "just now";
+  if (minutes < 60) return minutes === 1 ? "1 minute ago" : `${minutes} minutes ago`;
+
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return hours === 1 ? "1 hour ago" : `${hours} hours ago`;
+
+  const days = Math.floor(hours / 24);
+  if (days < 7) return days === 1 ? "1 day ago" : `${days} days ago`;
+
+  const weeks = Math.floor(days / 7);
+  if (days < 30) return weeks === 1 ? "1 week ago" : `${weeks} weeks ago`;
+
+  const months = Math.floor(days / 30);
+  if (months < 12) return months === 1 ? "1 month ago" : `${months} months ago`;
+
+  const years = Math.floor(months / 12);
+  return years === 1 ? "1 year ago" : `${years} years ago`;
+}
 
 export function getPostImages(post: LinkedInPost): PostImage[] {
   if (post.images?.length) {
@@ -61,23 +86,24 @@ export const linkedInPosts: LinkedInPost[] = [
       {
         src: "/writing/hala-award-3.jpg",
         caption: "Product & Technology Excellence Award",
-        fit: "cover",
+        fit: "contain",
       },
       {
         src: "/writing/hala-award-1.jpg",
         caption: "Town hall recognition at Hala Mobility",
         fit: "cover",
-        position: "center 18%",
+        position: "center 22%",
       },
       {
         src: "/writing/hala-award-2.jpg",
         caption: "With the team after the award",
         fit: "cover",
-        position: "center 18%",
+        position: "center 22%",
       },
     ],
-    postedAgo: "2 days ago",
+    postedAt: "2026-10-11T03:34:30.127Z",
     stats: { reactions: 93, comments: 12 },
+    featured: true,
   },
   {
     slug: "hala-mobility-software-developer",
@@ -121,7 +147,7 @@ export const linkedInPosts: LinkedInPost[] = [
         fit: "cover",
       },
     ],
-    postedAgo: "1 week ago",
+    postedAt: "2026-07-24T13:30:15.425Z",
     stats: { reactions: 57, comments: 9 },
   },
   {
@@ -141,9 +167,8 @@ export const linkedInPosts: LinkedInPost[] = [
     tags: ["Postman", "APIs", "IEEE", "FastAPI", "Alumni Speaker", "RGMCET"],
     url: "https://www.linkedin.com/posts/aitha-venkata-subbaiah-setty_postman-apis-handsonworkshop-activity-7411721271316668416-djVn",
     image: "/writing/postman-workshop.png",
-    postedAgo: "5 months ago",
+    postedAt: "2025-12-30T10:54:14.173Z",
     stats: { reactions: 68, impressions: 2865, comments: 5 },
-    featured: true,
   },
   {
     slug: "javascript-fundamentals",
@@ -161,7 +186,7 @@ export const linkedInPosts: LinkedInPost[] = [
     ],
     tags: ["JavaScript", "Scaler", "Full Stack", "Continuous Learning"],
     url: "https://www.linkedin.com/posts/aitha-venkata-subbaiah-setty_i-have-completed-javascript-course-with-certification-activity-7443972393003573248-76mg",
-    postedAgo: "2 months ago",
+    postedAt: "2026-03-29T10:48:40.795Z",
     stats: { impressions: 619 },
   },
   {
@@ -192,7 +217,7 @@ export const linkedInPosts: LinkedInPost[] = [
         fit: "cover",
       },
     ],
-    postedAgo: "6 months ago",
+    postedAt: "2025-11-08T18:36:45.627Z",
     stats: { reactions: 33, impressions: 1565 },
   },
 ];

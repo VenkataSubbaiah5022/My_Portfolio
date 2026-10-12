@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { SectionHeading } from "@/components/SectionHeading";
+import { SystemDesignIllustration } from "@/components/system-design/SystemDesignIllustration";
 import { trackNavClick } from "@/lib/analytics";
 import { getSystemDesignTheme } from "@/lib/system-design-theme";
 import { productionSystemDesigns } from "@/lib/system-design";
@@ -18,10 +19,10 @@ export function SystemDesignSection() {
           badge="System design"
           titleBefore="Production"
           titleHighlight="platform architecture"
-          description="Anonymized IoT telemetry pipelines and multi-product microservices from enterprise production work — diagrams, data flows, and engineering trade-offs."
+          description="Anonymized production systems — EV rental operations at Hala Mobility, plus IoT telemetry pipelines and multi-product microservices."
         />
 
-        <div className="grid gap-5 md:grid-cols-2">
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {productionSystemDesigns.map((design, index) => {
             const theme = getSystemDesignTheme(design);
 
@@ -49,9 +50,14 @@ export function SystemDesignSection() {
                         alt={design.imageAlt ?? design.title}
                         fill
                         className="object-contain p-2 transition duration-300 group-hover:scale-[1.02]"
-                        sizes="(max-width: 768px) 100vw, 50vw"
+                        sizes="(max-width: 768px) 100vw, 33vw"
                       />
-                    ) : null}
+                    ) : (
+                      <SystemDesignIllustration
+                        slug={design.slug}
+                        className="h-full w-full p-4"
+                      />
+                    )}
                   </div>
                   <div className="flex flex-1 flex-col p-4">
                     <span

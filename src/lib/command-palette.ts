@@ -191,7 +191,7 @@ const actionCommands: CommandItem[] = [
     id: "hire-upwork",
     group: "actions",
     label: "Hire on Upwork",
-    description: "View profile & start a contract",
+    description: "Upwork profile",
     href: UPWORK_URL,
     external: true,
     keywords: ["freelance", "contract", "book"],

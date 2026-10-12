@@ -22,10 +22,10 @@ const HALA_URL = "https://halamobility.in/";
 const COLLEGE_URL = "https://www.rgmcet.edu.in/";
 
 const currentRoleTags = [
-  "Software Development",
-  "EV Mobility",
-  "Full Stack",
-  "Product Engineering",
+  "Node.js",
+  "TypeScript",
+  "Booking",
+  "Fleet queues",
 ];
 
 type Pillar = {
@@ -275,12 +275,11 @@ export function AboutSection() {
                     July 2026 – Present · {formatExperienceDuration("2026-07")} · Hyderabad
                   </p>
                   <p className="max-w-[380px] text-sm leading-relaxed text-muted-foreground">
-                    Building software for{" "}
+                    Building booking, fleet, and service software for{" "}
                     <span className="font-semibold text-indigo-800 dark:text-indigo-300">
                       India&apos;s first multi-modal EV platform
                     </span>{" "}
-                    — shared, affordable, and carbon-free mobility across rent, lease, and buy
-                    experiences.
+                    — including queue operations live in Delhi and Mumbai.
                   </p>
                   <div className="mt-5 flex flex-wrap gap-1.5">
                     {currentRoleTags.map((tag) => (

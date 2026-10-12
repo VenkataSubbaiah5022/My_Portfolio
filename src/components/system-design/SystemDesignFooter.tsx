@@ -98,7 +98,7 @@ export function SystemDesignFooter({
             Discuss system design?
           </h2>
           <p className="mx-auto mt-2 max-w-lg text-sm text-muted-foreground">
-            Open to roles where distributed systems, IoT pipelines, and product architecture matter.
+            Notes from production systems, including EV rental operations at Hala Mobility.
           </p>
           <Link
             href="/#contact"

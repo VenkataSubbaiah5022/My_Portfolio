@@ -163,7 +163,7 @@ export function Footer() {
               Let&apos;s build something amazing
             </p>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Open to full-time, remote, and contract opportunities across India.
+              Software Developer at Hala Mobility · Hyderabad.
             </p>
             <a
               href={resolveHref(pathname, "#contact")}

@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { trackNavClick } from "@/lib/analytics";
 import { getSystemDesignTheme } from "@/lib/system-design-theme";
+import { SystemDesignIllustration } from "@/components/system-design/SystemDesignIllustration";
 import { productionSystemDesigns, type SystemDesign } from "@/lib/system-design";
 import { cn } from "@/lib/utils";
 
@@ -35,9 +36,11 @@ function SystemDesignCard({ design }: { design: SystemDesign }) {
               alt={design.imageAlt ?? design.title}
               fill
               className="object-contain p-2 transition duration-300 group-hover:scale-[1.02]"
-              sizes="(max-width: 768px) 100vw, 50vw"
+              sizes="(max-width: 768px) 100vw, 33vw"
             />
-          ) : null}
+          ) : (
+            <SystemDesignIllustration slug={design.slug} className="h-full w-full p-4" />
+          )}
         </div>
         <div className="flex flex-1 flex-col p-5">
           <span
@@ -114,15 +117,15 @@ export function SystemDesignIndexView() {
               System Design
             </h1>
             <p className="mt-3 text-sm leading-7 text-muted-foreground md:text-base">
-              Anonymized production architectures from enterprise IoT and multi-product SaaS work —
-              telemetry ingestion, microservices, data flows, and the engineering trade-offs behind them.
+              Anonymized production architectures — EV rental operations, IoT telemetry, and
+              multi-product services, with the trade-offs left in.
             </p>
           </div>
         </section>
       </div>
 
       <section className="mx-auto w-full max-w-6xl px-4 py-10 md:py-14">
-        <div className="grid gap-5 md:grid-cols-2">
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {productionSystemDesigns.map((design) => (
             <SystemDesignCard key={design.slug} design={design} />
           ))}
