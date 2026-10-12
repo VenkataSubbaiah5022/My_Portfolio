@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import { SectionHeading } from "@/components/SectionHeading";
 import { trackOutboundClick } from "@/lib/analytics";
+import { formatExperienceDuration } from "@/lib/experience-duration";
 
 type ExperienceLink = {
   label: string;
@@ -13,6 +14,10 @@ type ExperienceLink = {
 type ExperienceItem = {
   id: string;
   period: string;
+  /** YYYY-MM */
+  start: string;
+  /** YYYY-MM, or "present" */
+  end: string | "present";
   role: string;
   company: string;
   logo?: string;
@@ -26,6 +31,8 @@ const timeline: ExperienceItem[] = [
   {
     id: "hala-mobility",
     period: "July 2026 - Present",
+    start: "2026-07",
+    end: "present",
     role: "Software Developer",
     company: "Hala Mobility (Hyderabad, India) · Full time",
     logo: "/experience/hala-logo.webp",
@@ -52,6 +59,8 @@ const timeline: ExperienceItem[] = [
   {
     id: "stratosfy",
     period: "April 2025 - March 2026",
+    start: "2025-04",
+    end: "2026-03",
     role: "Full Stack Developer",
     company: "Stratosfy (Remote - Ottawa, Canada) · Full time",
     logo: "/experience/stratosfy-logo full.png",
@@ -82,6 +91,8 @@ const timeline: ExperienceItem[] = [
   {
     id: "rk-microns",
     period: "May 2024 - Oct 2024",
+    start: "2024-05",
+    end: "2024-10",
     role: "Backend Developer Intern",
     company: "R K Microns (Rajasthan, India) · Internship",
     logo: "/experience/rk-microns-logo.png",
@@ -97,6 +108,8 @@ const timeline: ExperienceItem[] = [
   {
     id: "chegg",
     period: "Sep 2023 - Mar 2026",
+    start: "2023-09",
+    end: "2026-03",
     role: "Computer Science Subject Expert",
     company: "Chegg (Remote) · Freelance",
     logo: "/experience/chegg-logo.png",
@@ -143,8 +156,14 @@ export function ExperienceSection() {
                 </div>
               ) : null}
               <div className="min-w-0 flex-1">
-                <p className="text-xs tracking-widest text-primary uppercase">
-                  {item.period}
+                <p className="text-xs">
+                  <span className="tracking-widest text-primary uppercase">
+                    {item.period}
+                  </span>
+                  <span className="text-muted-foreground">
+                    {" "}
+                    · {formatExperienceDuration(item.start, item.end)}
+                  </span>
                 </p>
                 <h3 className="mt-2 text-lg font-semibold md:text-xl">{item.role}</h3>
                 <p className="text-sm text-muted-foreground">{item.company}</p>
