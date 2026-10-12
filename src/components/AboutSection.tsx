@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { trackOutboundClick } from "@/lib/analytics";
+import { formatExperienceDuration } from "@/lib/experience-duration";
 import { cn } from "@/lib/utils";
 
 const collegeLogo = "/education/rgmcet-logo.png";
@@ -271,7 +272,7 @@ export function AboutSection() {
                     </a>
                   </h4>
                   <p className="mt-1 mb-4 text-[11px] text-muted-foreground">
-                    July 2026 – Present · Hyderabad
+                    July 2026 – Present · {formatExperienceDuration("2026-07")} · Hyderabad
                   </p>
                   <p className="max-w-[380px] text-sm leading-relaxed text-muted-foreground">
                     Building software for{" "}
