@@ -3,8 +3,8 @@
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useEffect, useState } from "react";
 
-const ringSpring = { stiffness: 150, damping: 22, mass: 0.35 };
-const glowSpring = { stiffness: 60, damping: 18, mass: 0.8 };
+const ringSpring = { stiffness: 700, damping: 40, mass: 0.2 };
+const glowSpring = { stiffness: 220, damping: 28, mass: 0.4 };
 
 export function CursorFollower() {
   const [visible, setVisible] = useState(false);
@@ -60,16 +60,16 @@ export function CursorFollower() {
       className="pointer-events-none fixed inset-0 z-[60] hidden md:block"
     >
       <motion.div
-        className="absolute h-36 w-36 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 blur-3xl"
-        style={{ left: glowX, top: glowY }}
+        className="absolute top-0 left-0 h-36 w-36 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 blur-3xl will-change-transform"
+        style={{ x: glowX, y: glowY }}
         animate={{ opacity: hovering ? 0.85 : 0.45, scale: hovering ? 1.12 : 1 }}
         transition={{ duration: 0.25 }}
       />
       <motion.div
-        className={`absolute -translate-x-1/2 -translate-y-1/2 rounded-full border bg-primary/5 transition-[border-color] duration-200 ${
+        className={`absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 rounded-full border bg-primary/5 transition-[border-color] duration-200 will-change-transform ${
           hovering ? "border-primary" : "border-primary/40"
         }`}
-        style={{ left: ringX, top: ringY }}
+        style={{ x: ringX, y: ringY }}
         animate={{
           width: hovering ? 44 : 32,
           height: hovering ? 44 : 32,
@@ -77,8 +77,8 @@ export function CursorFollower() {
         transition={{ type: "spring", stiffness: 260, damping: 22 }}
       />
       <motion.div
-        className="absolute h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary"
-        style={{ left: cursorX, top: cursorY }}
+        className="absolute top-0 left-0 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary will-change-transform"
+        style={{ x: cursorX, y: cursorY }}
         animate={{ scale: hovering ? 0.5 : 1 }}
         transition={{ duration: 0.2 }}
       />
