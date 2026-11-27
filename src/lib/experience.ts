@@ -44,8 +44,8 @@ export const experience: ExperienceItem[] = [
     points: [
       "Received the Product & Technology Excellence Award at Hala Mobility's Q2 FY 2026–27 town hall.",
       "Shipped 40+ tasks, enhancements, fixes, and production deployments across the EV rental platform.",
-      "Built real-time booking and rental processing, including automated booking expiry.",
-      "Shipped deployment, return, and fast-track queues with turnaround-time tracking — live in Delhi and Mumbai.",
+      "Built real-time booking and rental processing in Node.js and TypeScript, including automated booking expiry.",
+      "Shipped deployment, return, and fast-track queues with turnaround-time tracking in Node.js and TypeScript — live in Delhi and Mumbai.",
       "Contributed to service workflows, vehicle-age and geofence booking controls, and the executive app.",
     ],
   },
