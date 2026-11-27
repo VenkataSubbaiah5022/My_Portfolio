@@ -265,7 +265,7 @@ export function ServicesSection() {
         SYSTEMS
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-10 lg:px-16">
+      <div className="relative z-10 mx-auto max-w-6xl px-4">
         <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[420px_1fr] lg:gap-12">
           <motion.div
             initial={{ opacity: 0, y: 24 }}

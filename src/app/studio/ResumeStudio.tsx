@@ -15,6 +15,8 @@ import {
   type ResumeModel,
 } from "@/lib/resume/engine";
 import { atsCheck, type AtsCheck } from "@/lib/resume/ats";
+import { compareResumes } from "@/lib/resume/compare";
+import { buildCoverLetter } from "@/lib/resume/cover-letter";
 import {
   deleteResume,
   exportBackup,
@@ -26,6 +28,7 @@ import {
 import { analyzeJobDescription, type JdAnalysis } from "@/lib/resume/jd";
 import { LINT_LABEL, lintBullets } from "@/lib/resume/lint";
 import { cn } from "@/lib/utils";
+import { ResumePreview } from "./ResumePreview";
 
 const MAX_JD_LENGTH = 15000;
 
@@ -199,6 +202,13 @@ function HistoryPanel({
   onBackup: () => void;
   onRestore: (file: File) => void;
 }) {
+  const [compareIds, setCompareIds] = useState<string[]>([]);
+  const toggleCompare = (id: string) =>
+    setCompareIds((ids) => (ids.includes(id) ? ids.filter((x) => x !== id) : [...ids, id].slice(-2)));
+  const picked = compareIds
+    .map((id) => history.find((resume) => resume.id === id))
+    .filter((resume): resume is SavedResume => Boolean(resume));
+
   return (
     <details className="rounded-2xl border border-border bg-card p-5" open={history.length > 0}>
       <summary className="cursor-pointer text-sm font-semibold">Saved resumes ({history.length})</summary>
@@ -243,6 +253,17 @@ function HistoryPanel({
                 </p>
               </div>
               <div className="flex gap-1.5">
+                <button
+                  type="button"
+                  aria-pressed={compareIds.includes(resume.id)}
+                  onClick={() => toggleCompare(resume.id)}
+                  className={cn(
+                    "rounded-md border border-border px-2 py-1 text-[11px] hover:border-primary/50",
+                    compareIds.includes(resume.id) && "border-primary bg-primary/10 text-primary",
+                  )}
+                >
+                  Compare
+                </button>
                 {(
                   [
                     ["Open", onOpen],
@@ -264,6 +285,98 @@ function HistoryPanel({
           ))}
         </ul>
       ) : null}
+      {picked.length === 2 ? (
+        <CompareView a={picked[0]} b={picked[1]} />
+      ) : history.length > 1 ? (
+        <p className="mt-2 text-[11px] text-muted-foreground">Pick two with Compare to see what differs.</p>
+      ) : null}
+    </details>
+  );
+}
+
+const label = (resume: SavedResume) => `${resume.role || "Untitled"}${resume.company ? ` · ${resume.company}` : ""}`;
+
+function CompareView({ a, b }: { a: SavedResume; b: SavedResume }) {
+  const diff = compareResumes(a.model, b.model);
+  const column = (title: string, only: string[], projects: string[], skills: string[]) => (
+    <div className="min-w-0 rounded-xl border border-border p-3">
+      <p className="text-xs font-semibold">Only in {title}</p>
+      {projects.length ? <p className="mt-1 text-[11px]">Projects: {projects.join(", ")}</p> : null}
+      {skills.length ? <p className="mt-1 text-[11px]">Skills: {skills.join(", ")}</p> : null}
+      <ul className="mt-1 space-y-1">
+        {only.map((line) => (
+          <li key={line} className="text-[11px] text-muted-foreground">
+            • {line}
+          </li>
+        ))}
+      </ul>
+      {!only.length && !projects.length && !skills.length ? (
+        <p className="mt-1 text-[11px] text-muted-foreground">Nothing.</p>
+      ) : null}
+    </div>
+  );
+
+  return (
+    <div className="mt-3 rounded-xl border border-primary/30 bg-primary/5 p-3">
+      <p className="text-xs">
+        {diff.shared} line{diff.shared === 1 ? "" : "s"} in both · summary {diff.summaryChanged ? "differs" : "is the same"}
+      </p>
+      <div className="mt-2 grid gap-2 md:grid-cols-2">
+        {column(label(a), diff.onlyA, diff.projectsOnlyA, diff.skillsOnlyA)}
+        {column(label(b), diff.onlyB, diff.projectsOnlyB, diff.skillsOnlyB)}
+      </div>
+    </div>
+  );
+}
+
+function CoverLetterPanel({ model, report }: { model: ResumeModel; report: MatchReport }) {
+  const [text, setText] = useState(() => buildCoverLetter(model, report).text);
+  const [copied, setCopied] = useState(false);
+
+  return (
+    <details className="rounded-2xl border border-border bg-card p-5">
+      <summary className="cursor-pointer text-sm font-semibold">Cover letter</summary>
+      <p className="mt-2 text-xs text-muted-foreground">
+        Built from the lines on your resume and the skills your experience proves. Edit freely; numbers you add
+        aren&apos;t checked here, so keep them true.
+      </p>
+      <textarea
+        value={text}
+        onChange={(event) => setText(event.target.value)}
+        rows={16}
+        className="mt-3 w-full rounded-lg border border-border bg-background px-3 py-2 text-sm leading-6 outline-none focus:border-primary"
+      />
+      <div className="mt-2 flex flex-wrap gap-2">
+        <button
+          type="button"
+          onClick={() => setText(buildCoverLetter(model, report).text)}
+          className="rounded-lg border border-border px-3 py-1.5 text-xs font-medium"
+        >
+          Rebuild from resume
+        </button>
+        <button
+          type="button"
+          onClick={async () => {
+            await navigator.clipboard.writeText(text);
+            setCopied(true);
+            window.setTimeout(() => setCopied(false), 1500);
+          }}
+          className="rounded-lg border border-border px-3 py-1.5 text-xs font-medium"
+        >
+          {copied ? "Copied" : "Copy"}
+        </button>
+        <button
+          type="button"
+          onClick={async () => {
+            const { renderCoverLetterDocx } = await import("@/lib/resume/export/docx");
+            const file = resumeFileName(model, "docx").replace(/\.docx$/, "_Cover_Letter.docx");
+            download(await renderCoverLetterDocx(text, model.contact.name), file);
+          }}
+          className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground"
+        >
+          <Download className="h-3.5 w-3.5" /> DOCX
+        </button>
+      </div>
     </details>
   );
 }
@@ -405,6 +518,15 @@ export function ResumeStudio() {
   const renderedPages = rendered && rendered.model === model ? rendered.pages : null;
   const pages = renderedPages ?? estimate;
   const ats = useMemo(() => (model && result ? atsCheck(model, result.report) : null), [model, result]);
+  // The role and company inputs stay the source of truth for the headline and file name.
+  const previewModel = useMemo(
+    () => (model ? { ...model, targetRole: role, company } : null),
+    [model, role, company],
+  );
+  const updateFromPreview = (next: ResumeModel) => {
+    setModel(next);
+    if (next.targetRole !== role) setRole(next.targetRole);
+  };
   const summaryIssues = model ? checkLine(model.summary.text, model.summary.originalText, model.summary.factIds) : [];
   const flagged = model
     ? [...model.experience, ...model.projects]
@@ -628,9 +750,19 @@ export function ResumeStudio() {
             </div>
           </section>
 
+          {previewModel ? <ResumePreview model={previewModel} onChange={updateFromPreview} /> : null}
+
           {ats ? <AtsPanel check={ats} /> : null}
 
-          <section className="space-y-3 rounded-2xl border border-border bg-card p-5">
+          {previewModel ? (
+            <CoverLetterPanel key={currentId ?? "new"} model={previewModel} report={result.report} />
+          ) : null}
+
+          <details className="group space-y-3">
+            <summary className="cursor-pointer rounded-2xl border border-border bg-card px-5 py-3 text-sm font-semibold">
+              Detailed editor: reorder lines, see sources and scores, show hidden lines
+            </summary>
+          <section className="mt-3 space-y-3 rounded-2xl border border-border bg-card p-5">
             <h2 className="text-sm font-semibold">Summary</h2>
             <textarea
               value={model.summary.text}
@@ -709,6 +841,7 @@ export function ResumeStudio() {
               ))}
             </ul>
           </section>
+          </details>
         </>
       ) : null}
     </div>

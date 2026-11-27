@@ -145,7 +145,7 @@ export function SkillsSection() {
         />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
+      <div className="relative z-10 mx-auto max-w-6xl px-4">
         <SectionHeading
           badge="Tools of the trade"
           titleBefore="My"

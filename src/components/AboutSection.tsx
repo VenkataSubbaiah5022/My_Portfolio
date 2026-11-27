@@ -164,7 +164,7 @@ export function AboutSection() {
         </div>
       </div>
 
-      <div className="relative z-10 mx-auto max-w-[1300px] px-6 sm:px-10 lg:px-16">
+      <div className="relative z-10 mx-auto max-w-6xl px-4">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -41,8 +41,12 @@ export type AtsCheck = {
 /** About two printed lines at 10 pt on A4 with the export margins. */
 const MAX_BULLET_CHARS = 200;
 const WEAK_OPENING = /^(responsible for|worked on|helped|assisted|involved in|participated in|i |my )/i;
-/** Repeats counted in sentences only: the Skills list and project stacks are expected to repeat. */
-const MAX_KEYWORD_REPEATS = 4;
+/**
+ * A JD keyword reads as stuffed when it shows up in more than half of the
+ * sentences (summary and bullets) and at least this many times. The Skills
+ * list and project stacks are expected to repeat, so they don't count.
+ */
+const MIN_STUFFED_REPEATS = 5;
 
 export function atsCheck(model: ResumeModel, report: MatchReport): AtsCheck {
   const text = resumePlainText(model);
@@ -80,7 +84,8 @@ export function atsCheck(model: ResumeModel, report: MatchReport): AtsCheck {
   }
   const sentences = [r.summary, ...r.experience.flatMap((e) => e.bullets), ...r.projects.flatMap((p) => p.bullets)];
   for (const { name, count } of matchSkills(sentences.join("\n"))) {
-    if (count > MAX_KEYWORD_REPEATS && report.items.some((item) => item.skill.name === name)) {
+    const stuffed = count >= MIN_STUFFED_REPEATS && count > sentences.length / 2;
+    if (stuffed && report.items.some((item) => item.skill.name === name)) {
       warnings.push({ level: "warn", message: `"${name}" appears ${count} times — may read as keyword stuffing.` });
     }
   }

@@ -2,6 +2,7 @@
 
 import { ArrowRight, Download, Mail, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 import {
   trackFileDownload,
@@ -9,7 +10,7 @@ import {
   trackOutboundClick,
 } from "@/lib/analytics";
 
-const profilePhoto = "/profile/venkata-profile.png?v=3";
+const profilePhoto = "/profile/venkata-profile.png";
 const profileName = "Aitha Venkata Subbaiah";
 const profileRole = "Full Stack Developer";
 
@@ -29,14 +30,14 @@ function ProfilePhotoGlow({
         <div className="absolute left-[36%] top-[62%] h-44 w-44 -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(circle,rgba(56,189,248,0.45)_0%,rgba(14,165,233,0.15)_48%,transparent_74%)] blur-[38px]" />
         <div className="absolute left-1/2 top-[72%] h-40 w-52 -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(circle,rgba(99,102,241,0.35)_0%,transparent_70%)] blur-[48px]" />
       </div>
-      <img
+      <Image
         src={profilePhoto}
         alt={`${profileName} Setty — ${profileRole} and software engineer portfolio photo`}
         width={531}
         height={769}
+        sizes="(min-width: 1280px) 320px, (min-width: 1024px) 280px, 230px"
         fetchPriority="high"
         loading="eager"
-        decoding="async"
         className={`relative z-10 block h-auto object-contain object-bottom ${imageClassName}`}
       />
     </div>

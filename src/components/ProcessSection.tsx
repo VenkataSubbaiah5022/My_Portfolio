@@ -253,7 +253,7 @@ export function ProcessSection() {
         />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-10 lg:px-16">
+      <div className="relative z-10 mx-auto max-w-6xl px-4">
         <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-[minmax(0,420px)_1fr] lg:gap-16 xl:gap-20">
           <motion.div
             initial={{ opacity: 0, y: 24 }}

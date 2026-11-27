@@ -580,7 +580,7 @@ export function WhyMeSection() {
         SHIPPED
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-10 lg:px-16">
+      <div className="relative z-10 mx-auto max-w-6xl px-4">
         <SectionHeading
           badge="Why work with me"
           titleBefore="Built different,"

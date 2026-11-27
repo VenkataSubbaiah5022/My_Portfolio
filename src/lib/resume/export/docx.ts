@@ -38,6 +38,33 @@ const splitLine = (left: TextRun[], right: string) =>
     children: [...left, run(`\t${right}`)],
   });
 
+/** A plain letter: one paragraph per blank-line-separated block, same page setup as the resume. */
+export function renderCoverLetterDocx(text: string, author: string): Promise<Blob> {
+  const paragraphs = text.split(/\n{2,}/).map(
+    (block) =>
+      new Paragraph({
+        spacing: { after: 200 },
+        children: block.split("\n").map((line, i) => new TextRun({ text: line, font: FONT, size: 22, break: i ? 1 : 0 })),
+      }),
+  );
+  const doc = new Document({
+    creator: author,
+    title: `${author} — Cover letter`,
+    sections: [
+      {
+        properties: {
+          page: {
+            size: { width: PAGE_WIDTH, height: 16838 },
+            margin: { top: 1080, bottom: 1080, left: 1080, right: 1080 },
+          },
+        },
+        children: paragraphs,
+      },
+    ],
+  });
+  return Packer.toBlob(doc);
+}
+
 export function renderResumeDocx(model: ResumeModel): Promise<Blob> {
   const r = visibleResume(model);
   const children: Paragraph[] = [

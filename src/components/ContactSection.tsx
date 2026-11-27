@@ -102,7 +102,7 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="mx-auto w-full max-w-6xl scroll-mt-28 px-4 py-14 md:py-16 sm:px-8 lg:px-12"
+      className="mx-auto w-full max-w-6xl scroll-mt-28 px-4 py-14 md:py-16"
     >
       <SectionHeading
         badge="Let's connect"
