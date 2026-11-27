@@ -6,6 +6,7 @@ import { factsById, factsRegistry, skillVocabulary, type Fact } from "@/lib/resu
 import { REQUIREMENT_WEIGHT, type JdAnalysis, type JdSkill } from "@/lib/resume/jd";
 import { RESUME_CONTACT, SUMMARIES, type ResumeContact } from "@/lib/resume/profile";
 import { SKILL_GROUPS, SOFT_SKILLS, matchSkills } from "@/lib/resume/skills";
+import { BULLET_VARIANTS } from "@/lib/resume/variants";
 
 export type ResumeBullet = {
   key: string;
@@ -88,18 +89,20 @@ function parseCompany(company: string) {
   return { name: match[1], location: match[2], type: match[3] ?? "" };
 }
 
-function scoreFact(factId: string, jd: JdAnalysis): number {
-  const fact = factsById.get(factId);
-  if (!fact) return 0;
-  const skills = factSkills.get(factId) ?? new Set<string>();
+function scoreText(text: string, skills: Set<string>, jd: JdAnalysis): number {
   let score = jd.skills
     .filter((skill) => skills.has(skill.name))
     .reduce((sum, skill) => sum + REQUIREMENT_WEIGHT[skill.requirement], 0);
-  const lower = fact.text.toLowerCase();
+  const lower = text.toLowerCase();
   score += jd.otherKeywords.filter((word) => lower.includes(word.toLowerCase())).length;
-  if (/\d/.test(fact.text)) score += 0.5;
-  if (/\b(award|recogni[sz]ed|promoted)\b/i.test(fact.text)) score += 2;
+  if (/\d/.test(text)) score += 0.5;
+  if (/\b(award|recogni[sz]ed|promoted)\b/i.test(text)) score += 2;
   return score;
+}
+
+function scoreFact(factId: string, jd: JdAnalysis): number {
+  const fact = factsById.get(factId);
+  return fact ? scoreText(fact.text, factSkills.get(factId) ?? new Set<string>(), jd) : 0;
 }
 
 function rankBullets(bullets: ResumeBullet[], visible: number): ResumeBullet[] {
@@ -109,9 +112,17 @@ function rankBullets(bullets: ResumeBullet[], visible: number): ResumeBullet[] {
     .map(({ bullet }, rank) => ({ ...bullet, hidden: rank >= visible }));
 }
 
+/** A fact as a bullet, in your phrasing for this role family when you wrote one. */
 function bullet(factId: string, jd: JdAnalysis): ResumeBullet {
-  const text = factsById.get(factId)?.text ?? "";
-  return { key: factId, text, originalText: text, factIds: [factId], score: scoreFact(factId, jd), hidden: false };
+  const variant = BULLET_VARIANTS[factId]?.[jd.family];
+  const text = variant ?? factsById.get(factId)?.text ?? "";
+  const score = variant
+    ? Math.max(
+        scoreFact(factId, jd),
+        scoreText(variant, new Set(matchSkills(variant).map((hit) => hit.name)), jd),
+      )
+    : scoreFact(factId, jd);
+  return { key: factId, text, originalText: text, factIds: [factId], score, hidden: false };
 }
 
 export function buildMatchReport(jd: JdAnalysis): MatchReport {

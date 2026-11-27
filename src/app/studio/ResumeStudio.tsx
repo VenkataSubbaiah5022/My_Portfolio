@@ -1,7 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { ArrowDown, ArrowUp, Download, Eye, EyeOff, Wand2 } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { ArrowDown, ArrowUp, Download, Eye, EyeOff, Save, Wand2 } from "lucide-react";
 import {
   buildMatchReport,
   buildResume,
@@ -15,7 +15,16 @@ import {
   type ResumeModel,
 } from "@/lib/resume/engine";
 import { atsCheck, type AtsCheck } from "@/lib/resume/ats";
+import {
+  deleteResume,
+  exportBackup,
+  importBackup,
+  listResumes,
+  saveResume,
+  type SavedResume,
+} from "@/lib/resume/history";
 import { analyzeJobDescription, type JdAnalysis } from "@/lib/resume/jd";
+import { LINT_LABEL, lintBullets } from "@/lib/resume/lint";
 import { cn } from "@/lib/utils";
 
 const MAX_JD_LENGTH = 15000;
@@ -143,6 +152,122 @@ function AtsPanel({ check }: { check: AtsCheck }) {
   );
 }
 
+function QualityPanel() {
+  const results = useMemo(() => lintBullets(), []);
+  return (
+    <details className="rounded-2xl border border-border bg-card p-5">
+      <summary className="cursor-pointer text-sm font-semibold">
+        Bullet quality ({results.length} stored bullet{results.length === 1 ? "" : "s"} to improve)
+      </summary>
+      <p className="mt-2 text-xs text-muted-foreground">
+        Fix the wording in the named file; the public site and every future resume pick it up. Add
+        per-role phrasings in src/lib/resume/variants.ts.
+      </p>
+      <ul className="mt-3 space-y-2">
+        {results.map((result) => (
+          <li key={result.id} className="text-sm">
+            <p>{result.text}</p>
+            <div className="mt-0.5 flex flex-wrap items-center gap-1 text-[10px] text-muted-foreground">
+              {result.id} · {result.source}
+              {result.issues.map((issue) => (
+                <span key={issue} className={cn("rounded-full border px-1.5 py-0.5", STATUS_STYLE.partial)}>
+                  {LINT_LABEL[issue]}
+                </span>
+              ))}
+            </div>
+          </li>
+        ))}
+      </ul>
+    </details>
+  );
+}
+
+function HistoryPanel({
+  history,
+  currentId,
+  onOpen,
+  onDuplicate,
+  onDelete,
+  onBackup,
+  onRestore,
+}: {
+  history: SavedResume[];
+  currentId: string | null;
+  onOpen: (resume: SavedResume) => void;
+  onDuplicate: (resume: SavedResume) => void;
+  onDelete: (resume: SavedResume) => void;
+  onBackup: () => void;
+  onRestore: (file: File) => void;
+}) {
+  return (
+    <details className="rounded-2xl border border-border bg-card p-5" open={history.length > 0}>
+      <summary className="cursor-pointer text-sm font-semibold">Saved resumes ({history.length})</summary>
+      <p className="mt-2 text-xs text-muted-foreground">
+        Stored only in this browser. Download a backup to keep them or move them to another browser.
+      </p>
+      <div className="mt-3 flex flex-wrap gap-2">
+        <button
+          type="button"
+          onClick={onBackup}
+          disabled={!history.length}
+          className="rounded-lg border border-border px-3 py-1.5 text-xs font-medium disabled:opacity-50"
+        >
+          Download backup
+        </button>
+        <label className="cursor-pointer rounded-lg border border-border px-3 py-1.5 text-xs font-medium">
+          Import backup
+          <input
+            type="file"
+            accept="application/json,.json"
+            className="sr-only"
+            onChange={(event) => {
+              const file = event.target.files?.[0];
+              if (file) onRestore(file);
+              event.target.value = "";
+            }}
+          />
+        </label>
+      </div>
+      {history.length ? (
+        <ul className="mt-3 divide-y divide-border">
+          {history.map((resume) => (
+            <li key={resume.id} className="flex flex-wrap items-center justify-between gap-2 py-2">
+              <div className="min-w-0">
+                <p className="text-sm font-medium">
+                  {resume.role || "Untitled role"}
+                  {resume.company ? ` · ${resume.company}` : ""}
+                  {resume.id === currentId ? <span className="ml-2 text-[10px] text-primary">open</span> : null}
+                </p>
+                <p className="text-[11px] text-muted-foreground">
+                  Saved {new Date(resume.updatedAt).toLocaleString()}
+                </p>
+              </div>
+              <div className="flex gap-1.5">
+                {(
+                  [
+                    ["Open", onOpen],
+                    ["Duplicate", onDuplicate],
+                    ["Delete", onDelete],
+                  ] as const
+                ).map(([label, action]) => (
+                  <button
+                    key={label}
+                    type="button"
+                    onClick={() => action(resume)}
+                    className="rounded-md border border-border px-2 py-1 text-[11px] hover:border-primary/50"
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </details>
+  );
+}
+
 type EntryList = "experience" | "projects";
 
 function EntryEditor({
@@ -267,6 +392,14 @@ export function ResumeStudio() {
   const [exporting, setExporting] = useState<"pdf" | "docx" | null>(null);
   const [fitting, setFitting] = useState(false);
   const [rendered, setRendered] = useState<{ model: ResumeModel; pages: number } | null>(null);
+  const [history, setHistory] = useState<SavedResume[]>([]);
+  const [currentId, setCurrentId] = useState<string | null>(null);
+  const [savedAt, setSavedAt] = useState<string | null>(null);
+
+  const refreshHistory = () => listResumes().then(setHistory, () => setHistory([]));
+  useEffect(() => {
+    listResumes().then(setHistory, () => setHistory([]));
+  }, []);
 
   const estimate = useMemo(() => (model ? estimatePages(model) : 0), [model]);
   const renderedPages = rendered && rendered.model === model ? rendered.pages : null;
@@ -286,6 +419,61 @@ export function ResumeStudio() {
     const report = buildMatchReport(jd);
     setResult({ jd, report });
     setModel(buildResume(jd, report, { role, company }));
+    setCurrentId(null);
+    setSavedAt(null);
+  };
+
+  const save = async () => {
+    if (!model) return;
+    const existing = history.find((entry) => entry.id === currentId);
+    const record = await saveResume({
+      id: existing?.id,
+      createdAt: existing?.createdAt,
+      role,
+      company,
+      jdText,
+      model: { ...model, targetRole: role, company },
+    });
+    setCurrentId(record.id);
+    setSavedAt(record.updatedAt);
+    await refreshHistory();
+  };
+
+  const open = (saved: SavedResume) => {
+    const jd = analyzeJobDescription(saved.jdText);
+    setRole(saved.role);
+    setCompany(saved.company);
+    setJdText(saved.jdText);
+    setResult({ jd, report: buildMatchReport(jd) });
+    setModel(saved.model);
+    setCurrentId(saved.id);
+    setSavedAt(saved.updatedAt);
+  };
+
+  const duplicate = async (saved: SavedResume) => {
+    await saveResume({ role: saved.role, company: `${saved.company} (copy)`.trim(), jdText: saved.jdText, model: saved.model });
+    await refreshHistory();
+  };
+
+  const remove = async (saved: SavedResume) => {
+    if (!window.confirm(`Delete the saved resume for ${saved.role || "this role"}? This can't be undone.`)) return;
+    await deleteResume(saved.id);
+    if (saved.id === currentId) setCurrentId(null);
+    await refreshHistory();
+  };
+
+  const backup = async () => {
+    download(await exportBackup(), `resume-studio-backup-${new Date().toISOString().slice(0, 10)}.json`);
+  };
+
+  const restore = async (file: File) => {
+    try {
+      const count = await importBackup(file);
+      await refreshHistory();
+      window.alert(`Imported ${count} saved resume${count === 1 ? "" : "s"}.`);
+    } catch {
+      window.alert("That file isn't a resume studio backup.");
+    }
   };
 
   const updateEntry = (list: EntryList, updated: ResumeEntry) => {
@@ -374,6 +562,17 @@ export function ResumeStudio() {
         ) : null}
       </section>
 
+      <HistoryPanel
+        history={history}
+        currentId={currentId}
+        onOpen={open}
+        onDuplicate={duplicate}
+        onDelete={remove}
+        onBackup={backup}
+        onRestore={restore}
+      />
+      <QualityPanel />
+
       {result && model ? (
         <>
           <MatchPanel jd={result.jd} report={result.report} />
@@ -400,7 +599,20 @@ export function ResumeStudio() {
               </button>
               {flagged ? <span className="text-xs text-red-600 dark:text-red-400">{flagged} line(s) need a look</span> : null}
             </div>
-            <div className="flex gap-2">
+            <div className="flex items-center gap-2">
+              {savedAt ? (
+                <span className="text-[11px] text-muted-foreground">
+                  Saved {new Date(savedAt).toLocaleTimeString()}
+                </span>
+              ) : null}
+              <button
+                type="button"
+                onClick={save}
+                className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-xs font-medium hover:border-primary/50"
+              >
+                <Save className="h-3.5 w-3.5" />
+                {currentId ? "Save changes" : "Save"}
+              </button>
               {(["pdf", "docx"] as const).map((kind) => (
                 <button
                   key={kind}
