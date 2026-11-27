@@ -4,17 +4,9 @@ import { BadgeCheck, Check, FileText } from "lucide-react";
 import { motion } from "framer-motion";
 import { SectionHeading } from "@/components/SectionHeading";
 import { trackOutboundClick } from "@/lib/analytics";
+import { publications } from "@/lib/publications";
 
-const zenodoUrl = "https://zenodo.org/records/15123556";
-
-const researchAreas = [
-  "NLP",
-  "Voice Interfaces",
-  "AI Automation",
-  "Speech Recognition",
-];
-
-const techTags = ["Python", "NLP", "Speech Recognition", "Automation APIs"];
+const [publication] = publications;
 
 export function PublicationsSection() {
   return (
@@ -37,25 +29,22 @@ export function PublicationsSection() {
         <div className="relative flex flex-wrap items-center gap-2">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-[11px] font-medium text-primary">
             <BadgeCheck className="h-3.5 w-3.5" />
-            Published on Zenodo
+            Published on {publication.venue}
           </span>
           <span className="rounded-full border border-border px-2.5 py-1 text-[10px] text-muted-foreground">
-            2025
+            {publication.year}
           </span>
         </div>
 
         <h3 className="relative mt-4 text-lg font-semibold md:text-xl">
-          Jarvis AI Assistant
+          {publication.title}
         </h3>
         <p className="relative mt-1 text-sm text-muted-foreground">
-          Jarvis: AI-Powered Voice Genie — research paper on NLP-driven voice
-          automation
+          {publication.subtitle}
         </p>
 
         <p className="relative mt-3 text-sm leading-7 text-muted-foreground">
-          Research publication documenting an NLP-based voice assistant with speech
-          recognition, command routing, API automation, and text-to-speech response
-          pipeline for hands-free productivity workflows.
+          {publication.summary}
         </p>
 
         <div className="relative mt-5 rounded-xl border border-border/80 bg-background/50 p-4">
@@ -63,7 +52,7 @@ export function PublicationsSection() {
             Research Areas
           </p>
           <ul className="mt-3 grid gap-2 sm:grid-cols-2">
-            {researchAreas.map((area) => (
+            {publication.researchAreas.map((area) => (
               <li
                 key={area}
                 className="flex items-center gap-2 text-sm text-muted-foreground"
@@ -78,7 +67,7 @@ export function PublicationsSection() {
         </div>
 
         <div className="relative mt-4 flex flex-wrap gap-2">
-          {techTags.map((tag) => (
+          {publication.tags.map((tag) => (
             <span
               key={tag}
               className="rounded-full border border-border px-2 py-1 text-[10px] text-muted-foreground"
@@ -89,16 +78,20 @@ export function PublicationsSection() {
         </div>
 
         <a
-          href={zenodoUrl}
+          href={publication.url}
           target="_blank"
           rel="noreferrer"
           onClick={() =>
-            trackOutboundClick("Zenodo Publication", zenodoUrl, "publications")
+            trackOutboundClick(
+              `${publication.venue} Publication`,
+              publication.url,
+              "publications",
+            )
           }
           className="relative mt-5 inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-xs font-medium text-primary-foreground transition hover:translate-y-[-1px]"
         >
           <FileText className="h-3.5 w-3.5" />
-          Read Publication on Zenodo
+          Read Publication on {publication.venue}
         </a>
       </motion.article>
     </section>

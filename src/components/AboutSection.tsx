@@ -12,14 +12,15 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { trackOutboundClick } from "@/lib/analytics";
+import { education } from "@/lib/education";
 import { formatExperienceDuration } from "@/lib/experience-duration";
 import { cn } from "@/lib/utils";
 
-const collegeLogo = "/education/rgmcet-logo.png";
 const halaLogo = "/experience/hala-logo.webp";
 
 const HALA_URL = "https://halamobility.in/";
-const COLLEGE_URL = "https://www.rgmcet.edu.in/";
+
+const [college] = education;
 
 const currentRoleTags = [
   "Node.js",
@@ -302,16 +303,16 @@ export function AboutSection() {
             >
               <div className="flex items-center gap-4">
                 <a
-                  href={COLLEGE_URL}
+                  href={college.url}
                   target="_blank"
                   rel="noreferrer"
-                  onClick={() => trackOutboundClick("RGMCET", COLLEGE_URL, "education")}
+                  onClick={() => trackOutboundClick(college.shortName, college.url, "education")}
                   className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-primary/15 bg-primary/[0.08] p-1.5 transition hover:border-primary/30"
-                  aria-label="Rajeev Gandhi Memorial College of Engineering and Technology"
+                  aria-label={college.institution}
                 >
                   <Image
-                    src={collegeLogo}
-                    alt="RGMCET college logo"
+                    src={college.logo}
+                    alt={`${college.shortName} college logo`}
                     width={28}
                     height={28}
                     className="h-full w-full object-contain"
@@ -321,21 +322,25 @@ export function AboutSection() {
                   <div className="flex items-center gap-2">
                     <GraduationCap className="h-4 w-4 shrink-0 text-primary" aria-hidden />
                     <div className="text-sm font-semibold text-foreground">
-                      B.Tech — Computer Science & Engineering (Business Systems)
+                      {college.degree}
                     </div>
                   </div>
                   <div className="mt-0.5 text-xs text-muted-foreground">
                     <a
-                      href={COLLEGE_URL}
+                      href={college.url}
                       target="_blank"
                       rel="noreferrer"
-                      onClick={() => trackOutboundClick("RGMCET", COLLEGE_URL, "education")}
+                      onClick={() => trackOutboundClick(college.shortName, college.url, "education")}
                       className="transition hover:text-primary"
                     >
-                      RGMCET
+                      {college.shortName}
                     </a>
                     {" · "}
-                    Class of 2025 · CGPA 8.01 · Class Representative (60+ students)
+                    {[
+                      `Class of ${college.graduationYear}`,
+                      `CGPA ${college.cgpa}`,
+                      ...college.highlights,
+                    ].join(" · ")}
                   </div>
                 </div>
               </div>
