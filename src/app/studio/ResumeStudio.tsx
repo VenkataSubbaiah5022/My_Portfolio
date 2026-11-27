@@ -14,6 +14,7 @@ import {
   type ResumeEntry,
   type ResumeModel,
 } from "@/lib/resume/engine";
+import { atsCheck, type AtsCheck } from "@/lib/resume/ats";
 import { analyzeJobDescription, type JdAnalysis } from "@/lib/resume/jd";
 import { cn } from "@/lib/utils";
 
@@ -89,6 +90,55 @@ function MatchPanel({ jd, report }: { jd: JdAnalysis; report: MatchReport }) {
             .join(", ")}
         </p>
       ) : null}
+    </section>
+  );
+}
+
+function AtsPanel({ check }: { check: AtsCheck }) {
+  return (
+    <section className="rounded-2xl border border-border bg-card p-5">
+      <div className="flex flex-wrap items-baseline justify-between gap-2">
+        <h2 className="text-sm font-semibold">ATS check</h2>
+        <span
+          className={cn(
+            "rounded-full border px-2.5 py-0.5 text-xs font-medium",
+            check.keywordPct >= 80 ? STATUS_STYLE.covered : check.keywordPct >= 60 ? STATUS_STYLE.partial : STATUS_STYLE.gap,
+          )}
+        >
+          {check.keywordPct}% of your backed JD keywords appear
+        </span>
+      </div>
+      {check.missing.length ? (
+        <p className="mt-2 text-xs text-muted-foreground">
+          You have facts for these, but no visible line mentions them: {check.missing.join(", ")}
+        </p>
+      ) : null}
+      {check.warnings.length ? (
+        <ul className="mt-3 space-y-1">
+          {check.warnings.map((warning) => (
+            <li
+              key={warning.message}
+              className={cn(
+                "text-xs",
+                warning.level === "error" ? "text-red-600 dark:text-red-400" : "text-amber-700 dark:text-amber-300",
+              )}
+            >
+              {warning.level === "error" ? "Error: " : "Check: "}
+              {warning.message}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="mt-3 text-xs text-emerald-700 dark:text-emerald-300">No structure warnings.</p>
+      )}
+      <details className="mt-3">
+        <summary className="cursor-pointer text-xs font-medium text-primary">
+          Plain text a parser reads
+        </summary>
+        <pre className="mt-2 max-h-96 overflow-auto rounded-lg border border-border bg-background p-3 text-[11px] leading-5 whitespace-pre-wrap">
+          {check.text}
+        </pre>
+      </details>
     </section>
   );
 }
@@ -221,6 +271,7 @@ export function ResumeStudio() {
   const estimate = useMemo(() => (model ? estimatePages(model) : 0), [model]);
   const renderedPages = rendered && rendered.model === model ? rendered.pages : null;
   const pages = renderedPages ?? estimate;
+  const ats = useMemo(() => (model && result ? atsCheck(model, result.report) : null), [model, result]);
   const summaryIssues = model ? checkLine(model.summary.text, model.summary.originalText, model.summary.factIds) : [];
   const flagged = model
     ? [...model.experience, ...model.projects]
@@ -364,6 +415,8 @@ export function ResumeStudio() {
               ))}
             </div>
           </section>
+
+          {ats ? <AtsPanel check={ats} /> : null}
 
           <section className="space-y-3 rounded-2xl border border-border bg-card p-5">
             <h2 className="text-sm font-semibold">Summary</h2>
